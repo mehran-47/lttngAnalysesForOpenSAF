@@ -89,25 +89,29 @@ class CPUTop():
         total_ns = end_ns - begin_ns
         graph = Pyasciigraph()
         values = []
+        usage_dict = {}
         print('%s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
         for tid in sorted(self.tids.values(),
                 key=operator.attrgetter('cpu_ns'), reverse=True):
             if len(args.proc_list) > 0 and tid.comm not in args.proc_list:
                 continue
             pc = float("%0.02f" % ((tid.cpu_ns * 100) / total_ns))
-            #values.append(("%s (%d)" % (tid.comm, tid.tid), pc))
-            values.append("%d : %f" % (tid.tid, pc))
+            values.append("%d: %f" %(tid.tid, pc))
+            usage_dict[str(tid.tid)] = pc
             count = count + 1
             if limit > 0 and count >= limit:
                 break
+        #print(usage_dict)
+        print("%r: %r" %(args.only.split(',')[0], usage_dict[args.only.split(',')[0]]))
+        #print(values)
+        '''
+        import json
+        with open('valdump.json', 'wb') as val_dump_file:
+                json.dump(values, val_dump_file)
+        '''
         """
         for line in  graph.graph("Per-TID CPU Usage", values):
-            print(line)
-        """
-        tf = open('dumpfile.json', 'w')
-        json.dump(values, tf)
-        #print(values)
-        """
+            print(line)        
         values = []
         nb_cpu = len(self.cpus.keys())
         for cpu in sorted(self.cpus.values(),
@@ -118,6 +122,7 @@ class CPUTop():
         for line in  graph.graph("Per-CPU Usage", values):
             print(line)
         """
+
     def reset_total(self, start_ts):
         for cpu in self.cpus.keys():
             current_cpu = self.cpus[cpu]
@@ -141,14 +146,13 @@ if __name__ == "__main__":
             help='Refresh period in seconds', default=0)
     parser.add_argument('--top', type=int, default=10,
             help='Limit to top X TIDs (default = 10)')
-    #starts
-    parser.add_argument('--only', type=str, default="",
-            help='limit to only PID provided in double quotes, separated by commas')
-    #ends
+    #start
+    parser.add_argument('--only', type=str, default="0",
+            help='List of PIDs to output, separated by commas in double quotes. e.g.: "1011,2012"')
+    #end
     args = parser.parse_args()
-    print(args.accumulate(args.only))
     args.proc_list = []
-
+    print(args.only)
     traces = TraceCollection()
     handle = traces.add_trace(args.path, "ctf")
     if handle is None:
