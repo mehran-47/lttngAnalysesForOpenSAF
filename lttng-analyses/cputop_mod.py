@@ -90,6 +90,7 @@ class CPUTop():
         graph = Pyasciigraph()
         values = []
         usage_dict = {}
+        to_send = ""
         print('%s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
         for tid in sorted(self.tids.values(),
                 key=operator.attrgetter('cpu_ns'), reverse=True):
@@ -103,7 +104,18 @@ class CPUTop():
                 break
         #print(usage_dict)
         print("%r: %r" %(args.only.split(',')[0], usage_dict[args.only.split(',')[0]]))
+        to_send = args.only.split(',')[0] + usage_dict[args.only.split(',')[0]]
         #print(values)
+        values = []
+        nb_cpu = len(self.cpus.keys())
+        for cpu in sorted(self.cpus.values(),
+                key=operator.attrgetter('cpu_ns'), reverse=True):
+            cpu_total_ns = cpu.cpu_ns
+            cpu_pc = float("%0.02f" % cpu.cpu_pc)
+            values.append(("CPU %d" % cpu.cpu_id, cpu_pc))
+        #print(values)
+        to_send += "\n".join(values)
+        print(to_send)
         '''
         import json
         with open('valdump.json', 'wb') as val_dump_file:
