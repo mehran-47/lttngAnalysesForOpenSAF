@@ -103,8 +103,8 @@ class CPUTop():
             if limit > 0 and count >= limit:
                 break
         #print(usage_dict)
-        print("%r: %r" %(args.only.split(',')[0], usage_dict[args.only.split(',')[0]]))
-        to_send = args.only.split(',')[0] + usage_dict[args.only.split(',')[0]]
+        #print("%r: %r" %(args.only.split(',')[0], usage_dict[args.only.split(',')[0]]))
+        to_send = args.only.split(',')[0] + " : " + str(usage_dict[args.only.split(',')[0]]) + "\n"
         #print(values)
         values = []
         nb_cpu = len(self.cpus.keys())
@@ -114,7 +114,7 @@ class CPUTop():
             cpu_pc = float("%0.02f" % cpu.cpu_pc)
             values.append(("CPU %d" % cpu.cpu_id, cpu_pc))
         #print(values)
-        to_send += "\n".join(values)
+        to_send += "\n".join(str(e) for e in values)
         print(to_send)
         '''
         import json
