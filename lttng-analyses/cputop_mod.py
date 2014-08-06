@@ -104,7 +104,12 @@ class CPUTop():
                 break
         #print(usage_dict)
         #print("%r: %r" %(args.only.split(',')[0], usage_dict[args.only.split(',')[0]]))
-        to_send = args.only.split(',')[0] + " : " + str(usage_dict[args.only.split(',')[0]]) + "\n"
+        #to_send = args.only.split(',')[0] + " : " + str(usage_dict[args.only.split(',')[0]]) + "\n"
+        for pid in args.only.split(','):
+            if pid in usage_dict:
+                to_send += pid + " : " + str(usage_dict[pid]) + "\n"
+            else:
+                to_send += pid + " : -1.0"+ "\n"
         #print(values)
         values = []
         nb_cpu = len(self.cpus.keys())
