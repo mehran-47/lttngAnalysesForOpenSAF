@@ -13,8 +13,6 @@
 import sys
 import argparse
 import shutil
-import time
-import random
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
@@ -111,8 +109,7 @@ class CPUTop():
             if pid in usage_dict:
                 to_send += pid + " : " + str(usage_dict[pid]) + "\n"
             else:
-                #to_send += pid + " : -1.0"+ "\n"
-                to_send += pid + " : 0.0" + str(int(random.uniform(0.0, 9.0))) + "\n"
+                to_send += pid + " : -1.0"+ "\n"
         #print(values)
         values = []
         nb_cpu = len(self.cpus.keys())
