@@ -1,6 +1,6 @@
 #!/bin/bash
 #SESS_OUT=$(lttng create --live)
-IFS=' ' read -a SESS_OUT <<< $(lttng create --live) 
+IFS=' ' read -a SESS_OUT <<< $(lttng create --live)
 lttng enable-channel -k chann1 -C $1M -W $2 && \
 lttng enable-event -k lttng_statedump_start,lttng_statedump_end,lttng_statedump_process_state\
 ,lttng_statedump_file_descriptor,lttng_statedump_vm_map,lttng_statedump_network_interface,lttng_stat\
@@ -15,4 +15,4 @@ echo "current tracepath: $CURRENT_TRACEPATH/kernel"
 #./lttng-analyses/cputop.py $CURRENT_TRACEPATH
 
 echo ./lttng-analyses/cputop.py -r 2 --top 100 $CURRENT_TRACEPATH/kernel
-echo ./lttng-analyses/cputop_mod.py -r 2 --top 100 --only \"\" $CURRENT_TRACEPATH/kernel
+echo ./lttng-analyses/cputop_mod.py -r 2 --top 100 --only "" $CURRENT_TRACEPATH/kernel
