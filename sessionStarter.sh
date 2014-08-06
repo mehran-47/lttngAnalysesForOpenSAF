@@ -15,4 +15,4 @@ echo "current tracepath: $CURRENT_TRACEPATH/kernel"
 #./lttng-analyses/cputop.py $CURRENT_TRACEPATH
 
 echo ./lttng-analyses/cputop.py -r 2 --top 100 $CURRENT_TRACEPATH/kernel
-echo ./lttng-analyses/cputop_mod.py -r 2 --only "" $CURRENT_TRACEPATH/kernel
+echo ./lttng-analyses/cputop_mod.py -r 2 --top 100 --only \"\" $CURRENT_TRACEPATH/kernel

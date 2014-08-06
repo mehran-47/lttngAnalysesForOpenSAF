@@ -9,7 +9,7 @@ import os
 def clientthread(host, port):
     HOST = host         # Symbolic name meaning all available interfaces
     PORT = port    # Arbitrary non-privileged port
-    msg = "shit went wrong, daww"
+    msg = "connection error"
      
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print('Socket created')

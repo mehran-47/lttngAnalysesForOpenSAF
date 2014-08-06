@@ -99,11 +99,10 @@ class CPUTop():
             pc = float("%0.02f" % ((tid.cpu_ns * 100) / total_ns))
             values.append("%d: %f" %(tid.tid, pc))
             usage_dict[str(tid.tid)] = pc
-            """
             count = count + 1
             if limit > 0 and count >= limit:
                 break
-            """
+            
         #print(usage_dict)
         #print("%r: %r" %(args.only.split(',')[0], usage_dict[args.only.split(',')[0]]))
         #to_send = args.only.split(',')[0] + " : " + str(usage_dict[args.only.split(',')[0]]) + "\n"
