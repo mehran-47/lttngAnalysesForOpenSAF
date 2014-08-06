@@ -24,21 +24,21 @@ print('Socket now listening')
 #Function for handling connections. This will be used to create threads
 def clientthread(conn):
     #Sending message to connected client
-    conn.send(('Welcome to the server. Type something and hit enter\n').encode('utf-8')) #send only takes string
+    #conn.send(('Welcome to the server. Type something and hit enter\n').encode('utf-8')) #send only takes string
     #infinite loop so that function do not terminate and thread do not end.
     while True:
         #Receiving from client
         data = conn.recv(1024)
-        print(data)
+        if not data:
+            print('it did')
+            conn.close()
+            return
+
         print(data.decode(encoding='UTF-8'))
-        reply = 'OK...' + data.decode('utf-8')
-        if data.decode(encoding='utf-8') == str('exit').encode(encoding='utf-8'):
-        	print("it did")
-        	break
-     
-        conn.sendall(reply.encode('utf-8'))
+        #reply = 'OK...' + data.decode('utf-8')
+        #conn.sendall(reply.encode('utf-8'))
     #came out of loop
-    conn.close()
+    
 
 #now keep talking with the client
 while True:
