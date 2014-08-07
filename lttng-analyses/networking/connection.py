@@ -21,6 +21,7 @@ class connection():
 				if self.debug:
 					print('Connected thread ending')
 				conn.close()
+				break
 				return
 			print(data.decode(encoding='UTF-8'))
 
@@ -47,9 +48,15 @@ class connection():
 		self.socket.close()
 
 
-	def send(self, serverip, serverport, dataToSend):
+	def connect(self, serverip, serverport):
 		ipname = 'Connection made from ' + socket.gethostbyname(socket.gethostname()) + str(self.port)
 		self.socket.connect((serverip , serverport))
 		self.socket.send((ipname).encode('utf-8')) #send only takes string
+		return self.socket
+		
+
+	def send(self,dataToSend):
 		self.socket.sendall(dataToSend.encode('utf-8'))
+
+	def close(self):
 		self.socket.close()

@@ -11,6 +11,7 @@
 # all copies or substantial portions of the Software.
 
 import sys
+import os
 import argparse
 import shutil
 from babeltrace import *
@@ -18,6 +19,7 @@ from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
 from analyzes import *
 from ascii_graph import Pyasciigraph
+from networking.connection import connection
 
 class CPUTop():
     def __init__(self, traces):
@@ -26,6 +28,8 @@ class CPUTop():
         self.traces = traces
         self.tids = {}
         self.cpus = {}
+        self.client = connection('localhost',5555)
+        self.client.connect('localhost', 6666)
 
     def run(self, args):
         """Process the trace"""
@@ -89,7 +93,7 @@ class CPUTop():
         graph = Pyasciigraph()
         values = []
         usage_dict = {}
-        to_send = ""
+        to_send = "From " + os.uname()[1] + "\n"
         print('%s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
         for tid in sorted(self.tids.values(),
                 key=operator.attrgetter('cpu_ns'), reverse=True):
@@ -120,7 +124,7 @@ class CPUTop():
             values.append(("CPU %d" % cpu.cpu_id, cpu_pc))
         #print(values)
         to_send += "\n".join(str(e) for e in values)
-        print(to_send)
+        self.client.send(to_send)
         '''
         import json
         with open('valdump.json', 'wb') as val_dump_file:
