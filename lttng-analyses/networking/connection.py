@@ -5,12 +5,13 @@ import socket
 import sys
 
 class connection():
-	def __init__(self, host, port, debug=True):
-		self.debug = debug
+	def __init__(self, host, port, **kwargs):
+		self.debug = kwargs["debug"] if "debug" in kwargs else False
+		self.stopafter = kwargs["stopafter"] if "stopafter" in kwargs else None
 		self.host = host
 		self.port = port
 		self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		if debug:
+		if self.debug:
 			print('Server socket created')
 
 
@@ -28,6 +29,7 @@ class connection():
 
 	def listen(self):
 		msg = ''
+		listeners = []
 		try:
 		    self.socket.bind((self.host, self.port))
 		except (socket.error, msg):

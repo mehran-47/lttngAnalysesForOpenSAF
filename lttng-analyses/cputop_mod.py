@@ -28,8 +28,8 @@ class CPUTop():
         self.traces = traces
         self.tids = {}
         self.cpus = {}
-        self.client = connection('localhost',5555)
-        self.client.connect('localhost', 6666)
+        self.client = connection('172.16.159.1',5555)
+        self.client.connect('172.16.159.1', 6666)
 
     def run(self, args):
         """Process the trace"""
