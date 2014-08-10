@@ -3,12 +3,16 @@ from connection import connection
 import sys
 import time
 
-if len(sys.argv) == 1:
-	port = 6666
-else:
+addr = 'localhost'
+port = 6666
+
+if len(sys.argv) == 2:
 	port = argv[1]
-server = connection('172.16.159.1',6666, debug=True)
-print("server listening to 172.16.159.1:%r" %(port))
+elif len(sys.argv) == 3:
+	addr = argv[1]
+	port = int(argv[2])
+server = connection(addr,port, debug=True)
+print("server listening to %r:%r" %(addr,port))
 server.listen()
 
 """

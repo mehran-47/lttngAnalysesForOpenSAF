@@ -11,14 +11,15 @@
 # all copies or substantial portions of the Software.
 
 import sys
+import os
 import argparse
 import shutil
-import time
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
 from analyzes import *
 from ascii_graph import Pyasciigraph
+from networking.connection import connection
 
 class CPUTop():
     def __init__(self, traces):
@@ -27,6 +28,8 @@ class CPUTop():
         self.traces = traces
         self.tids = {}
         self.cpus = {}
+        self.client = connection('172.16.159.1',5555)
+        self.client.connect('172.16.159.1', 6666)
 
     def run(self, args):
         """Process the trace"""
@@ -89,25 +92,47 @@ class CPUTop():
         total_ns = end_ns - begin_ns
         graph = Pyasciigraph()
         values = []
+        usage_dict = {}
+        to_send = "From " + os.uname()[1] + "\n"
         print('%s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
         for tid in sorted(self.tids.values(),
                 key=operator.attrgetter('cpu_ns'), reverse=True):
             if len(args.proc_list) > 0 and tid.comm not in args.proc_list:
                 continue
             pc = float("%0.02f" % ((tid.cpu_ns * 100) / total_ns))
-            #values.append(("%s (%d)" % (tid.comm, tid.tid), pc))
-            values.append("%d : %f" % (tid.tid, pc))
+            values.append("%d: %f" %(tid.tid, pc))
+            usage_dict[str(tid.tid)] = pc
             count = count + 1
             if limit > 0 and count >= limit:
                 break
+            
+        #print(usage_dict)
+        #print("%r: %r" %(args.only.split(',')[0], usage_dict[args.only.split(',')[0]]))
+        #to_send = args.only.split(',')[0] + " : " + str(usage_dict[args.only.split(',')[0]]) + "\n"
+        for pid in args.only.split(','):
+            if pid in usage_dict:
+                to_send += pid + " : " + str(usage_dict[pid]) + "\n"
+            else:
+                to_send += pid + " : -1.0"+ "\n"
+        #print(values)
+        values = []
+        nb_cpu = len(self.cpus.keys())
+        for cpu in sorted(self.cpus.values(),
+                key=operator.attrgetter('cpu_ns'), reverse=True):
+            cpu_total_ns = cpu.cpu_ns
+            cpu_pc = float("%0.02f" % cpu.cpu_pc)
+            values.append(("CPU %d" % cpu.cpu_id, cpu_pc))
+        #print(values)
+        to_send += "\n".join(str(e) for e in values)
+        self.client.send(to_send)
+        '''
+        import json
+        with open('valdump.json', 'wb') as val_dump_file:
+                json.dump(values, val_dump_file)
+        '''
         """
         for line in  graph.graph("Per-TID CPU Usage", values):
-            print(line)
-        """
-        tf = open('dumpfile.json', 'w')
-        json.dump(values, tf)
-        print(values)
-        """
+            print(line)        
         values = []
         nb_cpu = len(self.cpus.keys())
         for cpu in sorted(self.cpus.values(),
@@ -118,6 +143,7 @@ class CPUTop():
         for line in  graph.graph("Per-CPU Usage", values):
             print(line)
         """
+
     def reset_total(self, start_ts):
         for cpu in self.cpus.keys():
             current_cpu = self.cpus[cpu]
@@ -141,9 +167,13 @@ if __name__ == "__main__":
             help='Refresh period in seconds', default=0)
     parser.add_argument('--top', type=int, default=10,
             help='Limit to top X TIDs (default = 10)')
+    #start
+    parser.add_argument('--only', type=str, default="0",
+            help='List of PIDs to output, separated by commas in double quotes. e.g.: "1011,2012"')
+    #end
     args = parser.parse_args()
     args.proc_list = []
-
+    print(args.only)
     traces = TraceCollection()
     handle = traces.add_trace(args.path, "ctf")
     if handle is None:
