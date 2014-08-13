@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 import threading
+import queue
 import time
 import socket
 import sys
+import os
+import ast
+import json
 
 class connection():
 	def __init__(self, host, port, **kwargs):
@@ -11,20 +15,25 @@ class connection():
 		self.host = host
 		self.port = port
 		self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		self.queue = queue.Queue(maxsize=0)
 		if self.debug:
 			print('Server socket created')
 
 
 	def __decoder(self, conn):
+		fdict = {}
 		while True:
 			data = conn.recv(1024)
 			if not data:
 				if self.debug:
-					print('Connected thread ending')
+					print('Connected thread ending from %r' %os.uname()[1])
 				conn.close()
 				break
 				return
-			print(data.decode(encoding='UTF-8'))
+			string_received = data.decode(encoding='UTF-8')
+			#string_received = ast.literal_eval(string_received)
+			#fdict = json.dumps(string_received)
+			print(string_received)
 
 
 	def listen(self):
@@ -44,9 +53,15 @@ class connection():
 			print('Socket now listening')
 
 		while True:
-			conn, addr = self.socket.accept()
-			print('Connected with ' + addr[0] + ':' + str(addr[1]))
-			threading.Thread(target=self.__decoder , args=[conn]).start()
+			try:
+				conn, addr = self.socket.accept()
+				print('Connected with ' + addr[0] + ':' + str(addr[1]))
+				threading.Thread(target=self.__decoder , args=[conn]).start()
+			except KeyboardInterrupt:
+				print("\n'KeyboardInterrupt' received. Stopping server.")
+				break
+			except:
+				raise
 		self.socket.close()
 
 
