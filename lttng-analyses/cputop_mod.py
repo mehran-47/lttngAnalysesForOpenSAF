@@ -97,27 +97,31 @@ class CPUTop():
         total_ns = end_ns - begin_ns
         values = []
         usage_dict = {}
-        to_send = "{'from' : '" + os.uname()[1] +"',"+ "\n" + "'time' : '"+ ns_to_asctime(begin_ns)+" to " + ns_to_asctime(end_ns) + "',\n"
-        print('Sent usage dict between %s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
         
+        print('Sent usage dict between %s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
+        to_send = { 
+        'from' : os.uname()[1],
+        'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
+        'pid_usages' : {},
+        'cpu_usages' : []
+        }
+
         for pid in args.only.split(','):
             usage_dict = self.tids
             pid = int(pid)
             if pid in usage_dict:
                 pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
-                to_send += "'" + str(pid) + "' : '" + str(pc) + "',\n"
+                to_send["pid_usages"][pid] = pc
             else:
-                to_send += "'" + str(pid) + "' : '-1.0'"+ ",\n"
-        
-        to_send += "'cpu_usages' : '"
+                to_send["pid_usages"][pid] = -1.0
+
         nb_cpu = len(self.cpus.keys())
         for cpu in sorted(self.cpus.values(),
                 key=operator.attrgetter('cpu_ns'), reverse=True):
             cpu_total_ns = cpu.cpu_ns
             cpu_pc = float("%0.02f" % cpu.cpu_pc)
-            to_send += str(cpu_pc) + ","
-            #values.append(("CPU %d" % cpu.cpu_id, cpu_pc))
-        to_send = to_send.rsplit(",",1)[0] + "'}"
+            to_send["cpu_usages"].append(cpu_pc)
+            
         self.client.send(to_send)
 
     def reset_total(self, start_ts):

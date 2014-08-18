@@ -5,8 +5,7 @@ import time
 import socket
 import sys
 import os
-import ast
-import json
+import pickle
 
 class connection():
 	def __init__(self, host, port, **kwargs):
@@ -30,10 +29,11 @@ class connection():
 				conn.close()
 				break
 				return
-			string_received = data.decode(encoding='UTF-8')
+			fdict = pickle.loads(data)
+			#string_received = data.decode(encoding='UTF-8')
 			#string_received = ast.literal_eval(string_received)
 			#fdict = json.dumps(string_received)
-			print(string_received)
+			print(fdict)
 
 
 	def listen(self):
@@ -66,14 +66,14 @@ class connection():
 
 
 	def connect(self, serverip, serverport):
-		ipname = 'Connection made from ' + socket.gethostbyname(socket.gethostname()) + str(self.port)
+		ipname = {'msg': 'Connection made from ' + socket.gethostbyname(socket.gethostname()) + str(self.port)}
 		self.socket.connect((serverip , serverport))
-		self.socket.send((ipname).encode('utf-8')) #send only takes string
+		self.socket.send(pickle.dumps(ipname, -1)) #send only takes dictionary/JSON objects
 		return self.socket
 		
 
 	def send(self,dataToSend):
-		self.socket.sendall(dataToSend.encode('utf-8'))
+		self.socket.sendall(pickle.dumps(dataToSend, -1))
 
 	def close(self):
 		self.socket.close()
