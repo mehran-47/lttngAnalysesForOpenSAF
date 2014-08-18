@@ -16,3 +16,6 @@ echo "current tracepath: $CURRENT_TRACEPATH/kernel"
 
 echo ./lttng-analyses/cputop.py -r 2 --top 100 $CURRENT_TRACEPATH/kernel
 echo ./lttng-analyses/cputop_mod.py -r 2 --only "" $CURRENT_TRACEPATH/kernel
+echo -e "vlc : $(ps -e | grep vlc) "
+echo -e "Xorg : $(ps -e | grep Xorg) "
+echo -e "firefox : $(ps -e | grep firefox) "

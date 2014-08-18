@@ -27,11 +27,11 @@ class CPUTop():
         self.traces = traces
         self.tids = {}
         self.cpus = {}
-        self.client = connection('localhost',5555)
+        self.client = connection('172.16.159.1',5555)
         try:
-            self.client.connect('localhost', 6666)
+            self.client.connect('172.16.159.1', 6666)
         except ConnectionRefusedError:
-            print("No server found running at 'localhost:6666'")
+            print("No server found running at '172.16.159.1:6666'")
         except:
             print("Failed to connect to server")
             raise
