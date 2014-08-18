@@ -31,9 +31,8 @@ class connection():
 				return
 			fdict = pickle.loads(data)
 			#string_received = data.decode(encoding='UTF-8')
-			#string_received = ast.literal_eval(string_received)
-			#fdict = json.dumps(string_received)
-			print(fdict)
+			if 'pid_usages' in fdict:
+				print(fdict.get('pid_usages'))
 
 
 	def listen(self):
