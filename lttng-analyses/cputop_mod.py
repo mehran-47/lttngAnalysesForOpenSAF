@@ -27,11 +27,11 @@ class CPUTop():
         self.traces = traces
         self.tids = {}
         self.cpus = {}
-        self.client = connection('172.16.159.1',5555)
+        self.client = connection('localhost',5555)
         try:
-            self.client.connect('172.16.159.1', 6666)
+            self.client.connect(args.to.split(':')[0], 6666)
         except ConnectionRefusedError:
-            print("No server found running at '172.16.159.1:6666'")
+            print("No server found running at "+ args.to.split(':')[0] + ":6666'")
         except:
             print("Failed to connect to server")
             raise
@@ -150,10 +150,12 @@ if __name__ == "__main__":
     #start
     parser.add_argument('--only', type=str, default="0",
             help='List of PIDs to output, separated by commas in double quotes. e.g.: "1011,2012"')
+    parser.add_argument('--to', type=str, default="localhost",
+            help='Send the analysis to a remote socket pair <ip:socket>. e.g.: 192.168.2.30:8080')
     #end
     args = parser.parse_args()
     args.proc_list = []
-    print(args.only)
+    print("Sending process-CPU usage for processes: %r" %args.only)
     traces = TraceCollection()
     handle = traces.add_trace(args.path, "ctf")
     if handle is None:
