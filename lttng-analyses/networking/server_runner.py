@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from connection import connection
-from multiprocessing import Queue, Process
+from multiprocessing import Process, Pipe
 import multiprocessing
 from threading import Thread
 import sys
@@ -10,10 +10,10 @@ addr = 'localhost'
 port = 6666
 
 
-def getval(queue):
+def getval(parent_conn):
 	try:
 		while True:
-			toprint = queue.get()
+			toprint = parent_conn.recv()
 			if toprint==None:
 				time.wait(2)
 			elif toprint.get('msg')=='END_OF_Q':
@@ -22,7 +22,7 @@ def getval(queue):
 			else:
 				print(toprint)
 	except KeyboardInterrupt:
-		print("\n'KeyboardInterrupt' received. Stopping server-reder:%r" %(multiprocessing.current_process().name))
+		print("\n'KeyboardInterrupt' received. Stopping server-reader:%r" %(multiprocessing.current_process().name))
 	except:
 		raise
 
@@ -34,14 +34,9 @@ if __name__ == '__main__':
 		addr = sys.argv[1]
 		port = int(sys.argv[2])
 	server = connection(addr,port, debug=True)
-	queue_to_get = Queue()
+	parent_conn, child_conn = Pipe()
 	print("server listening to %r:%r" %(addr,port))
-	getterproc = Process(target=getval, args=((queue_to_get),))
+	getterproc = Process(target=getval, args=((child_conn),))
 	getterproc.start()
-	server.listen(queue_to_get)
+	server.listen(parent_conn)
 	getterproc.join()
-	"""
-	time.sleep(2)
-	client = connection('localhost',5555)
-	client.send('localhost', 5432, "please!")
-	"""
