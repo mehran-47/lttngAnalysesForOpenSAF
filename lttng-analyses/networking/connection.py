@@ -24,7 +24,7 @@ class connection():
 			data = conn.recv(1024)
 			if not data:
 				if self.debug:
-					print('Connected thread ending from %r' %os.uname()[1])
+					print('Connected thread ending from %r:%r' %(self.host,self.port))
 					child_pipe.send({'msg':'END_OF_Q'})
 				conn.close()
 				break
