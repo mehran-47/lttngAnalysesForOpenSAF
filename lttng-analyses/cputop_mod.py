@@ -19,6 +19,7 @@ from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
 from analyzes import *
 from networking.connection import connection
+from multiprocessing import Queue
 
 class CPUTop():
     def __init__(self, traces):
@@ -28,6 +29,7 @@ class CPUTop():
         self.tids = {}
         self.cpus = {}
         self.client = connection('localhost',5555)
+        self.queue = Queue()
         try:
             self.client.connect(args.to.split(':')[0], 6666)
         except ConnectionRefusedError:
@@ -99,7 +101,8 @@ class CPUTop():
         usage_dict = {}
         
         print('Sent usage dict between %s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
-        to_send = { 
+        to_send = {
+        'msg' : '', 
         'from' : os.uname()[1],
         'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
         'pid_usages' : {},
