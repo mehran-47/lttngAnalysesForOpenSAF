@@ -13,6 +13,7 @@ class connection():
 		self.stopafter = kwargs["stopafter"] if "stopafter" in kwargs else None
 		self.host = host
 		self.port = port
+		self.thread_from = None
 		self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		if self.debug:
 			print('Server socket created')
@@ -24,12 +25,13 @@ class connection():
 			data = conn.recv(1024)
 			if not data:
 				if self.debug:
-					print('Connected thread ending from %r' %os.uname()[1])
+					print('Connected thread ending from %r' %(self.thread_from))
 					child_pipe.send({'msg':'END_OF_Q'})
 				conn.close()
 				break
 				return
 			fdict = pickle.loads(data)
+			self.thread_from = fdict.get('from')
 			child_pipe.send(fdict)
 			#string_received = data.decode(encoding='UTF-8')
 

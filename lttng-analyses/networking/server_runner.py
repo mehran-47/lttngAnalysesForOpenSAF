@@ -20,7 +20,22 @@ def getval(parent_conn):
 				print('Reached end of queue')
 				time.sleep(5)
 			else:
-				print(toprint)
+				'''
+				a_dict = {
+			        'msg' : '', 
+			        'from' : os.uname()[1],
+			        'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
+			        'pid_usages' : {},
+			        'cpu_usages' : [],
+			        'component_info' : []
+		        }
+				'''
+				#Get end packets here
+				#print(toprint)
+				if(toprint.get('from') != None):
+					print(toprint['from'])
+					print(toprint['pid_usages'])
+					print(toprint['component_info'])
 	except KeyboardInterrupt:
 		print("\n'KeyboardInterrupt' received. Stopping server-reader:%r" %(multiprocessing.current_process().name))
 	except:

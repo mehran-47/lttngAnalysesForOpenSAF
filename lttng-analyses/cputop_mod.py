@@ -28,7 +28,7 @@ class CPUTop():
         self.traces = traces
         self.tids = {}
         self.cpus = {}
-        self.client = connection('localhost',5555)
+        self.client = connection('172.16.159.1',5555)
         self.queue = Queue()
         try:
             self.client.connect(args.to.split(':')[0], 6666)
@@ -106,7 +106,8 @@ class CPUTop():
         'from' : os.uname()[1],
         'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
         'pid_usages' : {},
-        'cpu_usages' : []
+        'cpu_usages' : [],
+        'component_info' : []
         }
 
         for pid in args.only.split(','):
