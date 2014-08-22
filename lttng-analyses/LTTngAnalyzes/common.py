@@ -1,6 +1,8 @@
 import math
 import time
 import os
+import socket
+import struct
 from enum import IntEnum
 from socket import AddressFamily
 
@@ -43,6 +45,7 @@ class Process():
         # indexed by filename
         self.closed_fds = {}
         self.current_syscall = {}
+        self.perf = {}
 
 class CPU():
     def __init__(self):
@@ -50,6 +53,8 @@ class CPU():
         self.cpu_ns = 0
         self.current_tid = -1
         self.start_task_ns = 0
+        self.perf = {}
+        self.wakeup_queue = []
 
 class Syscall():
     def __init__(self):
@@ -160,3 +165,6 @@ def getFolderSize(folder):
         elif os.path.isdir(itempath):
             total_size += getFolderSize(itempath)
     return total_size
+
+def int_to_ipv4(ip):
+    return socket.inet_ntoa(struct.pack("!I", ip))

@@ -99,10 +99,8 @@ class CPUTop():
             count = count + 1
             if limit > 0 and count >= limit:
                 break
-                
         for line in  graph.graph("Per-TID CPU Usage", values):
             print(line)
-        
 
         values = []
         nb_cpu = len(self.cpus.keys())

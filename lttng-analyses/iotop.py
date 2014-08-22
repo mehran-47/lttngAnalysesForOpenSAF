@@ -49,6 +49,8 @@ class IOTop():
 
         if event.name == "sched_switch":
             sched.switch(event)
+        if event.name in ["sched_wakeup", "sched_wakeup_new"]:
+            sched.wakeup(event)
         elif event.name[0:4] == "sys_":
             syscall.entry(event)
         elif event.name == "exit_syscall":
@@ -145,7 +147,7 @@ class IOTop():
             self.current_sec = event_sec
             self.start_ns = event.timestamp
 
-    def output_file_read(self, args):
+    def output_file_read_write(self, args):
         count = 0
         limit = args.top
         graph = Pyasciigraph()
@@ -176,6 +178,16 @@ class IOTop():
             if limit > 0 and count >= limit:
                 break
         for line in graph.graph('Files Read', values, sort=2):
+            print(line)
+        for f in files.values():
+            if f["write"] == 0:
+                continue
+            values.append(("%s %s %s" % (f["name"],
+                convert_size(f["write"]), f["other"]), f["write"]))
+            count = count + 1
+            if limit > 0 and count >= limit:
+                break
+        for line in graph.graph('Files Write', values, sort=2):
             print(line)
 
     def output_read(self, args):
@@ -324,10 +336,10 @@ class IOTop():
     def output(self, args, begin_ns, end_ns, final=0):
         print('%s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
         self.output_read(args)
-        self.disk_output_read(args)
         self.output_write(args)
+        self.disk_output_read(args)
         self.disk_output_write(args)
-        self.output_file_read(args)
+        self.output_file_read_write(args)
         self.output_nr_sector(args)
         self.output_nr_requests(args)
         self.output_dev_latency(args)

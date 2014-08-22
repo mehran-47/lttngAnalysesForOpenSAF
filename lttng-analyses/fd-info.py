@@ -10,7 +10,8 @@
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 
-import sys, argparse, errno, json, os.path
+import sys, argparse, errno, json, os.path, socket
+from collections import OrderedDict
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
@@ -23,10 +24,6 @@ NS_IN_S = 1000000000
 NS_IN_MS = 1000000
 NS_IN_US = 1000
 
-MONGO_HOST = 'localhost'
-MONGO_PORT = 27017
-
-BYTES_IN_MB = 1048576
 
 def parse_errname(errname):
     errname = errname.upper()
@@ -38,6 +35,7 @@ def parse_errname(errname):
         sys.exit(1)
 
     return err_number
+
 
 def parse_duration(duration):
     """Receives a numeric string with time unit suffix
@@ -84,10 +82,13 @@ class FDInfo():
 
         self.latencies = []
         # Stores metadata about processes when outputting to json
-        # Keys: PID, values: {pname, fds}
+        # Keys: PID, values: {pname, fds, threads}
         self.json_metadata = {}
         # Used to identify session in database
-        self.session_name = self.args.path.split('/')[-2]
+        if self.args.path[-1] == '/':
+            self.session_name = self.args.path.split('/')[-3]
+        else:
+            self.session_name = self.args.path.split('/')[-2]
         # Hyphens in collections names are an incovenience in mongo
         self.session_name = self.session_name.replace('-', '_')
 
@@ -109,7 +110,7 @@ class FDInfo():
 
     def handle_syscall_exit(self, event, syscall, started=1):
         cpu_id = event['cpu_id']
-        if not cpu_id in self.cpus:
+        if cpu_id not in self.cpus:
             return
 
         cpu = self.cpus[cpu_id]
@@ -139,63 +140,76 @@ class FDInfo():
         for event in self.traces.events:
             self.process_event(event, sched, syscall, statedump)
 
-        if self.args.json_latencies:
-            self.output_json_latencies()
+        if self.args.json:
+            self.output_json()
 
         if self.args.mongo:
-            self.store_mongo_latencies()
+            self.store_mongo()
 
-    def output_json_latencies(self):
-        f = open(os.path.join(self.args.json_latencies, 'latencies.json'), 'w')
+    def output_json(self):
+        latencies_name = 'latencies_' + self.session_name + '.json'
+        latencies_path = os.path.join(self.args.json, latencies_name)
+        f = open(latencies_path, 'w')
         json.dump(self.latencies, f)
         f.close()
 
-        f = open(os.path.join(self.args.json_latencies, 'pid_metadata.json'), 'w')
+        metadata_name = 'metadata_' + self.session_name + '.json'
+        metadata_path = os.path.join(self.args.json, metadata_name)
+        f = open(os.path.join(self.args.json, 'metadata.json'), 'w')
         json.dump(self.json_metadata, f)
         f.close()
 
-    def store_mongo_latencies(self):
-        client = MongoClient(MONGO_HOST, MONGO_PORT)
+    def store_mongo(self):
+        client = MongoClient(self.args.mongo_host, self.args.mongo_port)
         db = client.analyses
 
         latencies_name = 'latencies_' + self.session_name
         metadata_name = 'metadata_' + self.session_name
 
         try:
-            db.create_collection(latencies_name, capped = True,
-                                 size = 64 * BYTES_IN_MB)
-            db.create_collection(metadata_name, capped = True,
-                                 size = 8 * BYTES_IN_MB)
+            db.create_collection(latencies_name)
         except CollectionInvalid as ex:
             print('Failed to create collection: ')
             print(ex)
             print('Data will not be stored to MongoDB')
             return
 
-        db.sessions.insert({'name': self.session_name})
-
-        # Only insert data once both collections have been successfully created
         for event in self.latencies:
             db[latencies_name].insert(event)
 
         # Ascending timestamp index
-        db[latencies_name].create_index("ts_start")
+        db[latencies_name].create_index('ts_start')
+
+        if metadata_name not in db.collection_names():
+            try:
+                db.create_collection(metadata_name)
+            except CollectionInvalid as ex:
+                print('Failed to create collection: ')
+                print(ex)
+                print('Metadata will not be stored to MongoDB')
+                return
+
+            db.sessions.insert({'name': self.session_name})
 
         for pid in self.json_metadata:
             metadatum = self.json_metadata[pid]
             metadatum['pid'] = pid
-            db[metadata_name].insert(metadatum)
+            db[metadata_name].update({'pid': pid}, metadatum, upsert=True)
+
+        # Ascending PID index
+        db[metadata_name].create_index('pid')
 
     def output_dump(self, event):
         # dump events can't fail, and don't have a duration, so ignore
         if self.args.failed or self.err_number or self.args.duration > 0:
             return
 
-        pid = event['pid']
-        if self.args.pid >= 0 and self.args.pid != pid:
+        # using tid as variable name for consistency with other events
+        tid = event['pid']
+        if self.args.tid >= 0 and self.args.tid != tid:
             return
 
-        comm = self.tids[pid].comm
+        comm = self.tids[tid].comm
         if self.args.pname is not None and self.args.pname != comm:
             return
 
@@ -217,7 +231,8 @@ class FDInfo():
             endtime = '{:.9f}'.format(endtime / NS_IN_S)
 
         if filename.startswith(self.args.prefix) and not self.args.quiet:
-            print(FDInfo.DUMP_FORMAT.format(endtime, comm, pid, name, filename))
+            print(FDInfo.DUMP_FORMAT.format(endtime, comm, tid, name,
+                                            filename))
 
     def output_fd_event(self, exit_event, entry):
         ret = exit_event['ret']
@@ -229,11 +244,15 @@ class FDInfo():
         if self.err_number and ret != -err_number:
             return
 
-        pid = self.cpus[exit_event['cpu_id']].current_tid
-        if self.args.pid >= 0 and self.args.pid != pid:
+        tid = self.cpus[exit_event['cpu_id']].current_tid
+        if self.args.tid >= 0 and self.args.tid != tid:
             return
 
-        comm = self.tids[pid].comm
+        pid = self.tids[tid].pid
+        if pid == -1:
+            pid = tid
+
+        comm = self.tids[tid].comm
         if self.args.pname is not None and self.args.pname != comm:
             return
 
@@ -265,34 +284,59 @@ class FDInfo():
 
         duration = duration_ns / NS_IN_S
 
-        if self.args.json_latencies or self.args.mongo:
-            self.log_fd_event_json(pid, comm, entry, name, duration_ns, filename)
+        if self.args.json or self.args.mongo:
+            self.log_fd_event_json(tid, pid, comm, entry, name, duration_ns,
+                                   filename, ret)
 
         if self.is_interactive and failed and not self.args.no_color:
             sys.stdout.write(FDInfo.FAILURE_RED)
 
         if filename.startswith(self.args.prefix) and not self.args.quiet:
             if not failed:
-                print(FDInfo.SUCCESS_FORMAT.format(endtime, duration, comm, pid,
-                                                   name, ret, filename))
+                print(FDInfo.SUCCESS_FORMAT.format(endtime, duration, comm,
+                                                   tid, name, ret, filename))
             else:
                 try:
                     err_name = errno.errorcode[-ret]
-                    print(FDInfo.FAILURE_FORMAT.format(endtime, duration, comm, pid,
-                        name, ret, err_name,
-                        filename))
+                    print(FDInfo.FAILURE_FORMAT.format(endtime, duration, comm,
+                                                       tid, name, ret,
+                                                       err_name, filename))
                 except KeyError:
-                    print("Invalid error code:", -ret)
+                    print('Invalid error code:', -ret)
 
         if self.is_interactive and failed and not self.args.no_color:
             sys.stdout.write(FDInfo.NORMAL_WHITE)
 
-    def log_fd_event_json(self, pid, comm, entry, name, duration_ns, filename):
-        if pid not in self.json_metadata:
-            self.json_metadata[pid] = {'pname': comm, 'fds': {}}
-        # Fix process name
-        elif self.json_metadata[pid]['pname'] != comm:
-            self.json_metadata[pid]['pname'] = comm
+    def log_fd_event_json(self, tid, pid, comm, entry, name, duration_ns,
+                          filename, ret):
+        # Dealing with plain old process
+        if pid == tid:
+            if pid not in self.json_metadata:
+                self.json_metadata[pid] = {
+                    'pname': comm,
+                    'fds': {},
+                    'threads': {}
+                }
+            else:
+                if self.json_metadata[pid]['pname'] != comm:
+                    self.json_metadata[pid]['pname'] = comm
+        # Dealing with a thread
+        else:
+            if pid not in self.json_metadata:
+                self.json_metadata[pid] = {
+                    'pname': 'unknown',
+                    'fds': {},
+                    'threads': {}
+                }
+
+            tid_str = str(tid)
+            if tid_str not in self.json_metadata[pid]['threads']:
+                self.json_metadata[pid]['threads'][tid_str] = {
+                    'pname': comm
+                }
+            else:
+                if self.json_metadata[pid]['threads'][tid_str]['pname'] != comm:
+                    self.json_metadata[pid]['threads'][tid_str]['pname'] = comm
 
         fd = None
 
@@ -302,23 +346,41 @@ class FDInfo():
             fd = entry['fd_in'].fd
 
         if fd:
+            fd_str = str(fd)
             fdtype = FDType.unknown
 
-            if fd in self.tids[pid].fds:
-                fdtype = self.tids[pid].fds[fd].fdtype
+            if fd in self.tids[tid].fds:
+                fdtype = self.tids[tid].fds[fd].fdtype
+
+            fd_metadata = {}
+            fd_metadata['filename'] = filename
+            fd_metadata['fdtype'] = fdtype
 
             if str(fd) not in self.json_metadata[pid]['fds']:
-                self.json_metadata[pid]['fds'][str(fd)] = {}
-                self.json_metadata[pid]['fds'][str(fd)]['filename'] = filename
-                self.json_metadata[pid]['fds'][str(fd)]['fdtype'] = fdtype
+                fds = self.json_metadata[pid]['fds']
+                fds[fd_str] = OrderedDict()
+                fds[fd_str][str(entry['start'])] = fd_metadata
+            else:
+                chrono_fd = self.json_metadata[pid]['fds'][fd_str]
+                last_ts = next(reversed(chrono_fd))
+                if filename != chrono_fd[last_ts]['filename']:
+                    chrono_fd[str(entry['start'])] = fd_metadata
 
         category = Syscalls.get_syscall_category(name)
-        self.latencies.append({'ts_start': entry['start'],
-                               'duration': duration_ns,
-                               'pid': pid,
-                               'category': category,
-                               'fd': fd})
 
+        latency = {'ts_start': entry['start'],
+                   'duration': duration_ns,
+                   'tid': tid,
+                   'pid': pid,
+                   'category': category}
+
+        if fd is not None:
+            latency['fd'] = fd
+
+        if ret < 0:
+            latency['errno'] = -ret
+
+        self.latencies.append(latency)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='FD syscalls analysis')
@@ -328,8 +390,8 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--type', type=str, default='all',
                         help='Types of events to display. Possible values:\
                         all, open, close, read, write dump')
-    parser.add_argument('--pid', type=int, default='-1',
-                        help='PID for which to display events')
+    parser.add_argument('--tid', type=int, default='-1',
+                        help='TID for which to display events')
     parser.add_argument('--pname', type=str, default=None,
                         help='Process name for which to display events')
     parser.add_argument('-d', '--duration', type=str, default='-1',
@@ -351,10 +413,11 @@ if __name__ == '__main__':
                         help='Display timestamps in unix time format')
     parser.add_argument('--no-color', action='store_true',
                         help='Disable color output')
-    parser.add_argument('--json-latencies', type=str, default=None,
+    parser.add_argument('--json', type=str, default=None,
                         help='Store latencies as JSON in specified directory')
-    parser.add_argument('--mongo', action='store_true',
-                        help='Store latencies into MongoDB')
+    parser.add_argument('--mongo', type=str, default=None,
+                        help='Store latencies into MongoDB at specified ip\
+                        and port')
     parser.add_argument('-q', '--quiet', action='store_true',
                         help='Don\'t output fd events to stdout')
 
@@ -397,6 +460,19 @@ if __name__ == '__main__':
 
     # Parse duration option
     args.duration = parse_duration(args.duration)
+
+    if args.mongo:
+        try:
+            (args.mongo_host, args.mongo_port) = args.mongo.split(':')
+            socket.inet_aton(args.mongo_host)
+            args.mongo_port = int(args.mongo_port)
+        except ValueError:
+            print('Invalid MongoDB address format: ', args.mongo)
+            print('Expected format: IPV4:PORT')
+            sys.exit(1)
+        except socket.error:
+            print('Invalid MongoDB ip ', args.mongo_host)
+            sys.exit(1)
 
     analyser = FDInfo(args, traces, output_enabled, err_number)
 
