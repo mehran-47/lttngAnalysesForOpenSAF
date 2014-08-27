@@ -11,7 +11,7 @@ lttng add-context -k -t pid -t procname -t tid -t ppid -t perf:cache-misses -t p
 lttng start
 
 #creating UST session
-lttng create usttrace --live
+lttng create usttrace- --live
 lttng enable-event -u -a --loglevel=TRACE_DEBUG
 lttng start
 
@@ -22,8 +22,8 @@ CURRENT_TRACEPATH=$(realpath /root/lttng-traces/$(hostname)/${SESS_OUT[1]})
 echo "kernel tracepath: $CURRENT_TRACEPATH/kernel"
 echo "ust tracepath: $CURRENT_TRACEPATH/ust"
 #./lttng-analyses/cputop.py $CURRENT_TRACEPATH
-
-echo ./lttng-analyses/cputop.py -r 2 --top 100 $CURRENT_TRACEPATH/kernel
+echo babeltrace -i lttng-live net://localhost/host/node2/usttrace
+#echo ./lttng-analyses/cputop.py -r 2 --top 100 $CURRENT_TRACEPATH/kernel
 echo ./lttng-analyses/cputop_mod.py -r 2 --only \"\" $CURRENT_TRACEPATH/kernel --to \"\"
 echo -e "vlc : $(ps -e | grep vlc) "
 echo -e "Xorg : $(ps -e | grep Xorg) "
