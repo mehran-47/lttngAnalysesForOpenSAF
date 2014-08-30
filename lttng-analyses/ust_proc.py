@@ -34,35 +34,38 @@ class ust_trace():
 					if event_type in event:
 						print("event timestamp: "+ ns_to_asctime(event.timestamp)  + " : " + str(event.get(event_type)))
 
+	def __events_as_dict(self):
+		dict_to_ret = {}
+		for event in self.traces.events:
+			dict_to_ret[event.timestamp] = event.get("msg")
+		return dict_to_ret
+
 	def get_component_pids(self):
 		pass
 
-	def check_new_events(self):
-		oldEventsDict = {}
+	def check_new_events(self, oldEventsDict):
 		newEventsDict = {}
-		for event in self.traces.events:
-			oldEventsDict[event.timestamp] = event.get("msg")
-		'''
-		if self.latest_timestamp in oldEventsDict:
-			return {}
-		'''
 		self.traces = TraceCollection()
 		self.trace_handle = self.traces.add_trace(self.path, "ctf")
 		for event in self.traces.events:
+			#print("\n\n in comparison \n\n")
 			if event.timestamp > self.latest_timestamp:
 				self.latest_timestamp = event.timestamp
 			if event.timestamp not in oldEventsDict:
 				newEventsDict[event.timestamp] = event.get("msg")
 		return newEventsDict
 
-	def keepChecking(self):
+	def start_daemon(self):
+		oldEventsDict = {}
 		while not self.check_break:
-			newEvents = self.check_new_events()
+			newEvents = self.check_new_events(oldEventsDict)
 			if len(newEvents) == 0:
+				print("nothing new; waiting...")
+				oldEventsDict = self.__events_as_dict()
 				time.sleep(5)
 			else:
 				print(newEvents)
-				break
+				oldEventsDict = self.__events_as_dict()
 
 
 if __name__ == "__main__":
@@ -77,6 +80,12 @@ if __name__ == "__main__":
 		time.sleep(10)
 	
 	ustTrace = ust_trace(path)
-	ustTrace.show_events("msg")
-	#ustTrace.keepChecking()
-	print(ustTrace.check_new_events())
+	#ustTrace.show_events("msg")
+	try:
+		ustTrace.start_daemon()
+	except KeyboardInterrupt:
+		print("\nDaemon stopped by 'KeyboardInterrupt'")
+	except:
+		print("UST Processing Daemon interrupted")
+		raise
+	#print(ustTrace.check_new_events())
