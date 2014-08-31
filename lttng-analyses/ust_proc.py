@@ -4,6 +4,7 @@ import os
 import time
 from babeltrace import *
 from LTTngAnalyzes.common import *
+import json
 
 class ust_trace():
 	def __init__(self, path, **kwargs):
@@ -64,7 +65,11 @@ class ust_trace():
 				oldEventsDict = self.__events_as_dict()
 				time.sleep(5)
 			else:
-				print(newEvents)
+				#print(newEvents)
+				print('saving new events')
+				with open('/home/node2/Documents/UST_events.txt','w') as ustf:
+					for timestamp in sorted(newEvents):
+						ustf.write(str(timestamp) + ":" + newEvents[timestamp]+"\n")
 				oldEventsDict = self.__events_as_dict()
 
 
