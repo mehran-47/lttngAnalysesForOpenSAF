@@ -2,9 +2,10 @@
 import sys
 import os
 import time
+import re
+import json
 from babeltrace import *
 from LTTngAnalyzes.common import *
-import json
 
 class ust_trace():
 	def __init__(self, path, **kwargs):
@@ -41,8 +42,24 @@ class ust_trace():
 			dict_to_ret[event.timestamp] = event.get("msg")
 		return dict_to_ret
 
-	def get_component_pids(self):
-		pass
+	def get_comp_csi(self, newEvents):
+	comp_csi_dict = {}
+	final_dict = {}
+	for timestamp in sorted(newEvents):
+		msg = re.search('^{.+}$' ,newEvents[timestamp])
+		if msg:
+			string_dict = re.sub("'",'"', msg.group(0))
+			comp_csi_dict = json.loads(string_dict)
+			if comp_csi_dict['type']=='dispatch_remove' or comp_csi_dict['type']=='dispatch_terminate':
+				if comp_csi_dict['component'] in final_dict:
+					del final_dict[comp_csi_dict['component']]
+			elif comp_csi_dict['type']=='dispatch_set' or comp_csi_dict['type']=='csi_assignment':
+				if comp_csi_dict['component'] in final_dict:
+					for key in comp_csi_dict:
+						final_dict[comp_csi_dict['component']][key] = comp_csi_dict[key]
+				else:
+					final_dict[comp_csi_dict['component']] = comp_csi_dict
+	return final_dict
 
 	def check_new_events(self, oldEventsDict):
 		newEventsDict = {}
@@ -62,15 +79,17 @@ class ust_trace():
 			newEvents = self.check_new_events(oldEventsDict)
 			if len(newEvents) == 0:
 				print("nothing new; waiting...")
-				oldEventsDict = self.__events_as_dict()
+				#oldEventsDict = self.__events_as_dict()
 				time.sleep(5)
 			else:
-				#print(newEvents)
+				'''
 				print('saving new events')
 				with open('/home/node2/Documents/UST_events.txt','w') as ustf:
 					for timestamp in sorted(newEvents):
 						ustf.write(str(timestamp) + ":" + newEvents[timestamp]+"\n")
-				oldEventsDict = self.__events_as_dict()
+				'''
+				print('\nCurrently active components:' + self.get_comp_csi(newEvents))
+			oldEventsDict = self.__events_as_dict()
 
 
 if __name__ == "__main__":
