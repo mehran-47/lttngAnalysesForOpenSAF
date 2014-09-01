@@ -6,6 +6,8 @@ import re
 import json
 from babeltrace import *
 from LTTngAnalyzes.common import *
+from cputop_mod import cputop_internal
+from multiprocessing import Process
 
 class ust_trace():
 	def __init__(self, path, **kwargs):
@@ -43,23 +45,23 @@ class ust_trace():
 		return dict_to_ret
 
 	def get_comp_csi(self, newEvents):
-	comp_csi_dict = {}
-	final_dict = {}
-	for timestamp in sorted(newEvents):
-		msg = re.search('^{.+}$' ,newEvents[timestamp])
-		if msg:
-			string_dict = re.sub("'",'"', msg.group(0))
-			comp_csi_dict = json.loads(string_dict)
-			if comp_csi_dict['type']=='dispatch_remove' or comp_csi_dict['type']=='dispatch_terminate':
-				if comp_csi_dict['component'] in final_dict:
-					del final_dict[comp_csi_dict['component']]
-			elif comp_csi_dict['type']=='dispatch_set' or comp_csi_dict['type']=='csi_assignment':
-				if comp_csi_dict['component'] in final_dict:
-					for key in comp_csi_dict:
-						final_dict[comp_csi_dict['component']][key] = comp_csi_dict[key]
-				else:
-					final_dict[comp_csi_dict['component']] = comp_csi_dict
-	return final_dict
+		comp_csi_dict = {}
+		final_dict = {}
+		for timestamp in sorted(newEvents):
+			msg = re.search('^{.+}$' ,newEvents[timestamp])
+			if msg:
+				string_dict = re.sub("'",'"', msg.group(0))
+				comp_csi_dict = json.loads(string_dict)
+				if comp_csi_dict['type']=='dispatch_remove' or comp_csi_dict['type']=='dispatch_terminate':
+					if comp_csi_dict['component'] in final_dict:
+						del final_dict[comp_csi_dict['component']]
+				elif comp_csi_dict['type']=='dispatch_set' or comp_csi_dict['type']=='csi_assignment':
+					if comp_csi_dict['component'] in final_dict:
+						for key in comp_csi_dict:
+							final_dict[comp_csi_dict['component']][key] = comp_csi_dict[key]
+					else:
+						final_dict[comp_csi_dict['component']] = comp_csi_dict
+		return final_dict
 
 	def check_new_events(self, oldEventsDict):
 		newEventsDict = {}
@@ -77,6 +79,7 @@ class ust_trace():
 		oldEventsDict = {}
 		while not self.check_break:
 			newEvents = self.check_new_events(oldEventsDict)
+			#kernelproc = Process(target=cputop_internal, args=(sys.argv[1]+"/kernel", "172.16.159.1"))
 			if len(newEvents) == 0:
 				print("nothing new; waiting...")
 				#oldEventsDict = self.__events_as_dict()
@@ -88,7 +91,8 @@ class ust_trace():
 					for timestamp in sorted(newEvents):
 						ustf.write(str(timestamp) + ":" + newEvents[timestamp]+"\n")
 				'''
-				print('\nCurrently active components:' + self.get_comp_csi(newEvents))
+				print('\nCurrently active components:' + str(self.get_comp_csi(newEvents)))
+
 			oldEventsDict = self.__events_as_dict()
 
 

@@ -144,6 +144,28 @@ class CPUTop():
             for syscall in self.tids[tid].syscalls.keys():
                 self.tids[tid].syscalls[syscall].count = 0
 
+def cputop_internal(path, to, pids, **kwargs):
+    args = argparse.Namespace()
+    args.path = path
+    args.only = to
+    args.refresh = 0 if kwargs.get('refresh')==None else kwargs.get('refresh')
+    args.top = 10 if kwargs.get('top')==None else kwargs.get('top')
+    args.proc_list = []
+    print("Sending process-CPU usage for processes: %r" %args.only)
+    traces = TraceCollection()
+    handle = traces.add_trace(args.path, "ctf")
+    if handle is None:
+        sys.exit(1)
+    c = CPUTop(traces)
+    try:
+        c.run(args)
+    except KeyboardInterrupt:
+        print("\n'KeyboardInterrupt' received. Stopping trace processing.")
+    except:
+        print("\nUnknown Exception")
+        raise
+    traces.remove_trace(handle)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='CPU usage analysis')
     parser.add_argument('path', metavar="<path/to/trace>", help='Trace path')

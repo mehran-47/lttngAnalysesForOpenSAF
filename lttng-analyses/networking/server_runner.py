@@ -2,7 +2,6 @@
 from connection import connection
 from multiprocessing import Process, Pipe
 import multiprocessing
-from threading import Thread
 import sys
 import time
 
