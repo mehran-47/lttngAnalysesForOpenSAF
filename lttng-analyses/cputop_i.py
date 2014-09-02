@@ -22,18 +22,18 @@ from networking.connection import connection
 from multiprocessing import Queue
 
 class CPUTop():
-    def __init__(self, traces):
+    def __init__(self, traces, activeComps, args):
+        self.activeComps = activeComps
         self.trace_start_ts = 0
         self.trace_end_ts = 0
         self.traces = traces
         self.tids = {}
         self.cpus = {}
         self.client = connection('172.16.159.129',5555)
-        self.queue = Queue()
         try:
-            self.client.connect(args.to.split(':')[0], 6666)
+            self.client.connect(args.to, 6666)
         except ConnectionRefusedError:
-            print("No server found running at "+ args.to.split(':')[0] + ":6666'")
+            print("No server found running at "+ args.to + ":6666'")
         except:
             print("Failed to connect to server")
             raise
@@ -98,18 +98,17 @@ class CPUTop():
         limit = args.top
         total_ns = end_ns - begin_ns
         values = []
-        usage_dict = {}
+        usage_dict = self.tids
         
         print('Sent usage dict between %s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
         to_send = {
         'msg' : '', 
         'from' : os.uname()[1],
         'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
-        'pid_usages' : {},
         'cpu_usages' : [],
-        'component_info' : []
+        'component_info' : self.activeComps
         }
-
+        '''
         for pid in args.only.split(','):
             usage_dict = self.tids
             pid = int(pid)
@@ -118,6 +117,15 @@ class CPUTop():
                 to_send["pid_usages"][pid] = pc
             else:
                 to_send["pid_usages"][pid] = -1.0
+        '''
+        for component in self.activeComps:
+            pid = int(component['PID'])
+            if pid in usage_dict:
+                pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
+                self.activeComps[component['component']]['usage'] = pc
+            else:
+                self.activeComps[component['component']]['usage'] = -1
+        to_send['component_info'] = self.activeComps
 
         nb_cpu = len(self.cpus.keys())
         for cpu in sorted(self.cpus.values(),
@@ -144,19 +152,19 @@ class CPUTop():
             for syscall in self.tids[tid].syscalls.keys():
                 self.tids[tid].syscalls[syscall].count = 0
 
-def cputop_internal(path, to, pids, **kwargs):
+def cputop_init(path, to, activeComps, **kwargs):
     args = argparse.Namespace()
     args.path = path
-    args.only = to
+    args.to = to
     args.refresh = 0 if kwargs.get('refresh')==None else kwargs.get('refresh')
     args.top = 10 if kwargs.get('top')==None else kwargs.get('top')
     args.proc_list = []
-    print("Sending process-CPU usage for processes: %r" %args.only)
+    print("Sending process-CPU usage to: %r" %args.to)
     traces = TraceCollection()
     handle = traces.add_trace(args.path, "ctf")
     if handle is None:
         sys.exit(1)
-    c = CPUTop(traces)
+    c = CPUTop(traces, activeComps, args)
     try:
         c.run(args)
     except KeyboardInterrupt:
@@ -164,37 +172,4 @@ def cputop_internal(path, to, pids, **kwargs):
     except:
         print("\nUnknown Exception")
         raise
-    traces.remove_trace(handle)
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='CPU usage analysis')
-    parser.add_argument('path', metavar="<path/to/trace>", help='Trace path')
-    parser.add_argument('-r', '--refresh', type=int,
-            help='Refresh period in seconds', default=0)
-    parser.add_argument('--top', type=int, default=10,
-            help='Limit to top X TIDs (default = 10)')
-    #start
-    parser.add_argument('--only', type=str, default="0",
-            help='List of PIDs to output, separated by commas in double quotes. e.g.: "1011,2012"')
-    parser.add_argument('--to', type=str, default="localhost",
-            help='Send the analysis to a remote socket pair <ip:socket>. e.g.: 192.168.2.30:8080')
-    #end
-    args = parser.parse_args()
-    args.proc_list = []
-    print("Sending process-CPU usage for processes: %r" %args.only)
-    traces = TraceCollection()
-    handle = traces.add_trace(args.path, "ctf")
-    if handle is None:
-        sys.exit(1)
-
-    c = CPUTop(traces)
-
-    try:
-        c.run(args)
-    except KeyboardInterrupt:
-        print("\n'KeyboardInterrupt' received. Stopping trace processing.")
-    except:
-        print("\nUnknown Exception")
-        raise
-
     traces.remove_trace(handle)

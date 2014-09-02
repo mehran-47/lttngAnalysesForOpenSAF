@@ -6,7 +6,7 @@ import re
 import json
 from babeltrace import *
 from LTTngAnalyzes.common import *
-from cputop_mod import cputop_internal
+from cputop_i import cputop_init
 from multiprocessing import Process
 
 class ust_trace():
@@ -68,7 +68,6 @@ class ust_trace():
 		self.traces = TraceCollection()
 		self.trace_handle = self.traces.add_trace(self.path, "ctf")
 		for event in self.traces.events:
-			#print("\n\n in comparison \n\n")
 			if event.timestamp > self.latest_timestamp:
 				self.latest_timestamp = event.timestamp
 			if event.timestamp not in oldEventsDict:
@@ -79,19 +78,12 @@ class ust_trace():
 		oldEventsDict = {}
 		while not self.check_break:
 			newEvents = self.check_new_events(oldEventsDict)
-			#kernelproc = Process(target=cputop_internal, args=(sys.argv[1]+"/kernel", "172.16.159.1"))
+			#kernelproc = Process(target=cputop_init, args=(sys.argv[1]+"/kernel", "172.16.159.1"))
 			if len(newEvents) == 0:
 				print("nothing new; waiting...")
 				time.sleep(5)
 			else:
-				'''
-				print('saving new events')
-				with open('/home/node2/Documents/UST_events.txt','w') as ustf:
-					for timestamp in sorted(newEvents):
-						ustf.write(str(timestamp) + ":" + newEvents[timestamp]+"\n")
-				'''
 				print('\nCurrently active components:' + str(self.get_comp_csi(newEvents)))
-
 			oldEventsDict = self.__events_as_dict()
 
 
