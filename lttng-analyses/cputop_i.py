@@ -11,32 +11,25 @@
 # all copies or substantial portions of the Software.
 
 import sys
-import os
 import argparse
 import shutil
+import time
+import json
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
 from analyzes import *
-from networking.connection import connection
-from multiprocessing import Queue
+from ascii_graph import Pyasciigraph
 
 class CPUTop():
-    def __init__(self, traces, activeComps, args):
+    def __init__(self, traces, handle, activeComps):
         self.activeComps = activeComps
+        self.handle = handle
         self.trace_start_ts = 0
         self.trace_end_ts = 0
         self.traces = traces
         self.tids = {}
         self.cpus = {}
-        self.client = connection('172.16.159.129',5555)
-        try:
-            self.client.connect(args.to, 6666)
-        except ConnectionRefusedError:
-            print("No server found running at "+ args.to + ":6666'")
-        except:
-            print("Failed to connect to server")
-            raise
 
     def run(self, args):
         """Process the trace"""
@@ -59,11 +52,11 @@ class CPUTop():
         if args.refresh == 0:
             # stats for the whole trace
             self.compute_stats()
-            self.output(args, self.trace_start_ts, self.trace_end_ts, final=1)
+            return self.output(args, self.trace_start_ts, self.trace_end_ts, final=1)
         else:
             # stats only for the last segment
             self.compute_stats()
-            self.output(args, self.start_ns, self.trace_end_ts,
+            return self.output(args, self.start_ns, self.trace_end_ts,
                     final=1)
 
     def check_refresh(self, args, event):
@@ -100,31 +93,22 @@ class CPUTop():
         values = []
         usage_dict = self.tids
         
-        print('Sent usage dict between %s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
+        print('processing usage dict between %s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
         to_send = {
         'msg' : '', 
         'from' : os.uname()[1],
         'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
-        'cpu_usages' : [],
-        'component_info' : self.activeComps
+        'component_info' : self.activeComps,
+        'cpu_core_usages' : []
         }
-        '''
-        for pid in args.only.split(','):
-            usage_dict = self.tids
-            pid = int(pid)
-            if pid in usage_dict:
-                pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
-                to_send["pid_usages"][pid] = pc
-            else:
-                to_send["pid_usages"][pid] = -1.0
-        '''
+        
         for component in self.activeComps:
-            pid = int(component['PID'])
+            pid = int(self.activeComps[component]['PID'])
             if pid in usage_dict:
                 pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
-                self.activeComps[component['component']]['usage'] = pc
+                self.activeComps[component]['cpu_usage'] = pc
             else:
-                self.activeComps[component['component']]['usage'] = -1
+                self.activeComps[component]['cpu_usage'] = -1
         to_send['component_info'] = self.activeComps
 
         nb_cpu = len(self.cpus.keys())
@@ -132,9 +116,9 @@ class CPUTop():
                 key=operator.attrgetter('cpu_ns'), reverse=True):
             cpu_total_ns = cpu.cpu_ns
             cpu_pc = float("%0.02f" % cpu.cpu_pc)
-            to_send["cpu_usages"].append(cpu_pc)
-            
-        self.client.send(to_send)
+            to_send["cpu_core_usages"].append(cpu_pc)
+        self.traces.remove_trace(self.handle)            
+        return to_send
 
     def reset_total(self, start_ts):
         for cpu in self.cpus.keys():
@@ -152,24 +136,47 @@ class CPUTop():
             for syscall in self.tids[tid].syscalls.keys():
                 self.tids[tid].syscalls[syscall].count = 0
 
-def cputop_init(path, to, activeComps, **kwargs):
+
+def cputop_init(path, activeComps, **kwargs):
     args = argparse.Namespace()
     args.path = path
-    args.to = to
     args.refresh = 0 if kwargs.get('refresh')==None else kwargs.get('refresh')
     args.top = 10 if kwargs.get('top')==None else kwargs.get('top')
     args.proc_list = []
-    print("Sending process-CPU usage to: %r" %args.to)
     traces = TraceCollection()
     handle = traces.add_trace(args.path, "ctf")
     if handle is None:
         sys.exit(1)
-    c = CPUTop(traces, activeComps, args)
+    c = CPUTop(traces, handle ,activeComps)
     try:
-        c.run(args)
+        return c.run(args)
     except KeyboardInterrupt:
         print("\n'KeyboardInterrupt' received. Stopping trace processing.")
     except:
         print("\nUnknown Exception")
         raise
     traces.remove_trace(handle)
+
+
+'''
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='CPU usage analysis')
+    parser.add_argument('path', metavar="<path/to/trace>", help='Trace path')
+    parser.add_argument('-r', '--refresh', type=int,
+            help='Refresh period in seconds', default=0)
+    parser.add_argument('--top', type=int, default=10,
+            help='Limit to top X TIDs (default = 10)')
+    args = parser.parse_args()
+    args.proc_list = []
+
+    traces = TraceCollection()
+    handle = traces.add_trace(args.path, "ctf")
+    if handle is None:
+        sys.exit(1)
+
+    c = CPUTop(traces)
+
+    c.run(args)
+
+    traces.remove_trace(handle)
+'''
