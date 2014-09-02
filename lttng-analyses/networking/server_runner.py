@@ -5,7 +5,7 @@ import multiprocessing
 import sys
 import time
 
-addr = 'localhost'
+addr = '172.16.159.1'
 port = 6666
 
 
@@ -24,17 +24,16 @@ def getval(parent_conn):
 			        'msg' : '', 
 			        'from' : os.uname()[1],
 			        'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
-			        'pid_usages' : {},
 			        'cpu_usages' : [],
 			        'component_info' : []
 		        }
 				'''
 				#Get end packets here
-				#print(toprint)
 				if(toprint.get('from') != None):
 					print(toprint['from'])
-					#print(toprint['pid_usages'])
-					print(toprint['component_info'])
+					tempDict = toprint['component_info']
+					for key in tempDict:
+						print(str(key) + " : " + str(tempDict[key]))
 	except KeyboardInterrupt:
 		print("\n'KeyboardInterrupt' received. Stopping server-reader:%r" %(multiprocessing.current_process().name))
 	except:
