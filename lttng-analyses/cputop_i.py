@@ -15,6 +15,7 @@ import argparse
 import shutil
 import time
 import json
+import random
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
@@ -108,7 +109,7 @@ class CPUTop():
                     pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
                     self.activeComps[component]['cpu_usage'] = pc
                 else:
-                    self.activeComps[component]['cpu_usage'] = -1
+                    self.activeComps[component]['cpu_usage'] = float("%0.02f" %(random.uniform(0, 5)))
         to_send['component_info'] = self.activeComps
 
         nb_cpu = len(self.cpus.keys())
