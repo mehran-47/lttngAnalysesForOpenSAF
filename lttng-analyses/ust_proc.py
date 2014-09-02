@@ -82,7 +82,6 @@ class ust_trace():
 			#kernelproc = Process(target=cputop_internal, args=(sys.argv[1]+"/kernel", "172.16.159.1"))
 			if len(newEvents) == 0:
 				print("nothing new; waiting...")
-				#oldEventsDict = self.__events_as_dict()
 				time.sleep(5)
 			else:
 				'''
