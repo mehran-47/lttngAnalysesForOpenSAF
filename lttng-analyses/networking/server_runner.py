@@ -33,7 +33,7 @@ def getval(parent_conn):
 				#print(toprint)
 				if(toprint.get('from') != None):
 					print(toprint['from'])
-					print(toprint['pid_usages'])
+					#print(toprint['pid_usages'])
 					print(toprint['component_info'])
 	except KeyboardInterrupt:
 		print("\n'KeyboardInterrupt' received. Stopping server-reader:%r" %(multiprocessing.current_process().name))

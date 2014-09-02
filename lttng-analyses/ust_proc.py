@@ -4,18 +4,29 @@ import os
 import time
 import re
 import json
+from multiprocessing import Process
+from networking.connection import connection
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from cputop_i import cputop_init
-from multiprocessing import Process
 
 class ust_trace():
-	def __init__(self, path, **kwargs):
+	def __init__(self, path, to ,**kwargs):
 		self.path = path
+		self.to = to
 		self.traces = TraceCollection()
 		self.trace_handle = self.traces.add_trace(self.path, "ctf")
 		self.latest_timestamp = -1
 		self.check_break = False
+		self.allcomps = {}
+		self.client = connection('172.16.159.129',5555)
+		try:
+			self.client.connect(self.to, 6666)
+		except ConnectionRefusedError:
+			print("No server found running at "+ self.to + ":6666'")
+		except:
+			print("Failed to connect to server")
+			raise
 		if self.trace_handle is None:
 			raise IOError("Error adding trace")
 
@@ -76,29 +87,36 @@ class ust_trace():
 
 	def start_daemon(self):
 		oldEventsDict = {}
+		to_send = {}
 		while not self.check_break:
 			newEvents = self.check_new_events(oldEventsDict)
-			#kernelproc = Process(target=cputop_init, args=(sys.argv[1]+"/kernel", "172.16.159.1"))
+			#kernelproc = Process(target=cputop_init, args=(sys.argv[1]+"/kernel", self.allcomps))
 			if len(newEvents) == 0:
-				print("nothing new; waiting...")
-				time.sleep(5)
+				to_send = cputop_init(sys.argv[1]+"/kernel", self.allcomps)
+				print(to_send)
+				self.client.send(to_send)				
 			else:
-				print('\nCurrently active components:' + str(self.get_comp_csi(newEvents)))
+				#print('\nCurrently active components:' + str(self.get_comp_csi(newEvents)))
+				self.allcomps = self.get_comp_csi(newEvents)
+				to_send = cputop_init(sys.argv[1]+"/kernel", self.allcomps)
+				print(to_send)
+				self.client.send(to_send)
+			time.sleep(5)
 			oldEventsDict = self.__events_as_dict()
 
 
 if __name__ == "__main__":
 	# Check for path arg:
-	if len(sys.argv) < 2:
-		raise TypeError("Usage: python ust-proc.py path/to/file")
+	if len(sys.argv) < 3:
+		raise TypeError("Usage: python ust-proc.py path/to/file server.local.ip ")
 
 	# Create TraceCollection and add trace:
 	path = sys.argv[1] + "/ust/uid/0/64-bit"
 	while not os.path.isdir(path):
 		print("No UST event yet, waiting")
 		time.sleep(10)
-	
-	ustTrace = ust_trace(path)
+	to = sys.argv[2]	
+	ustTrace = ust_trace(path,to)
 	#ustTrace.show_events("msg")
 	try:
 		ustTrace.start_daemon()

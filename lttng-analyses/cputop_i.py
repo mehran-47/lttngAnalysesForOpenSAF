@@ -101,14 +101,14 @@ class CPUTop():
         'component_info' : self.activeComps,
         'cpu_core_usages' : []
         }
-        
-        for component in self.activeComps:
-            pid = int(self.activeComps[component]['PID'])
-            if pid in usage_dict:
-                pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
-                self.activeComps[component]['cpu_usage'] = pc
-            else:
-                self.activeComps[component]['cpu_usage'] = -1
+        if len(self.activeComps) != 0:
+            for component in self.activeComps:
+                pid = int(self.activeComps[component]['PID'])
+                if pid in usage_dict:
+                    pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
+                    self.activeComps[component]['cpu_usage'] = pc
+                else:
+                    self.activeComps[component]['cpu_usage'] = -1
         to_send['component_info'] = self.activeComps
 
         nb_cpu = len(self.cpus.keys())
