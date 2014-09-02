@@ -24,7 +24,7 @@ echo "ust tracepath: $CURRENT_TRACEPATH/ust"
 #./lttng-analyses/cputop.py $CURRENT_TRACEPATH
 babeltrace -i lttng-live net://localhost
 #echo ./lttng-analyses/cputop.py -r 2 --top 100 $CURRENT_TRACEPATH/kernel
-echo ./lttng-analyses/ust_proc.py $CURRENT_TRACEPATH/kernel 172.16.159.1
+echo ./lttng-analyses/ust_proc.py $CURRENT_TRACEPATH 172.16.159.1
 #echo -e "vlc : $(ps -e | grep vlc) "
 #echo -e "Xorg : $(ps -e | grep Xorg) "
 #echo -e "firefox : $(ps -e | grep firefox) "
