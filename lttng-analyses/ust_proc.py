@@ -9,7 +9,7 @@ from networking.connection import connection
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from cputop_i import cputop_init
-from sessionControl.sessionControl import preExistingSession
+from subprocess import Popen, PIPE, STDOUT
 
 class ust_trace():
 	def __init__(self, path, to ,**kwargs):
@@ -94,7 +94,9 @@ class ust_trace():
 			#kernelproc = Process(target=cputop_init, args=(sys.argv[1]+"/kernel", self.allcomps))
 			if len(newEvents) != 0:
 				self.allcomps = self.get_comp_csi(newEvents)				
+			#bash_event = Popen('lttng stop', shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 			to_send = cputop_init(sys.argv[1]+"/kernel", self.allcomps)
+			#bash_event = Popen('lttng start', shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 			print(to_send)
 			self.client.send(to_send)
 			time.sleep(5)
@@ -112,7 +114,7 @@ if __name__ == "__main__":
 		print("No UST event yet, waiting")
 		time.sleep(10)
 	to = sys.argv[2]	
-	ustTrace = ust_trace(path,to,sess_name)
+	ustTrace = ust_trace(path,to)
 	#ustTrace.show_events("msg")
 	try:
 		ustTrace.start_daemon()
