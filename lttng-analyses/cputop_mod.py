@@ -28,7 +28,7 @@ class CPUTop():
         self.traces = traces
         self.tids = {}
         self.cpus = {}
-        self.client = connection('172.16.159.129',5555)
+        self.client = connection('172.16.159.134',5555)
         self.queue = Queue()
         try:
             self.client.connect(args.to.split(':')[0], 6666)
