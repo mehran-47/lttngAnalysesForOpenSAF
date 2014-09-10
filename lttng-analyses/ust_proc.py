@@ -9,6 +9,7 @@ from networking.connection import connection
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from cputop_i import cputop_init
+from sessionControl.sessionControl import preExistingSession
 
 class ust_trace():
 	def __init__(self, path, to ,**kwargs):
@@ -19,7 +20,7 @@ class ust_trace():
 		self.latest_timestamp = -1
 		self.check_break = False
 		self.allcomps = {}
-		self.client = connection('172.16.159.130',5555)
+		self.client = connection('172.16.159.134',5555)
 		try:
 			self.client.connect(self.to, 6666)
 		except ConnectionRefusedError:
