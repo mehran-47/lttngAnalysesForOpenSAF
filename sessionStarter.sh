@@ -20,7 +20,7 @@ lttng start
 lttng list
 
 CURRENT_TRACEPATH=$(echo /root/lttng-traces/$(hostname)/${SESS_OUT[1]})
-echo "tracepat prefix: $CURRENT_TRACEPATH/kernel"
+echo "tracepath prefix: $CURRENT_TRACEPATH/kernel"
 #echo "ust tracepath: $CURRENT_TRACEPATH/ust"
 #./lttng-analyses/cputop.py $CURRENT_TRACEPATH
 babeltrace -i lttng-live net://localhost
