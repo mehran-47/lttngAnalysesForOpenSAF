@@ -1,24 +1,26 @@
 #!/bin/bash
 #SESS_OUT=$(lttng create --live)
+
+#creating UST session
+#lttng create usttrace --live
+#lttng enable-event -u -a --loglevel=TRACE_DEBUG
+#lttng start
+
+#creating kernel tracing session
 IFS=' ' read -a SESS_OUT <<< $(lttng create --live)
 lttng enable-channel -k chann1 -C $1M -W $2 && \
-#lttng enable-channel -u chann1 -C $1M -W $2 && \
+lttng enable-channel -u chann1 -C $1M -W $2 && \
 lttng enable-event -k lttng_statedump_start,lttng_statedump_end,lttng_statedump_process_state\
 ,lttng_statedump_file_descriptor,lttng_statedump_vm_map,lttng_statedump_network_interface,lttng_stat\
 edump_interrupt,sched_process_free,sched_switch,sched_process_fork -c chann1 ; \
 lttng add-context -k -t pid -t procname -t tid -t ppid -t perf:cache-misses -t perf:major-faults -t perf:branch-load-misses ; \
-#lttng enable-event -u -a --loglevel=TRACE_DEBUG -c chann1
-lttng start
-
-#creating UST session
-lttng create usttrace --live
-lttng enable-event -u -a --loglevel=TRACE_DEBUG
+lttng enable-event -u -a --loglevel=TRACE_DEBUG -c chann1
 lttng start
 
 lttng list
 
-CURRENT_TRACEPATH=$(/root/lttng-traces/$(hostname)/${SESS_OUT[1]})
-echo "kernel tracepath: $CURRENT_TRACEPATH/kernel"
+CURRENT_TRACEPATH=$(echo /root/lttng-traces/$(hostname)/${SESS_OUT[1]})
+echo "tracepat prefix: $CURRENT_TRACEPATH/kernel"
 #echo "ust tracepath: $CURRENT_TRACEPATH/ust"
 #./lttng-analyses/cputop.py $CURRENT_TRACEPATH
 babeltrace -i lttng-live net://localhost

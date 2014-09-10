@@ -91,16 +91,11 @@ class ust_trace():
 		while not self.check_break:
 			newEvents = self.check_new_events(oldEventsDict)
 			#kernelproc = Process(target=cputop_init, args=(sys.argv[1]+"/kernel", self.allcomps))
-			if len(newEvents) == 0:
-				to_send = cputop_init(sys.argv[1]+"/kernel", self.allcomps)
-				print(to_send)
-				self.client.send(to_send)				
-			else:
-				#print('\nCurrently active components:' + str(self.get_comp_csi(newEvents)))
-				self.allcomps = self.get_comp_csi(newEvents)
-				to_send = cputop_init(sys.argv[1]+"/kernel", self.allcomps)
-				print(to_send)
-				self.client.send(to_send)
+			if len(newEvents) != 0:
+				self.allcomps = self.get_comp_csi(newEvents)				
+			to_send = cputop_init(sys.argv[1]+"/kernel", self.allcomps)
+			print(to_send)
+			self.client.send(to_send)
 			time.sleep(5)
 			oldEventsDict = self.__events_as_dict()
 
@@ -116,7 +111,7 @@ if __name__ == "__main__":
 		print("No UST event yet, waiting")
 		time.sleep(10)
 	to = sys.argv[2]	
-	ustTrace = ust_trace(path,to)
+	ustTrace = ust_trace(path,to,sess_name)
 	#ustTrace.show_events("msg")
 	try:
 		ustTrace.start_daemon()
