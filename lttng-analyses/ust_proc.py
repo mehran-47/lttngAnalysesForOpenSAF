@@ -4,12 +4,12 @@ import os
 import time
 import re
 import json
-from multiprocessing import Process
+from multiprocessing import Process as pythonProcess
 from networking.connection import connection
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from cputop_i import cputop_init
-from subprocess import Popen, PIPE, STDOUT
+#from subprocess import Popen, PIPE, STDOUT
 
 class ust_trace():
 	def __init__(self, path, to ,**kwargs):
@@ -20,7 +20,7 @@ class ust_trace():
 		self.latest_timestamp = -1
 		self.check_break = False
 		self.allcomps = {}
-		self.client = connection('172.16.159.134',5555)
+		self.client = connection('172.16.159.130',5555)
 		try:
 			self.client.connect(self.to, 6666)
 		except ConnectionRefusedError:
@@ -86,12 +86,15 @@ class ust_trace():
 				newEventsDict[event.timestamp] = event.get("msg")
 		return newEventsDict
 
+	def testProc(self):
+		print("\n---------------------------------------Anger------------------------------------------------\n")
+
 	def start_daemon(self):
 		oldEventsDict = {}
 		to_send = {}
 		while not self.check_break:
 			newEvents = self.check_new_events(oldEventsDict)
-			#kernelproc = Process(target=cputop_init, args=(sys.argv[1]+"/kernel", self.allcomps))
+			#kernelproc = pythonProcess(target=cputop_init, args=(sys.argv[1]+"/kernel", self.allcomps))
 			if len(newEvents) != 0:
 				self.allcomps = self.get_comp_csi(newEvents)				
 			#bash_event = Popen('lttng stop', shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
@@ -99,7 +102,7 @@ class ust_trace():
 			#bash_event = Popen('lttng start', shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 			print(to_send)
 			self.client.send(to_send)
-			time.sleep(5)
+			time.sleep(2)
 			oldEventsDict = self.__events_as_dict()
 
 
