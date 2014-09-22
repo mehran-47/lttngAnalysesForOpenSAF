@@ -88,23 +88,23 @@ class ust_trace():
 				newEventsDict[event.timestamp] = event.get("msg")
 		return newEventsDict
 
-""" ------------------------------- old daemon, for live tracing ----------------------------------------
-	def start_daemon(self):
-		oldEventsDict = {}
-		to_send = {}
-		while not self.check_break:
-			newEvents = self.check_new_events(oldEventsDict)
-			#kernelproc = Process(target=cputop_init, args=(sys.argv[1]+"/kernel", self.allcomps))
-			if len(newEvents) != 0:
-				self.allcomps = self.get_comp_csi(newEvents)				
-			#bash_event = Popen('lttng stop', shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
-			to_send = cputop_init(sys.argv[1]+"/kernel", self.allcomps)
-			#bash_event = Popen('lttng start', shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
-			print(to_send)
-			self.client.send(to_send)
-			time.sleep(5)
-			oldEventsDict = self.__events_as_dict()
------------------------------------------------------------------------------------------------------"""
+	""" ------------------------------- old daemon, for live tracing ----------------------------------------
+		def start_daemon(self):
+			oldEventsDict = {}
+			to_send = {}
+			while not self.check_break:
+				newEvents = self.check_new_events(oldEventsDict)
+				#kernelproc = Process(target=cputop_init, args=(sys.argv[1]+"/kernel", self.allcomps))
+				if len(newEvents) != 0:
+					self.allcomps = self.get_comp_csi(newEvents)				
+				#bash_event = Popen('lttng stop', shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+				to_send = cputop_init(sys.argv[1]+"/kernel", self.allcomps)
+				#bash_event = Popen('lttng start', shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+				print(to_send)
+				self.client.send(to_send)
+				time.sleep(5)
+				oldEventsDict = self.__events_as_dict()
+	-----------------------------------------------------------------------------------------------------"""
 	
 	def start_daemon(self):
 		oldEventsDict = {}
@@ -115,7 +115,7 @@ class ust_trace():
 		time.sleep(5)
 		while not self.cpu_usage_q.empty():
 			to_send = self.cpu_usage_q.get()
-			if to_send.get('nstime')!=None and self.latest_timestamp < to_send.get('nstime')
+			if to_send.get('nstime')!=None and self.latest_timestamp < to_send.get('nstime'):
 				self.allcomps = self.get_comp_csi(newEvents)
 				oldEventsDict = self.__events_as_dict()
 				newEvents = self.check_new_events(oldEventsDict)				
