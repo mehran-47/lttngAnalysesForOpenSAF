@@ -20,12 +20,13 @@ from babeltrace import *
 from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
 from analyzes import *
-from ascii_graph import Pyasciigraph
+from multiprocessing import Queue
 
 class CPUTop():
-    def __init__(self, traces, handle, activeComps):
+    def __init__(self, traces, handle, activeComps, usage_q):
         self.activeComps = activeComps
         self.handle = handle
+        self.usage_q = usage_q
         self.trace_start_ts = 0
         self.trace_end_ts = 0
         self.traces = traces
@@ -53,12 +54,13 @@ class CPUTop():
         if args.refresh == 0:
             # stats for the whole trace
             self.compute_stats()
-            return self.output(args, self.trace_start_ts, self.trace_end_ts, final=1)
+            #return self.output(args, self.trace_start_ts, self.trace_end_ts, final=1)
+            self.output(args, self.trace_start_ts, self.trace_end_ts, final=1)
         else:
             # stats only for the last segment
             self.compute_stats()
-            return self.output(args, self.start_ns, self.trace_end_ts,
-                    final=1)
+            #return self.output(args, self.start_ns, self.trace_end_ts, final=1)
+            self.output(args, self.start_ns, self.trace_end_ts, final=1)
 
     def check_refresh(self, args, event):
         """Check if we need to output something"""
@@ -99,6 +101,7 @@ class CPUTop():
         'msg' : '', 
         'from' : os.uname()[1],
         'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
+        'nstime' : end_ns,
         'component_info' : self.activeComps,
         'cpu_core_usages' : []
         }
@@ -118,8 +121,10 @@ class CPUTop():
             cpu_total_ns = cpu.cpu_ns
             cpu_pc = float("%0.02f" % cpu.cpu_pc)
             to_send["cpu_core_usages"].append(cpu_pc)
-        self.traces.remove_trace(self.handle)            
-        return to_send
+        #self.traces.remove_trace(self.handle)            
+        #return to_send
+        self.usage_q.put(to_send)
+
 
     def reset_total(self, start_ts):
         for cpu in self.cpus.keys():
@@ -138,17 +143,17 @@ class CPUTop():
                 self.tids[tid].syscalls[syscall].count = 0
 
 
-def cputop_init(path, activeComps, **kwargs):
+def cputop_init(path, activeComps, usage_q ,**kwargs):
     args = argparse.Namespace()
     args.path = path
-    args.refresh = 0 if kwargs.get('refresh')==None else kwargs.get('refresh')
+    args.refresh = 2 if kwargs.get('refresh')==None else kwargs.get('refresh')
     args.top = 10 if kwargs.get('top')==None else kwargs.get('top')
     args.proc_list = []
     traces = TraceCollection()
     handle = traces.add_trace(args.path, "ctf")
     if handle is None:
         sys.exit(1)
-    c = CPUTop(traces, handle ,activeComps)
+    c = CPUTop(traces, handle ,activeComps, usage_q)
     try:
         return c.run(args)
     except KeyboardInterrupt:
