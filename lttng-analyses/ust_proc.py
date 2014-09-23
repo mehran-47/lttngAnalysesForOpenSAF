@@ -121,7 +121,7 @@ class ust_trace():
 				newEvents = self.check_new_events(oldEventsDict)				
 			print(to_send)
 			self.client.send(to_send)
-			time.sleep(2)
+			#time.sleep(2)
 		if kernelproc.is_alive():
 			kernelproc.join()
 
