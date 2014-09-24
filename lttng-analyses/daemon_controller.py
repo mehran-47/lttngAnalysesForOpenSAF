@@ -38,7 +38,7 @@ def destroy_session(session_name):
 
 def clean_all_trace_history():
 	destroy_all_sessions()
-	bashc.execute('rm -rf '+'/lttng-traces/'+os.uname()[1]+'/*')
+	bashc.execute('rm -rf '+'/root/lttng-traces/'+os.uname()[1])
 
 
 def destroy_all_sessions():
@@ -63,5 +63,3 @@ if __name__=="__main__":
 	sname = start_tracing_with(CREATE_KERNEL, 'kernel')
 	print('kernel session name: '+ sname[0])
 	print('kernel session path: '+ sname[1])
-	time.sleep(10)
-	destroy_all_sessions()
