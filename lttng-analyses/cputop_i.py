@@ -113,6 +113,7 @@ class CPUTop():
                     self.activeComps[component]['cpu_usage'] = pc
                 else:
                     self.activeComps[component]['cpu_usage'] = float("%0.02f" %(random.uniform(0, 5)))
+                    #self.activeComps[component]['cpu_usage'] = -1
         to_send['component_info'] = self.activeComps
 
         nb_cpu = len(self.cpus.keys())
@@ -121,8 +122,6 @@ class CPUTop():
             cpu_total_ns = cpu.cpu_ns
             cpu_pc = float("%0.02f" % cpu.cpu_pc)
             to_send["cpu_core_usages"].append(cpu_pc)
-        #self.traces.remove_trace(self.handle)            
-        #return to_send
         self.usage_q.put(to_send)
 
 
@@ -146,7 +145,7 @@ class CPUTop():
 def cputop_init(path, activeComps, usage_q ,**kwargs):
     args = argparse.Namespace()
     args.path = path
-    args.refresh = 2 if kwargs.get('refresh')==None else kwargs.get('refresh')
+    args.refresh = 5 if kwargs.get('refresh')==None else kwargs.get('refresh')
     args.top = 10 if kwargs.get('top')==None else kwargs.get('top')
     args.proc_list = []
     traces = TraceCollection()

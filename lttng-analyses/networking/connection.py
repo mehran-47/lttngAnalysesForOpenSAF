@@ -70,7 +70,7 @@ class connection():
 
 
 	def connect(self, serverip, serverport):
-		ipname = {'msg': 'Connection made from ' + socket.gethostbyname(socket.gethostname()) + str(self.port)}
+		ipname = {'msg': 'Connection made from ' + socket.gethostbyname(socket.gethostname()) + ':' + str(self.port)}
 		self.socket.connect((serverip , serverport))
 		self.socket.send(pickle.dumps(ipname, -1)) #send only takes dictionary/JSON objects
 		return self.socket

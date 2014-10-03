@@ -4,34 +4,17 @@ import os
 import time
 import re
 import json
-from multiprocessing import Process as pythonProcess
-from multiprocessing import Queue
-from networking.connection import connection
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from cputop_i import cputop_init
-#from subprocess import Popen, PIPE, STDOUT
 
 class ust_trace():
-	def __init__(self, path, to ,**kwargs):
+	def __init__(self, path, **kwargs):
 		self.path = path
-		self.to = to
 		self.traces = TraceCollection()
 		self.trace_handle = self.traces.add_trace(self.path, "ctf")
 		self.latest_timestamp = -1
-		self.check_break = False
 		self.allcomps = {}
-		self.cpu_usage_q = Queue(maxsize=0)
-		self.client = connection('172.16.159.130',5555)
-		try:
-			self.client.connect(self.to, 6666)
-		except ConnectionRefusedError:
-			print("No server found running at "+ self.to + ":6666'")
-		except:
-			print("Failed to connect to server")
-			raise
-		if self.trace_handle is None:
-			raise IOError("Error adding trace")
 
 	def show_event_types(self):
 		print("--- Event list ---")
@@ -52,7 +35,7 @@ class ust_trace():
 					if event_type in event:
 						print("event timestamp: "+ ns_to_asctime(event.timestamp)  + " : " + str(event.get(event_type)))
 
-	def __events_as_dict(self):
+	def events_as_dict(self):
 		dict_to_ret = {}
 		for event in self.traces.events:
 			dict_to_ret[event.timestamp] = event.get("msg")
@@ -106,6 +89,7 @@ class ust_trace():
 				oldEventsDict = self.__events_as_dict()
 	-----------------------------------------------------------------------------------------------------"""
 	
+	""" ------------------------------- new daemon, for non-live tracing ----------------------------------------
 	def start_daemon(self):
 		oldEventsDict = {}
 		to_send = {}
@@ -124,7 +108,7 @@ class ust_trace():
 			#time.sleep(2)
 		if kernelproc.is_alive():
 			kernelproc.join()
-
+	-----------------------------------------------------------------------------------------------------"""
 
 if __name__ == "__main__":
 	# Check for path arg:

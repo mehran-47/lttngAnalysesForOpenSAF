@@ -6,8 +6,11 @@ class bash():
 	def __init__(self, **kwargs):
 		self.show_output = True if kwargs.get('show_output')==None else kwargs.get('show_output')
 		self.outputs = []
+		self.keep = True if kwargs.get('keep') else False
 
 	def execute(self, commands):
+		if not self.keep:
+			self.outputs = []
 		count = 0
 		commands = commands.split('\n')
 		for command in commands:
