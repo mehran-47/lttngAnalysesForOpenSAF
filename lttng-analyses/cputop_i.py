@@ -161,27 +161,3 @@ def cputop_init(path, activeComps, usage_q ,**kwargs):
         print("\nUnknown Exception")
         raise
     traces.remove_trace(handle)
-
-
-'''
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='CPU usage analysis')
-    parser.add_argument('path', metavar="<path/to/trace>", help='Trace path')
-    parser.add_argument('-r', '--refresh', type=int,
-            help='Refresh period in seconds', default=0)
-    parser.add_argument('--top', type=int, default=10,
-            help='Limit to top X TIDs (default = 10)')
-    args = parser.parse_args()
-    args.proc_list = []
-
-    traces = TraceCollection()
-    handle = traces.add_trace(args.path, "ctf")
-    if handle is None:
-        sys.exit(1)
-
-    c = CPUTop(traces)
-
-    c.run(args)
-
-    traces.remove_trace(handle)
-'''
