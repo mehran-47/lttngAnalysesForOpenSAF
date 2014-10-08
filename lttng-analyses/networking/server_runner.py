@@ -4,12 +4,13 @@ from multiprocessing import Process, Pipe
 import multiprocessing
 import sys
 import time
+import re
 
 addr = '172.16.159.1'
 port = 6666
+allnodes = ['node1','node2']
 
-
-def getval(parent_conn):
+def getval(parent_conn, SIs, nodes):
 	try:
 		while True:
 			toprint = parent_conn.recv()
@@ -29,11 +30,36 @@ def getval(parent_conn):
 		        }
 				'''
 				#Get end packets here
+				'''
 				if(toprint.get('from') != None):
 					print(toprint['from'])
 					tempDict = toprint['component_info']
 					for key in tempDict:
 						print(str(key) + " : " + str(tempDict[key]))
+				'''
+				#SIs = {'components':[], 'active':{}, 'standby':{}, 'cpu_usage':0}
+				if(toprint.get('component_info') != None):
+					if toprint.get('from') in nodes:
+						nodes.remove(toprint.get('from'))
+					component_info = toprint.get('component_info')
+					for component in component_info:
+						SI = re.findall(r'(?<=safSi=)(.+)(?=,)', component_info[component]['CSI'])[0]
+						if SI not in SIs:
+							SIs[SI] = {'active': [], 'standby': [], 'cpu_usage':0.0}
+						else:
+							if component_info[component]['HAState']=='Active' and component not in SIs[SI]['active']:
+								SIs[SI]['active'].append(component)
+							elif component_info[component]['HAState']=='Standby' and component not in SIs[SI]['standby']:
+								SIs[SI]['standby'].append(component)
+							SIs[SI]['cpu_usage'] += float(component_info[component]['cpu_usage'])
+					if len(nodes)==0:
+						print(SIs)
+						print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+						SIs = {}
+						nodes = ['node1','node2']
+						
+
+
 	except KeyboardInterrupt:
 		print("\n'KeyboardInterrupt' received. Stopping server-reader:%r" %(multiprocessing.current_process().name))
 	except:
@@ -49,7 +75,9 @@ if __name__ == '__main__':
 	server = connection(addr,port, debug=True)
 	parent_conn, child_conn = Pipe()
 	print("server listening to %r:%r" %(addr,port))
-	getterproc = Process(target=getval, args=((child_conn),))
+	SIs = {}
+	nodes = ['node1','node2']
+	getterproc = Process(target=getval, args=((child_conn),SIs,nodes))
 	getterproc.start()
 	server.listen(parent_conn)
 	getterproc.join()
