@@ -16,6 +16,7 @@ import shutil
 import time
 import json
 import random
+import os.path
 from babeltrace import *
 from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
@@ -111,8 +112,10 @@ class CPUTop():
                 if pid in usage_dict:
                     pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
                     self.activeComps[component]['cpu_usage'] = pc
-                else:
+                elif os.path.exists("/proc/"+str(pid)):
                     self.activeComps[component]['cpu_usage'] = float("%0.02f" %(random.uniform(0, 5)))
+                else:
+                    self.activeComps[component]['cpu_usage'] = -1
                     #self.activeComps[component]['cpu_usage'] = -1
         to_send['component_info'] = self.activeComps
 
