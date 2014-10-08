@@ -128,6 +128,7 @@ if __name__=="__main__":
 		client.connect(args.to, 6666)
 	except ConnectionRefusedError:
 		print("No server found running at "+ args.to + ":6666'")
+		sys.exit()
 	except:
 		print("Failed to connect to server")
 		raise
