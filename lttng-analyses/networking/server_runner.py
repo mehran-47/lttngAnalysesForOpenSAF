@@ -45,15 +45,25 @@ def getval(parent_conn, SIs, nodes):
 					for component in component_info:
 						SI = re.findall(r'(?<=safSi=)(.+)(?=,)', component_info[component]['CSI'])[0]
 						if SI not in SIs:
-							SIs[SI] = {'active': [], 'standby': [], 'cpu_usage':0.0}
+							SIs[SI] = {'active': [], 'standby': [], 'zombie':[], 'cpu_usage':0.0}
 						else:
 							if component_info[component]['HAState']=='Active' and component not in SIs[SI]['active']:
 								SIs[SI]['active'].append(component)
-							elif component_info[component]['HAState']=='Standby' and component not in SIs[SI]['standby']:
+							if component_info[component]['HAState']=='Standby' and component not in SIs[SI]['standby']:
 								SIs[SI]['standby'].append(component)
+							elif component not in SIs[SI]['active'] and component not in SIs[SI]['standby']:
+								SIs[SI]['zombie'].append(component)
 							SIs[SI]['cpu_usage'] += float(component_info[component]['cpu_usage'])
 					if len(nodes)==0:
-						print(SIs)
+						for SI in SIs:
+							print('SI name : ' + SI)
+							print('Total CPU usage : ' + str(SIs[SI]['cpu_usage']))
+							print('Active components : ')
+							print('\t'+str(SIs[SI]['active']))
+							print('Standby components : ') 
+							print('\t'+str(SIs[SI]['standby']))
+							print('Zombie components : ')
+							print('\t'+str(SIs[SI]['zombie']))
 						print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 						SIs = {}
 						nodes = ['node1','node2']
