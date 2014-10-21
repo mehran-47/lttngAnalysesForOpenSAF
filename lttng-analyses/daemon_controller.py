@@ -12,8 +12,8 @@ from networking.connection import connection
 from cputop_i import cputop_init
 
 
-RESET_RELAYD = "lttng-sessiond -d\n\
-lttng-relayd -d\n"
+RESET_RELAYD = "sudo lttng-sessiond -d\n\
+sudo lttng-relayd -d\n"
 CREATE_UST = "lttng create --live 2000000 -U net://localhost\n\
 lttng enable-event -u -a --loglevel=TRACE_DEBUG\n\
 lttng start"
@@ -112,9 +112,17 @@ if __name__=="__main__":
 	if len(sys.argv) < 2:
 		raise TypeError("Usage: './daemon_controller.py server.local.ip'")
 	args.to = sys.argv[1]
-	#Starting UST session 
-	(ust_session.name, ust_session.path) = start_tracing_with(CREATE_UST, 'ust')
-	time.sleep(1)
+	#Starting UST session
+	try: 
+		(ust_session.name, ust_session.path) = start_tracing_with(CREATE_UST, 'ust')
+		time.sleep(1)
+	except TypeError:
+		print('Failed to create UST session. Retrying')
+		destroy_all_sessions()
+		bashc.execute(RESET_RELAYD)
+		(ust_session.name, ust_session.path) = start_tracing_with(CREATE_UST, 'ust')
+	except:
+		raise
 	#Starting Kernel tracing session/ kt_tuple
 	(kt_session.name, kt_session.path) = start_tracing_with(CREATE_KERNEL, 'kernel')
 	bashc_v.execute("service opensafd start")
