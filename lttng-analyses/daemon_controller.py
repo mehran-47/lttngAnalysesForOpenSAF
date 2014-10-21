@@ -113,8 +113,8 @@ if __name__=="__main__":
 	ipv4_pattern = re.compile('((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}')
 	debugging = False
 	if len(sys.argv) < 2:
+		print("Usage: './daemon_controller.py server.local.ip'\nOr\n'./daemon_controller.py --ld'")
 		raise TypeError("Wrong usage")
-		print("Usage: './daemon_controller.py server.local.ip'\nOr\n./daemon_controller.py --ld")
 		sys.exit()
 	else:
 		if sys.argv[1].strip()=="--ld":
@@ -124,8 +124,8 @@ if __name__=="__main__":
 				print('matched')
 			args.to = sys.argv[1]
 		else:
+			print("Usage: './daemon_controller.py server.local.ip'\nOr\n'./daemon_controller.py --ld'")
 			raise TypeError("Wrong usage")
-			print("Usage: './daemon_controller.py server.local.ip'\nOr\n./daemon_controller.py --ld")
 			sys.exit()
 	#Starting UST session
 	try: 
