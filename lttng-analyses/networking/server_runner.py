@@ -20,25 +20,8 @@ def getval(parent_conn, SIs, nodes):
 				print('Reached end of queue')
 				time.sleep(5)
 			else:
-				'''
-				a_dict = {
-			        'msg' : '', 
-			        'from' : os.uname()[1],
-			        'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
-			        'cpu_usages' : [],
-			        'component_info' : []
-		        }
-				'''
-				#Get end packets here
-				'''
-				if(toprint.get('from') != None):
-					print(toprint['from'])
-					tempDict = toprint['component_info']
-					for key in tempDict:
-						print(str(key) + " : " + str(tempDict[key]))
-				'''
 				#SIs = {'components':[], 'active':{}, 'standby':{}, 'cpu_usage':0}
-				if(toprint.get('component_info') != None):
+				if toprint.get('component_info') != None:
 					if toprint.get('from') in nodes:
 						nodes.remove(toprint.get('from'))
 					component_info = toprint.get('component_info')

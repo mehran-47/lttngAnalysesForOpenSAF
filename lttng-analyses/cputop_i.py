@@ -22,6 +22,7 @@ from LTTngAnalyzes.common import *
 from LTTngAnalyzes.sched import *
 from analyzes import *
 from multiprocessing import Queue
+import psutil as ps
 
 class CPUTop():
     def __init__(self, traces, handle, activeComps, usage_q):
@@ -97,7 +98,7 @@ class CPUTop():
         values = []
         usage_dict = self.tids
         
-        print('processing usage dict between %s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
+        #print('processing usage dict between %s to %s' % (ns_to_asctime(begin_ns), ns_to_asctime(end_ns)))
         to_send = {
         'msg' : '', 
         'from' : os.uname()[1],
@@ -109,14 +110,15 @@ class CPUTop():
         if len(self.activeComps) != 0:
             for component in self.activeComps:
                 pid = int(self.activeComps[component]['PID'])
-                if pid in usage_dict:
-                    pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
-                    self.activeComps[component]['cpu_usage'] = pc
-                elif os.path.exists("/proc/"+str(pid)):
-                    self.activeComps[component]['cpu_usage'] = float("%0.02f" %(random.uniform(0, 5)))
+                if os.path.exists("/proc/"+str(pid)):
+                    if pid in usage_dict:
+                        pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
+                        self.activeComps[component]['cpu_usage'] = pc
+                    else:
+                        self.activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=0.5)
                 else:
-                    self.activeComps[component]['cpu_usage'] = -1
-                    #self.activeComps[component]['cpu_usage'] = -1
+                    self.activeComps[component]['cpu_usage'] = None
+
         to_send['component_info'] = self.activeComps
 
         nb_cpu = len(self.cpus.keys())

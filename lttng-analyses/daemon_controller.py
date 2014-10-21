@@ -91,9 +91,10 @@ def start_daemon(client):
 			if not cpu_usage_q.empty():
 				to_send = cpu_usage_q.get()
 				print(to_send)
-				client.send(to_send)
+				if client:
+					client.send(to_send)
 			if not kernel_usg_proc.is_alive():
-				print('\n------------proc-reboot-----------\n')
+				#print('\n------------proc-reboot-----------\n')
 				kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
 				kernel_usg_proc.start()
 			time.sleep(1)
@@ -109,18 +110,31 @@ if __name__=="__main__":
 	args = argparse.Namespace()
 	kt_session = argparse.Namespace()
 	ust_session = argparse.Namespace()
+	ipv4_pattern = re.compile('((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}')
+	debugging = False
 	if len(sys.argv) < 2:
-		raise TypeError("Usage: './daemon_controller.py server.local.ip'")
-	args.to = sys.argv[1]
+		raise TypeError("Wrong usage")
+		print("Usage: './daemon_controller.py server.local.ip'\nOr\n./daemon_controller.py --ld")
+		sys.exit()
+	else:
+		if sys.argv[1].strip()=="--ld":
+			debugging = True
+		elif ipv4_pattern.match(sys.argv[1].strip()):
+			if ipv4_pattern.match(sys.argv[1].strip()):
+				print('matched')
+			args.to = sys.argv[1]
+		else:
+			raise TypeError("Wrong usage")
+			print("Usage: './daemon_controller.py server.local.ip'\nOr\n./daemon_controller.py --ld")
+			sys.exit()
 	#Starting UST session
 	try: 
 		(ust_session.name, ust_session.path) = start_tracing_with(CREATE_UST, 'ust')
 		time.sleep(1)
 	except TypeError:
-		print('Failed to create UST session. Retrying')
+		print('Failed to create UST session. Quitting.')
 		destroy_all_sessions()
-		bashc.execute(RESET_RELAYD)
-		(ust_session.name, ust_session.path) = start_tracing_with(CREATE_UST, 'ust')
+		sys.exit()
 	except:
 		raise
 	#Starting Kernel tracing session/ kt_tuple
@@ -131,13 +145,16 @@ if __name__=="__main__":
 		time.sleep(10)
 	# The argument 'to' below should not be necessary. To-be-fixed.
 	ustTrace = ust_trace(ust_session.path)
-	client = connection('172.16.159.130',5555)
-	try:
-		client.connect(args.to, 6666)
-	except ConnectionRefusedError:
-		print("No server found running at "+ args.to + ":6666'")
-		sys.exit()
-	except:
-		print("Failed to connect to server")
-		raise
-	start_daemon(client)
+	if not debugging:
+		client = connection('172.16.159.130',5555)
+		try:
+			client.connect(args.to, 6666)
+		except ConnectionRefusedError:
+			print("No server found running at "+ args.to + ":6666'")
+			sys.exit()
+		except:
+			print("Failed to connect to server")
+			raise
+		start_daemon(client)
+	else:
+		start_daemon(None)

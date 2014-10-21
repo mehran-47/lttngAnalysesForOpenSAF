@@ -20,7 +20,6 @@ class ust_trace():
 		print("--- Event list ---")
 		for event_declaration in self.trace_handle.events:
 			print("event : {}".format(event_declaration.name))
-			#if event_declaration.name == "lttng_ust_tracef":
 			for field_declaration in event_declaration.fields:
 				print(field_declaration)
 		print("--- Done ---")
