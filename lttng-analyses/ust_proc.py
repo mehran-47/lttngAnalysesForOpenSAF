@@ -40,11 +40,11 @@ class ust_trace():
 			dict_to_ret[event.timestamp] = event.get("msg")
 		return dict_to_ret
 
-	def get_comp_csi(self, newEvents):
+	def get_comp_csi(self, newEvents, allcomps):
 		comp_csi_dict = {}
-		final_dict = {}
+		final_dict = allcomps
 		for timestamp in sorted(newEvents):
-			msg = re.search('^{.+}$' ,newEvents[timestamp])
+			msg = re.search('^{.+}$' ,str(newEvents[timestamp]))
 			if msg:
 				string_dict = re.sub("'",'"', msg.group(0))
 				comp_csi_dict = json.loads(string_dict)
@@ -71,19 +71,24 @@ class ust_trace():
 		return newEventsDict
 
 if __name__ == "__main__":
-	if len(sys.argv) < 2:
-		raise TypeError('Usage: "./usage_proc.py /path/to/trace"')
-	elif len(sys.argv) == 2:
+	if len(sys.argv) == 2:
 		path = str(sys.argv[1])
 		ut = ust_trace(path)
-		for event in ut.events_as_dict():
-			print(str(ut.events_as_dict()[event]))
-	elif len(sys.argv)==3 and sys.argv[2]=='--p':
+		print('{')
+		for event in sorted(ut.events_as_dict()):
+			print('{\''+str(event)+'\':'+str(ut.events_as_dict()[event])+'},')
+		print('}')
+	elif len(sys.argv) == 3 and sys.argv[2]=='--p':
+		path = str(sys.argv[1])
+		ut = ust_trace(path)
+		allcomps = {}
 		newEvents = {}
 		oldEventsDict = {}
 		while True:
-			newEvents = ut.check_new_events(oldEventsDict)
+			newstr = re.sub("'",'"', str(input("\n\npaste new event string\n>"))) 
+			newEvents = json.loads(newstr)
 			if len(newEvents)!=0:
-				print(str(newEvents))
-				oldEventsDict = ut.events_as_dict()
-			time.wait(1)
+				ut.get_comp_csi(newEvents, allcomps)
+				print(allcomps)
+				for event in newEvents:
+					oldEventsDict[event]=newEvents[event]
