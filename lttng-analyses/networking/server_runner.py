@@ -35,6 +35,12 @@ def getval(parent_conn, SIs, nodes):
 								SIs[SI]['standby'].append(component)
 							elif component not in SIs[SI]['active'] and component not in SIs[SI]['standby']:
 								SIs[SI]['zombie'].append(component)
+							if component_info.get(component).get('cpu_usage')==None:
+								if component in SIs[SI]['active']:
+									del SIs[SI]['active'][component]
+								elif component in SIs[SI]['standby']:
+									del SIs[SI]['standby'][component]
+									
 							SIs[SI]['cpu_usage'] += float(component_info[component]['cpu_usage'])
 					if len(nodes)==0:
 						for SI in SIs:
