@@ -76,7 +76,8 @@ if __name__ == "__main__":
 	elif len(sys.argv) == 2:
 		path = str(sys.argv[1])
 		ut = ust_trace(path)
-		ut.show_events()
+		for event in ut.events_as_dict():
+			print(str(ut.events_as_dict()[event]))
 	elif len(sys.argv)==3 and sys.argv[2]=='--p':
 		newEvents = {}
 		oldEventsDict = {}
