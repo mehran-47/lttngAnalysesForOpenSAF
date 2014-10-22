@@ -8,7 +8,6 @@ import re
 
 addr = '172.16.159.1'
 port = 6666
-allnodes = ['node1','node2']
 
 def getval(parent_conn, SIs, nodes):
 	try:
@@ -47,12 +46,10 @@ def getval(parent_conn, SIs, nodes):
 							print('\t'+str(SIs[SI]['standby']))
 							print('Zombie components : ')
 							print('\t'+str(SIs[SI]['zombie']))
-						print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+						print('\n\n\n\n\n\n\n\n\n\n\n\n')
 						SIs = {}
 						nodes = ['node1','node2']
-						
-
-
+	
 	except KeyboardInterrupt:
 		print("\n'KeyboardInterrupt' received. Stopping server-reader:%r" %(multiprocessing.current_process().name))
 	except:
@@ -69,8 +66,7 @@ if __name__ == '__main__':
 	parent_conn, child_conn = Pipe()
 	print("server listening to %r:%r" %(addr,port))
 	SIs = {}
-	nodes = ['node1','node2']
-	getterproc = Process(target=getval, args=((child_conn),SIs,nodes))
+	getterproc = Process(target=getval, args=((child_conn),SIs,['node1','node2']))
 	getterproc.start()
 	server.listen(parent_conn)
 	getterproc.join()

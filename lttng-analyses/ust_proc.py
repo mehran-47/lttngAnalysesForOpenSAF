@@ -69,3 +69,20 @@ class ust_trace():
 			if event.timestamp not in oldEventsDict:
 				newEventsDict[event.timestamp] = event.get("msg")
 		return newEventsDict
+
+if __name__ == "__main__":
+	if len(sys.argv) < 2:
+		raise TypeError('Usage: "./usage_proc.py /path/to/trace"')
+	elif len(sys.argv) == 2:
+		path = str(sys.argv[1])
+		ut = ust_trace(path)
+		ut.show_events()
+	elif len(sys.argv)==3 and sys.argv[2]=='--p':
+		newEvents = {}
+		oldEventsDict = {}
+		while True:
+			newEvents = ut.check_new_events(oldEventsDict)
+			if len(newEvents)!=0:
+				print(str(newEvents))
+				oldEventsDict = ut.events_as_dict()
+			time.wait(1)
