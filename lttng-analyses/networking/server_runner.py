@@ -44,8 +44,10 @@ def getval(parent_conn, SIs, nodes):
 							print('\t'+str(SIs[SI]['active']))
 							print('Standby components : ') 
 							print('\t'+str(SIs[SI]['standby']))
+							'''
 							print('Zombie components : ')
 							print('\t'+str(SIs[SI]['zombie']))
+							'''
 						print('\n\n\n\n\n\n\n\n\n\n\n\n')
 						SIs = {}
 						nodes = ['node1','node2']
