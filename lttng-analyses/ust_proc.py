@@ -74,10 +74,10 @@ if __name__ == "__main__":
 	if len(sys.argv) == 2:
 		path = str(sys.argv[1])
 		ut = ust_trace(path)
-		print('{')
+		print('[')
 		for event in sorted(ut.events_as_dict()):
-			print('{\''+str(event)+'\':'+str(ut.events_as_dict()[event])+'},')
-		print('}')
+			print('{\''+str(ns_to_asctime(event))+'\':'+str(ut.events_as_dict()[event])+'},')
+		print(']')
 	elif len(sys.argv) == 3 and sys.argv[2]=='--p':
 		path = str(sys.argv[1])
 		ut = ust_trace(path)
