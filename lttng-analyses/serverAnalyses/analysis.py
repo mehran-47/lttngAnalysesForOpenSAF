@@ -7,7 +7,7 @@ class dictParser(object):
 	"""dictParser class for parsing nested dict in runtime in the monitoring server"""
 	def __init__(self):
 		self.Q = Queue(maxsize=0)
-		self.SI = {CSIs:{}, usages:{}}
+		self.SI = {"CSIs":{}, "usages":{}}
 		self.SIs = {}
 
 	def run(self, child_conn):

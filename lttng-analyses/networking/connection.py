@@ -61,7 +61,8 @@ class connection():
 				writer_proc.start()
 			except KeyboardInterrupt:
 				print("\n'KeyboardInterrupt' received. Stopping server.")
-				writer_proc.join()
+				if writer_proc.is_alive():
+					writer_proc.join()
 				break
 			except:
 				raise
