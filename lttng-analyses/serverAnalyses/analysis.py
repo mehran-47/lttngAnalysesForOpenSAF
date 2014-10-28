@@ -2,7 +2,6 @@
 import re
 import time
 from queue import *
-from functools import reduce #functools.reduce(dict.get,['a','b','c'],dc)
 
 class dictParser(object):
 	"""dictParser class for parsing nested dict in runtime in the monitoring server"""
@@ -64,28 +63,3 @@ class dictParser(object):
 			CSI = clientDict['component_info'][component]['CSI']
 			if SI not in SIs:
 				SIs[SI] = {}
-
-
-
-	def keypaths(self, nested):
-		# http://stackoverflow.com/questions/18819154/python-finding-parent-keys-for-a-specific-value-in-a-nested-dictionary
-		for key, value in nested.items():
-			if isinstance(value, dict):
-				for subkey, subvalue in keypaths(value):
-					yield [key]+subkey, subvalue
-			else:
-				yield [key], value
-
-	def lookup(self, key):
-		reverse_dict = {}
-		for keypath, value in keypaths(example_dict):
-		    reverse_dict.setdefault(value, []).append(keypath)
-		return reverse_dict.get(key)
-
-	
-	def populateNestedDict(self, dictToPopulate, itemPath, item):
-		if len(itemPath) == 1:
-			dictToPopulate[itemPath[0]] = item
-		else:
-			dictToPopulate[itemPath[0]] = {}
-			listToNestedDict(dictToPopulate[itemPath.pop(0)], itemPath, item)
