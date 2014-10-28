@@ -2,17 +2,23 @@
 import re
 import time
 from queue import *
+from functools import reduce #functools.reduce(dict.get,['a','b','c'],dc)
 
 class dictParser(object):
 	"""dictParser class for parsing nested dict in runtime in the monitoring server"""
-	def __init__(self):
+	def __init__(self, **kwargs):
 		self.Q = Queue(maxsize=0)
-		self.SI = {"CSIs":{}, "usages":{}}
+		"""	
+		-------------------Used hierarchy for 'SIs' hashmap: -------------------------
+		SIs > SI > Node > HAState > CSIs > Components > Usages
+		"""
 		self.SIs = {}
-
+		self.nodes = []
+		self.timeout = 5
 	def run(self, child_conn):
 		"""
-		------------sample dict for reference----------------- 
+		-------------------Sample clientDict for reference----------------------------
+		
 		{'nstime': 1413934751411769136, \
 		'msg': '',\
 		'time': 'Tue Oct 21 19:39:10 2014 to Tue Oct 21 19:39:11 2014', \
@@ -40,12 +46,26 @@ class dictParser(object):
 		"""
 		try:
 			while True:
+				#self.Q.put(child_conn.recv())
 				oneDict = child_conn.recv()
-				print(oneDict)
+				if oneDict.get('msg'):
+					print(oneDict['msg'])
+				elif len(oneDict.get('component_info')) != 0:
+					print(oneDict.get('component_info'))
+
 		except KeyboardInterrupt:
 			print("\n'KeyboardInterrupt' received. Stopping dictParser.run()")
 		except:
 			raise
+
+	def createSIsDict(self, clientDict):
+		for component in clientDict['component_info']:
+			SI = re.findall(r'(?<=safSi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0]
+			CSI = clientDict['component_info'][component]['CSI']
+			if SI not in SIs:
+				SIs[SI] = {}
+
+
 
 	def keypaths(self, nested):
 		# http://stackoverflow.com/questions/18819154/python-finding-parent-keys-for-a-specific-value-in-a-nested-dictionary
@@ -61,3 +81,11 @@ class dictParser(object):
 		for keypath, value in keypaths(example_dict):
 		    reverse_dict.setdefault(value, []).append(keypath)
 		return reverse_dict.get(key)
+
+	
+	def populateNestedDict(self, dictToPopulate, itemPath, item):
+		if len(itemPath) == 1:
+			dictToPopulate[itemPath[0]] = item
+		else:
+			dictToPopulate[itemPath[0]] = {}
+			listToNestedDict(dictToPopulate[itemPath.pop(0)], itemPath, item)
