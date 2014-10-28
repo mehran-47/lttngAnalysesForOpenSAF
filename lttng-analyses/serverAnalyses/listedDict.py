@@ -64,6 +64,12 @@ class listedDict(dict):
 		with open(filePath, 'w') as fs:
 			fs.write(json.dumps(self, sort_keys=True))
 
+	def loadFrom(self, filePath):
+		with open(filePath, 'r') as fs:
+			self = json.loads(fs.read())
+		return self
+
+
 if __name__ == '__main__':
 	'''
 	Some tests of the API
@@ -74,7 +80,9 @@ if __name__ == '__main__':
 	X.populateNestedDict('a.b.c1','abc1_val')
 	X.populateNestedDict('a.b.c2','abc2_val')
 	X.prettyPrint(0)
-	X.saveAt(input('Save at filepath:\n> '))
+	#X.saveAt(input('Save at filepath:\n> '))
+	Y = listedDict()
+	print(Y.loadFrom(input('load from filepath:\n> ')))
 	'''
 	print(X.getFromPath(input('Provide path to get value: (e.g. a.b.c )\n> ')))
 	#print('keypaths:\n%s'%(str(X.keypaths())))
