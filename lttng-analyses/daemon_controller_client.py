@@ -85,7 +85,7 @@ def start_daemon(client):
 		while True:
 			newEvents = ustTrace.check_new_events(oldEventsDict)
 			if len(newEvents)!=0:
-				allcomps = ustTrace.get_comp_csi(newEvents)
+				allcomps = ustTrace.get_comp_csi(newEvents, allcomps)
 				kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
 				kernel_usg_proc.start()
 			if not cpu_usage_q.empty():
