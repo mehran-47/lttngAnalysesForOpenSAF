@@ -117,7 +117,7 @@ class CPUTop():
                     else:
                         self.activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=0.5)
                 else:
-                    self.activeComps[component]['cpu_usage'] = 0.0
+                    del self.activeComps[component]
 
         to_send['component_info'] = self.activeComps
 
