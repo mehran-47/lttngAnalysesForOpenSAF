@@ -104,28 +104,22 @@ class CPUTop():
         'from' : os.uname()[1],
         'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
         'nstime' : end_ns,
-        'component_info' : {},
+        'component_info' : self.activeComps,
         'cpu_core_usages' : []
         }
         if len(self.activeComps) != 0:
             for component in self.activeComps:
                 pid = int(self.activeComps[component]['PID'])
                 if os.path.exists("/proc/"+str(pid)):
-                    '''
                     if pid in usage_dict:
                         pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
                         self.activeComps[component]['cpu_usage'] = pc
                     else:
                         self.activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=0.5)
-                    '''
-                    self.activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=0.5)
                 else:
                     self.activeComps[component]['cpu_usage'] = None
 
-        #to_send['component_info'] = self.activeComps
-        for component in self.activeComps:
-            if self.activeComps[component]['cpu_usage']:
-                to_send['component_info'][component] = self.activeComps[component]
+        to_send['component_info'] = self.activeComps
 
         nb_cpu = len(self.cpus.keys())
         for cpu in sorted(self.cpus.values(),
