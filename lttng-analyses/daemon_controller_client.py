@@ -10,6 +10,7 @@ from multiprocessing import Process as pythonProcess
 from multiprocessing import Queue
 from networking.connection import connection
 from cputop_i import cputop_init
+from copy import deepcopy
 
 
 RESET_RELAYD = "sudo lttng-sessiond -d\n\
@@ -73,6 +74,15 @@ def destroy_all_sessions():
 	if not any_session_destroyed:
 		print('No tracing session destroyed')
 
+def check_and_send(client, to_send):
+	correctedDict = copy.deepcopy(to_send)
+	if to_send.get('component_info'):
+		for component in to_send.get('component_info'):
+			if not to_send['component_info'][component].get('cpu_usage'):
+				del correctedDict['component_info'][component]
+	print(correctedDict)
+	if client:
+		client.send(correctedDict)
 
 def start_daemon(client):
 	allcomps = {}
@@ -90,9 +100,7 @@ def start_daemon(client):
 				kernel_usg_proc.start()
 			if not cpu_usage_q.empty():
 				to_send = cpu_usage_q.get()
-				print(to_send)
-				if client:
-					client.send(to_send)
+				check_and_send(client, to_send)
 			if not kernel_usg_proc.is_alive():
 				#print('\n------------proc-reboot-----------\n')
 				kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
