@@ -1,18 +1,14 @@
 #!/usr/bin/env python3
 import re
 import time
-from queue import *
+from multiprocessing import Queue
+from serverAnalyses.listedDict import listedDict
 
 class dictParser(object):
 	"""dictParser class for parsing nested dict in runtime in the monitoring server"""
 	def __init__(self, **kwargs):
 		self.Q = Queue(maxsize=0)
-		"""	
-		-------------------Used hierarchy for 'SIs' hashmap: -------------------------
-		SIs > SI > Node > HAState > CSIs > Components > Usages
-		"""
-		self.SIs = {}
-		self.nodes = []
+		self.SIs = listedDict()
 		self.timeout = 5
 	def run(self, child_conn):
 		"""
@@ -50,16 +46,26 @@ class dictParser(object):
 				if oneDict.get('msg'):
 					print(oneDict['msg'])
 				elif len(oneDict.get('component_info')) != 0:
-					print(oneDict.get('component_info'))
+					#print(oneDict.get('component_info'))
+					self.createSIsDict(oneDict)
+					self.SIs.prettyPrint(0)
+					print('\n\n\n')
 
 		except KeyboardInterrupt:
 			print("\n'KeyboardInterrupt' received. Stopping dictParser.run()")
 		except:
 			raise
-
+	"""	
+	-------------------Used hierarchy for 'SIs' hashmap: -------------------------
+	SIs > SI > Node > HAState > CSI > Component > Usages
+	"""
 	def createSIsDict(self, clientDict):
 		for component in clientDict['component_info']:
 			SI = re.findall(r'(?<=safSi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0]
-			CSI = clientDict['component_info'][component]['CSI']
-			if SI not in SIs:
-				SIs[SI] = {}
+			CSI = clientDict['component_info'][component]['CSI'] #For DN
+			#CSI = re.findall(r'(?<=safCsi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0] #For RDN
+			node = clientDict.get('from')
+			HAState = clientDict['component_info'][component]['HAState']
+			usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage']}
+			self.SIs.populateNestedDict([SI,node,HAState,CSI,component], usages)
+			self.SIs.populateNestedDict([SI,node,'time'], clientDict.get('time'))
