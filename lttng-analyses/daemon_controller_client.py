@@ -78,7 +78,7 @@ def check_and_send(client, to_send):
 	correctedDict = copy.deepcopy(to_send)
 	if to_send.get('component_info'):
 		for component in to_send.get('component_info'):
-			if not to_send['component_info'][component].get('cpu_usage'):
+			if to_send['component_info'][component].get('cpu_usage')==None:
 				del correctedDict['component_info'][component]
 	print(correctedDict)
 	if client:
@@ -100,10 +100,12 @@ def start_daemon(client):
 				kernel_usg_proc.start()
 			if not cpu_usage_q.empty():
 				to_send = cpu_usage_q.get()
-				#check_and_send(client, to_send)
+				check_and_send(client, to_send)
+				'''
 				print(correctedDict)
 				if client:
 					client.send(correctedDict)
+				'''
 				#print('\n------------proc-reboot-----------\n')
 				kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
 				kernel_usg_proc.start()
