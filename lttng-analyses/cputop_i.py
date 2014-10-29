@@ -104,7 +104,7 @@ class CPUTop():
         'from' : os.uname()[1],
         'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
         'nstime' : end_ns,
-        'component_info' : self.activeComps,
+        'component_info' : {},
         'cpu_core_usages' : []
         }
         if len(self.activeComps) != 0:
@@ -119,10 +119,10 @@ class CPUTop():
                 else:
                     self.activeComps[component]['cpu_usage'] = None
 
-        to_send['component_info'] = self.activeComps
+        #to_send['component_info'] = self.activeComps
         for component in self.activeComps:
-            if not self.activeComps[component]['cpu_usage']:
-                del to_send['component_info'][component]
+            if self.activeComps[component]['cpu_usage']:
+                to_send['component_info'][component] = self.activeComps[component]
 
         nb_cpu = len(self.cpus.keys())
         for cpu in sorted(self.cpus.values(),
