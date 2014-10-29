@@ -111,11 +111,14 @@ class CPUTop():
             for component in self.activeComps:
                 pid = int(self.activeComps[component]['PID'])
                 if os.path.exists("/proc/"+str(pid)):
+                    '''
                     if pid in usage_dict:
                         pc = float("%0.02f" % ((usage_dict[pid].cpu_ns * 100) / total_ns))
                         self.activeComps[component]['cpu_usage'] = pc
                     else:
                         self.activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=0.5)
+                    '''
+                    self.activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=0.5)
                 else:
                     self.activeComps[component]['cpu_usage'] = None
 
