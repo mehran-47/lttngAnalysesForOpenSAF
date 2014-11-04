@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-import sys
-import time
-import os
-import re
-import argparse
+import sys, time, os, re, argparse
 from utilities.bash import bash
 from ust_proc import ust_trace
 from multiprocessing import Process as pythonProcess
@@ -11,7 +7,7 @@ from multiprocessing import Queue
 from networking.connection import connection
 from cputop_i import cputop_init
 from copy import deepcopy
-
+from systemUsage.usage_setter import fetch_and_set
 
 RESET_RELAYD = "sudo lttng-sessiond -d\n\
 sudo lttng-relayd -d\n"
@@ -97,7 +93,7 @@ def start_daemon(client):
 			if len(newEvents)!=0:
 				allcomps = ustTrace.get_comp_csi(newEvents, allcomps)
 				#kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
-				kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
+				kernel_usg_proc = pythonProcess(target=fetch_and_set, args=(allcomps, cpu_usage_q, 1))
 				kernel_usg_proc.start()
 			if not cpu_usage_q.empty():
 				to_send = cpu_usage_q.get()
@@ -106,10 +102,11 @@ def start_daemon(client):
 				print(correctedDict)
 				if client:
 					client.send(correctedDict)
-				'''
+				
 				#print('\n------------proc-reboot-----------\n')
 				#kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
 				#kernel_usg_proc.start()
+				'''
 			time.sleep(1)
 			oldEventsDict = ustTrace.events_as_dict()
 	except KeyboardInterrupt:
