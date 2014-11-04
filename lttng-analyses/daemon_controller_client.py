@@ -96,6 +96,7 @@ def start_daemon(client):
 			newEvents = ustTrace.check_new_events(oldEventsDict)
 			if len(newEvents)!=0:
 				allcomps = ustTrace.get_comp_csi(newEvents, allcomps)
+				#kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
 				kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
 				kernel_usg_proc.start()
 			if not cpu_usage_q.empty():
@@ -107,8 +108,8 @@ def start_daemon(client):
 					client.send(correctedDict)
 				'''
 				#print('\n------------proc-reboot-----------\n')
-				kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
-				kernel_usg_proc.start()
+				#kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
+				#kernel_usg_proc.start()
 			time.sleep(1)
 			oldEventsDict = ustTrace.events_as_dict()
 	except KeyboardInterrupt:
