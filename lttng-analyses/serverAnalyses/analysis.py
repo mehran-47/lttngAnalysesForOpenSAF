@@ -50,13 +50,19 @@ class dictParser(object):
 					self.createSIsDict(oneDict)
 					self.SIs.prettyPrint(0)
 					print('\n\n\n')
+				elif len(oneDict.get('component_info')) == 0:
+					for SI in self.SIs:
+						if self.SIs.getFromPath([SI,oneDict['from']])!=None:
+							self.SIs.deleteItem([SI,oneDict['from']])
+							self.SIs.prettyPrint(0)
+							print('\n\n\n')
 
 		except KeyboardInterrupt:
 			print("\n'KeyboardInterrupt' received. Stopping dictParser.run()")
 		except:
 			raise
 	"""	
-	-------------------Used hierarchy for 'SIs' hashmap: -------------------------
+	-------------------Used hierarchy for 'SIs' nested hashmap: -------------------------
 	SIs > SI > Node > HAState > CSI > Component > Usages
 	"""
 	def createSIsDict(self, clientDict):
@@ -69,3 +75,17 @@ class dictParser(object):
 			usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage']}
 			self.SIs.populateNestedDict([SI,node,HAState,CSI,component], usages)
 			self.SIs.populateNestedDict([SI,node,'time'], clientDict.get('time'))
+			#for HAState in self.SIs.getFromPath([SI,node]).iter():
+
+	"""
+	def createOneSI(self, clientDict):
+		SIdict = listedDict()
+		SIname = re.findall(r'(?<=safSi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0]
+		CSI = clientDict['component_info'][component]['CSI'] #For DN
+		#CSI = re.findall(r'(?<=safCsi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0] #For RDN
+		node = clientDict.get('from')
+		HAState = clientDict['component_info'][component]['HAState']
+
+		usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage']}
+		SI.populateNestedDict([SI,node,HAState,CSI,component], usages)
+	"""
