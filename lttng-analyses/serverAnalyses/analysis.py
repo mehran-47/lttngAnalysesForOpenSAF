@@ -45,9 +45,10 @@ class dictParser(object):
 				oneDict = child_conn.recv()
 				if oneDict.get('msg'):
 					print(oneDict['msg'])
-				elif len(oneDict.get('component_info')) != 0:
+				elif len(oneDict.get('component_info')) > 0:
 					#print(oneDict.get('component_info'))
 					self.createSIsDict(oneDict)
+					print('Usage on ' + oneDict.get('time'))
 					self.SIs.prettyPrint(0)
 					print('\n\n\n')
 				elif len(oneDict.get('component_info')) == 0:
@@ -74,8 +75,18 @@ class dictParser(object):
 			HAState = clientDict['component_info'][component]['HAState']
 			usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage']}
 			self.SIs.populateNestedDict([SI,node,HAState,CSI,component], usages)
-			self.SIs.populateNestedDict([SI,node,'time'], clientDict.get('time'))
+			for HAS in self.SIs.getFromPath([SI,node]):
+				if self.SIs.getFromPath([SI,node,HAS,CSI])!=None:
+					if HAS!=HAState and component in self.SIs.getFromPath([SI,node,HAS,CSI]):
+						self.SIs.deleteItem([SI,node,HAS,CSI])
+			#self.SIs.populateNestedDict([SI,node,'time'], clientDict.get('time'))
 			#for HAState in self.SIs.getFromPath([SI,node]).iter():
+	
+	def refreshOneNode(self, clientDict):
+		nodeFresh = listedDict()
+		nodeFresh.populateNestedDict([HAState,CSI,component], usages)
+		for si in self.SIs:
+			self.SIs[si][node] = nodeFresh
 
 	"""
 	def createOneSI(self, clientDict):
