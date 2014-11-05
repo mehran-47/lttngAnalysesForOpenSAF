@@ -75,7 +75,7 @@ if __name__ == "__main__":
 	elif len(sys.argv) == 2 and sys.argv[1]=='--p':
 		#Persistent UST tracing
 		from utilities.bash import bash
-		from daemon_controller_client import *
+		from daemon_controller_client import start_tracing_with, destroy_all_sessions 
 		bashc_v = bash()
 		CREATE_UST = "lttng create --live 2000000 -U net://localhost\nlttng enable-event -u -a --loglevel=TRACE_DEBUG\nlttng start"
 		#Starting UST session

@@ -2,12 +2,11 @@
 import sys, time, os, re, argparse
 from utilities.bash import bash
 from ust_proc import ust_trace
-from multiprocessing import Process as pythonProcess
-from multiprocessing import Queue
+from multiprocessing import Queue, Process as pythonProcess
 from networking.connection import connection
 from cputop_i import cputop_init
-from copy import deepcopy
 from systemUsage.usage_setter import *
+from serverAnalyses.listedDict import listedDict
 
 RESET_RELAYD = "sudo lttng-sessiond -d\n\
 sudo lttng-relayd -d\n"
@@ -51,6 +50,7 @@ def destroy_session(session_name, **kwargs):
 def clean_all_trace_history():
 	destroy_all_sessions()
 	bashc.execute('rm -rf '+'/root/lttng-traces/'+os.uname()[1])
+	os.remove('__comp_csi_latest_map.json')
 
 def stop_and_clean_all():
 	clean_all_trace_history()
@@ -71,21 +71,35 @@ def destroy_all_sessions():
 		print('No tracing session destroyed')
 
 def check_and_send(client, to_send):
-	correctedDict = deepcopy(to_send)
+	with open('__comp_csi_latest_map.json','r') as historyFile:
+		mapHistory = json.loads(historyFile.read())
 	if to_send.get('component_info'):
 		for component in to_send.get('component_info'):
-			if to_send['component_info'][component].get('cpu_usage')==None:
-				del correctedDict['component_info'][component]
-	print(correctedDict)
+			if to_send['component_info'][component]['CSI']=='':
+				to_send['component_info'][component]['CSI'] = mapHistory['component_info'][component]['CSI']
+	print(to_send)
+	print('\n\n\n')
 	if client:
 		client.send(correctedDict)
 
-def component_PID_refresh(allcomps):
+def save_comp_CSI_map(allcomps):
+	to_save = listedDict()
+	if len(allcomps.keys())>0:
+		for component in allcomps:
+			if allcomps[component]['CSI'] != '':
+				to_save.populateNestedDict([component,'CSI'], allcomps[component]['CSI'])
+	if len(to_save.keys())>0:
+		with open('__comp_csi_latest_map.json','w') as historyFile:
+			historyFile.write(json.dumps(to_save))
+	
+
+def get_latest_comp_CSI_map():
 	pass
 
 def start_daemon(client):
 	newEventsDict = ustTrace.events_as_dict()
 	allcomps = ustTrace.get_comp_csi(newEventsDict,{})
+	save_comp_CSI_map(allcomps)
 	oldEventsDict = {}
 	to_send = {}
 	try:
@@ -94,10 +108,10 @@ def start_daemon(client):
 			time.sleep(2)
 			if len(newEventsDict.keys())>0:
 				allcomps = ustTrace.get_comp_csi(newEventsDict,allcomps)
+				save_comp_CSI_map(allcomps)
 				oldEventsDict.update(newEventsDict)
 			to_send=fetch_and_set_func(allcomps,2)
-			if client:
-				check_and_send(client, to_send)
+			check_and_send(client, to_send)
 			print(to_send)
 			print('\n\n\n')
 	except KeyboardInterrupt:
@@ -144,7 +158,7 @@ if __name__=="__main__":
 	# The argument 'to' below should not be necessary. To-be-fixed.
 	ustTrace = ust_trace(ust_session.path)
 	if not debugging:
-		client = connection('172.16.159.129',5555)
+		client = connection('172.16.159.128',5555)
 		try:
 			client.connect(args.to, 6666)
 		except ConnectionRefusedError:
