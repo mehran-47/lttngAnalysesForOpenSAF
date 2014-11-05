@@ -34,6 +34,19 @@ class listedDict(dict):
 		itemPath = itemPath.split('.') if isinstance(itemPath,str) else itemPath
 		return reduce(dict.get, itemPath, self)
 
+	def getFromPath_o(self, itemPath):
+		itemPath = itemPath.split('.') if isinstance(itemPath,str) else itemPath
+		if len(itemPath)==1:
+			return self.get(itemPath[0])
+		else:
+			if isinstance(self.get(itemPath[0]), dict):
+				print(itemPath)
+				listedDict.getFromPath(self[itemPath.pop(0)], itemPath)
+			else:
+				print(itemPath)
+				print(self.get(itemPath[0]))
+				return None
+
 	def lookupValuePath(self, key):
 		return self.reverse_dict().get(str(key))
 
@@ -77,8 +90,8 @@ class listedDict(dict):
 
 
 if __name__ == '__main__':
-	'''
-	Some tests of the API
+	#'''
+	#Some tests of the API
 	###
 	X = listedDict()
 	X.populateNestedDict('a.b1',{'ab_val':5})
@@ -88,6 +101,7 @@ if __name__ == '__main__':
 	print('printing X:\n')
 	X.prettyPrint(0)
 	print(X.getFromPath(input('Provide path to get value: (e.g. a.b.c )\n> ')))
+	'''
 	Y = listedDict()
 	Y = copy.deepcopy(X)
 	print('printing Y:\n')
