@@ -71,7 +71,7 @@ def destroy_all_sessions():
 		print('No tracing session destroyed')
 
 def check_and_send(client, to_send):
-	correctedDict = copy.deepcopy(to_send)
+	correctedDict = deepcopy(to_send)
 	if to_send.get('component_info'):
 		for component in to_send.get('component_info'):
 			if to_send['component_info'][component].get('cpu_usage')==None:
@@ -156,7 +156,7 @@ if __name__=="__main__":
 	# The argument 'to' below should not be necessary. To-be-fixed.
 	ustTrace = ust_trace(ust_session.path)
 	if not debugging:
-		client = connection('172.16.159.130',5555)
+		client = connection('172.16.159.129',5555)
 		try:
 			client.connect(args.to, 6666)
 		except ConnectionRefusedError:

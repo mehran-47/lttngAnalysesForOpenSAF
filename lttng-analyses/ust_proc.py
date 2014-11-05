@@ -90,19 +90,19 @@ if __name__ == "__main__":
 					print('Trace-debugging Manually interrupted, quitting.')
 					sys.exit()
 			#UST Session created successfully
+			time.sleep(2)
 			ut = ust_trace(ust_path)
 			newEventsDict = ut.events_as_dict()
 			allcomps = ut.get_comp_csi(newEventsDict,{})
 			oldEventsDict = {}
 			while True:
-				print(allcomps)
-				print('\n\n\n')
-				oldEventsDict = newEventsDict
-				time.sleep(2)
 				newEventsDict = ut.check_new_events(oldEventsDict)
+				time.sleep(5)
 				if len(newEventsDict.keys())>0:
 					allcomps = ut.get_comp_csi(newEventsDict,allcomps)
-
+					oldEventsDict.update(newEventsDict)
+				print(allcomps)
+				print('\n\n\n')
 		except TypeError:
 			print('Failed to create UST session. Quitting.')
 			destroy_all_sessions()
