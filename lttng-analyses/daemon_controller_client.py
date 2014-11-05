@@ -7,7 +7,7 @@ from multiprocessing import Queue
 from networking.connection import connection
 from cputop_i import cputop_init
 from copy import deepcopy
-from systemUsage.usage_setter import fetch_and_set
+from systemUsage.usage_setter import *
 
 RESET_RELAYD = "sudo lttng-sessiond -d\n\
 sudo lttng-relayd -d\n"
@@ -81,39 +81,24 @@ def check_and_send(client, to_send):
 		client.send(correctedDict)
 
 def start_daemon(client):
-	allcomps = {}
+	newEventsDict = ustTrace.events_as_dict()
+	allcomps = ustTrace.get_comp_csi(newEventsDict,{})
 	oldEventsDict = {}
 	to_send = {}
-	if not os.path.isdir(kt_session.path):
-		raise Exception("Kernel trace path:%s does not exist. Daemon halting" %(kt_session.path))
-		return
 	try:
 		while True:
-			newEvents = ustTrace.check_new_events(oldEventsDict)
-			if len(newEvents)!=0:
-				allcomps = ustTrace.get_comp_csi(newEvents, allcomps)
-				#kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
-				kernel_usg_proc = pythonProcess(target=fetch_and_set, args=(allcomps, cpu_usage_q, 1))
-				kernel_usg_proc.start()
-			if not cpu_usage_q.empty():
-				to_send = cpu_usage_q.get()
+			newEventsDict = ustTrace.check_new_events(oldEventsDict)
+			time.sleep(3)
+			if len(newEventsDict.keys())>0:
+				allcomps = ustTrace.get_comp_csi(newEventsDict,allcomps)
+				oldEventsDict.update(newEventsDict)
+			to_send=fetch_and_set_func(allcomps,2)
+			if client:
 				check_and_send(client, to_send)
-				'''
-				print(correctedDict)
-				if client:
-					client.send(correctedDict)
-				
-				#print('\n------------proc-reboot-----------\n')
-				#kernel_usg_proc = pythonProcess(target=cputop_init, args=(kt_session.path, allcomps, cpu_usage_q))
-				#kernel_usg_proc.start()
-				'''
-			time.sleep(1)
-			oldEventsDict = ustTrace.events_as_dict()
+			print(to_send)
+			print('\n\n\n')
 	except KeyboardInterrupt:
 		print('\nDaemon stopped manually. Tracing stopped')
-		if kernel_usg_proc.is_alive():
-			kernel_usg_proc.join()
-
 
 
 if __name__=="__main__":	
