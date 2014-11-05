@@ -80,6 +80,9 @@ def check_and_send(client, to_send):
 	if client:
 		client.send(correctedDict)
 
+def component_PID_refresh(allcomps):
+	pass
+
 def start_daemon(client):
 	newEventsDict = ustTrace.events_as_dict()
 	allcomps = ustTrace.get_comp_csi(newEventsDict,{})
@@ -88,7 +91,7 @@ def start_daemon(client):
 	try:
 		while True:
 			newEventsDict = ustTrace.check_new_events(oldEventsDict)
-			time.sleep(3)
+			time.sleep(2)
 			if len(newEventsDict.keys())>0:
 				allcomps = ustTrace.get_comp_csi(newEventsDict,allcomps)
 				oldEventsDict.update(newEventsDict)

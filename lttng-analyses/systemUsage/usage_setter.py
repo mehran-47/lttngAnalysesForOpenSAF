@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys, time, json, os, re, psutil as ps
 from multiprocessing import Queue as mQueue, Process as proc
+from copy import deepcopy
 
 def fetch_and_set(activeComps, usage_q, interval):
 	to_send = {
@@ -23,6 +24,39 @@ def fetch_and_set(activeComps, usage_q, interval):
 					time.sleep(1)
 		to_send['time'] = time.strftime("%d-%m-%Y") + ' at ' + time.strftime("%H:%M:%S")
 		usage_q.put(to_send)
+
+def activeCompsRefresh(activeComps):
+	correctedActiveComps = deepcopy(activeComps)
+	for component in activeComps:
+		if not os.path.exists("/proc/"+str(activeComps[component]['PID'])):
+			del correctedActiveComps[component]
+	return correctedActiveComps
+
+def fetch_and_set_func(activeComps, interval):
+	to_send = {
+		'msg' : '', 
+		'from' : os.uname()[1],
+		#'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
+		'time' : '',
+		#'nstime' : end_ns,
+		'component_info' : activeComps,
+		'cpu_core_usages' : ps.cpu_percent(interval=interval, percpu=True)
+	}
+	activeComps = activeCompsRefresh(activeComps)
+
+	if len(activeComps)>0:
+		for component in activeComps:
+			pid = int(activeComps[component]['PID'])
+			try:
+				activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=interval)
+			except ps.NoSuchProcess:
+				activeComps[component]['cpu_usage'] = 0.0
+				print('Error: "psutil.NoSuchProcess" process ID %d died while measuring usage.'%(pid))				
+
+	to_send['component_info']=activeComps
+	to_send['time'] = time.strftime("%d-%m-%Y") + ' at ' + time.strftime("%H:%M:%S")
+	return to_send
+
 
 def dummy(arg1, arg2):
 	while True:
