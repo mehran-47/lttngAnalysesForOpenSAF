@@ -76,11 +76,11 @@ def check_and_send(client, to_send):
 	if to_send.get('component_info'):
 		for component in to_send.get('component_info'):
 			if to_send['component_info'][component]['CSI']=='':
-				to_send['component_info'][component]['CSI'] = mapHistory['component_info'][component]['CSI']
+				to_send['component_info'][component]['CSI'] = mapHistory[component]['CSI']
 	print(to_send)
 	print('\n\n\n')
 	if client:
-		client.send(correctedDict)
+		client.send(to_send)
 
 def save_comp_CSI_map(allcomps):
 	to_save = listedDict()
