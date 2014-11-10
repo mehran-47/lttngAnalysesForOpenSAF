@@ -50,7 +50,8 @@ def destroy_session(session_name, **kwargs):
 def clean_all_trace_history():
 	destroy_all_sessions()
 	bashc.execute('rm -rf '+'/root/lttng-traces/'+os.uname()[1])
-	os.remove('__comp_csi_latest_map.json')
+	if os.path.isfile('__comp_csi_latest_map.json'):
+		os.remove('__comp_csi_latest_map.json')
 
 def stop_and_clean_all():
 	clean_all_trace_history()
@@ -105,12 +106,12 @@ def start_daemon(client):
 	try:
 		while True:
 			newEventsDict = ustTrace.check_new_events(oldEventsDict)
-			time.sleep(2)
+			time.sleep(0.5)
 			if len(newEventsDict.keys())>0:
 				allcomps = ustTrace.get_comp_csi(newEventsDict,allcomps)
 				save_comp_CSI_map(allcomps)
 				oldEventsDict.update(newEventsDict)
-			to_send=fetch_and_set_func(allcomps,2)
+			to_send=fetch_and_set_func(allcomps,1)
 			check_and_send(client, to_send)
 			print(to_send)
 			print('\n\n\n')
