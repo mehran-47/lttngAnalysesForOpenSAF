@@ -16,15 +16,16 @@ if __name__ == '__main__':
 	thread.daemon = True
 	thread.start()
 
-	#plt.axis([0, 1000, 0, 1])
+	plt.axis([0, 20, 0, 50])
 	plt.ion()
 	plt.show()
 	while True:
 		try:
-			plt.plot(data[-20:],'g')
+			plt.scatter(range(0, len(data[-20:])), data[-20:])
 			plt.draw()
 			time.sleep(0.05)
 			plt.clf()
+			plt.axis([0, 20, 0, 50])
 		except KeyboardInterrupt:
-			print('plotting stopped')
+			print('\nplotting stopped\n')
 			sys.exit()

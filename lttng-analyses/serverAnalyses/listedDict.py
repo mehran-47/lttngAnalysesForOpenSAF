@@ -31,8 +31,14 @@ class listedDict(dict):
 		return reverse_dict
 
 	def getFromPath(self, itemPath):
-		itemPath = itemPath.split('.') if isinstance(itemPath,str) else itemPath
-		return reduce(dict.get, itemPath, self)
+		try:
+			itemPath = itemPath.split('.') if isinstance(itemPath,str) else itemPath
+			return reduce(dict.get, itemPath, self)
+		except TypeError:
+			print('Warning: Invalid path')
+			return None
+		except:
+			raise
 
 	def getFromPath_o(self, itemPath):
 		itemPath = itemPath.split('.') if isinstance(itemPath,str) else itemPath
@@ -86,7 +92,15 @@ class listedDict(dict):
 		vals_2 = [str(item) for item in listedDict.reverse_dict().values()]
 		return list(set(vals_1)-set(vals_2))+list(set(vals_2)-set(vals_1))
 
-
+	def updateUsage(self, usageDict):
+		for key, value in self.items():
+			if isinstance(value, dict):
+				listedDict.updateUsage(value, usageDict)
+			elif isinstance(value, float):
+				if key in usageDict:
+					usageDict[key]+=self[key]
+				else:
+					usageDict[key]=self[key]			
 
 
 if __name__ == '__main__':
@@ -94,14 +108,19 @@ if __name__ == '__main__':
 	#Some tests of the API
 	###
 	X = listedDict()
-	X.populateNestedDict('a.b1',{'ab_val':5})
-	X.populateNestedDict('a.b2',{'ab_val':7})
+	X.populateNestedDict('a.b1',{'ab_val':5.0})
+	X.populateNestedDict('a.b2',{'ab_val':7.0})
 	X.populateNestedDict('a.b.c1','abc1_val')
 	X.populateNestedDict('a.b.c2','abc2_val')
 	print('printing X:\n')
 	X.prettyPrint(0)
-	print(X.getFromPath(input('Provide path to get value: (e.g. a.b.c )\n> ')))
+	print('printing usage:\n')
+	#X.updateUsage({})
+	tu = {'xy_val':3.12}
+	X.updateUsage(tu)
+	print(tu)
 	'''
+	print(X.getFromPath(input('Provide path to get value: (e.g. a.b.c )\n> ')))
 	Y = listedDict()
 	Y = copy.deepcopy(X)
 	print('printing Y:\n')

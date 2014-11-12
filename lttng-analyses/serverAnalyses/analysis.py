@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-import re
-import time
-from multiprocessing import Queue
+import re, time, matplotlib.pyplot as plt
+from threading import Thread
 from serverAnalyses.listedDict import listedDict
 
 class dictParser(object):
 	"""dictParser class for parsing nested dict in runtime in the monitoring server"""
 	def __init__(self, **kwargs):
-		self.Q = Queue(maxsize=0)
 		self.SIs = listedDict()
 		self.timeout = 5
+		self.usages = listedDict()
+		self.cpu_usage_list = []
 	def run(self, child_conn):
 		"""
 		-------------------Sample clientDict for reference----------------------------
@@ -39,27 +39,35 @@ class dictParser(object):
 			}, \
 		}
 		"""
+		plotProc = Thread(target=self.plotCPUusage, args=([100,50],))
+		plotProc.start()
 		try:
 			while True:
-				#self.Q.put(child_conn.recv())
 				oneDict = child_conn.recv()
 				if oneDict.get('msg'):
 					print(oneDict['msg'])
 				elif len(oneDict.get('component_info')) > 0:
-					#print(oneDict.get('component_info'))
-					self.createSIsDict(oneDict)
-					print('Usage on ' + oneDict.get('time'))
-					self.SIs.prettyPrint(0)
-					print('\n\n\n')
-				elif len(oneDict.get('component_info')) == 0:
+					#For debugging; print the received JSON : print(oneDict.get('component_info'))
+					self.createSIsDict(oneDict)	
+				elif len(oneDict.get('component_info')) == 0: #Potentially because service is shut down on the node
 					for SI in self.SIs:
 						if self.SIs.getFromPath([SI,oneDict['from']])!=None:
 							self.SIs.deleteItem([SI,oneDict['from']])
-							self.SIs.prettyPrint(0)
-							print('\n\n\n')
-
+				#Output hub
+				if oneDict.get('time'):
+					self.usages=listedDict()
+					print('Usage on ' + oneDict.get('time'))
+				self.SIs.prettyPrint(0)
+				self.setAggregatedUsage()
+				self.cpu_usage_list.append(self.usages.get('cpu_usage') if self.usages.get('cpu_usage')!=None else 0.0)
+				print('\n---------SI : \'AmfDemo\' usages:---------')
+				print(self.usages)
+				#print(self.cpu_usage_list)
+				print('\n\n\n')
 		except KeyboardInterrupt:
-			print("\n'KeyboardInterrupt' received. Stopping dictParser.run()")
+			print("\n'KeyboardInterrupt' received. Stopping Server Daemon (dictParser.run())")
+			self.cpu_usage_list=None
+			plotProc.join()
 		except:
 			raise
 	"""	
@@ -75,12 +83,11 @@ class dictParser(object):
 			HAState = clientDict['component_info'][component]['HAState']
 			usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage']}
 			self.SIs.populateNestedDict([SI,node,HAState,CSI,component], usages)
+			#Correcting potential double-entry of component-csi map in HA-States
 			for HAS in self.SIs.getFromPath([SI,node]):
 				if self.SIs.getFromPath([SI,node,HAS,CSI])!=None:
 					if HAS!=HAState and component in self.SIs.getFromPath([SI,node,HAS,CSI]):
 						self.SIs.deleteItem([SI,node,HAS,CSI])
-			#self.SIs.populateNestedDict([SI,node,'time'], clientDict.get('time'))
-			#for HAState in self.SIs.getFromPath([SI,node]).iter():
 	
 	def refreshOneNode(self, clientDict):
 		nodeFresh = listedDict()
@@ -88,15 +95,34 @@ class dictParser(object):
 		for si in self.SIs:
 			self.SIs[si][node] = nodeFresh
 
-	"""
-	def createOneSI(self, clientDict):
-		SIdict = listedDict()
-		SIname = re.findall(r'(?<=safSi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0]
-		CSI = clientDict['component_info'][component]['CSI'] #For DN
-		#CSI = re.findall(r'(?<=safCsi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0] #For RDN
-		node = clientDict.get('from')
-		HAState = clientDict['component_info'][component]['HAState']
+	def setAggregatedUsage(self):
+		count = 0
+		for SI in self.SIs:
+			for node in self.SIs[SI]:
+				for HAState in self.SIs[SI][node]:
+					for CSI in self.SIs[SI][node][HAState]:
+						for component in self.SIs[SI][node][HAState][CSI]:
+							for usage in self.SIs[SI][node][HAState][CSI][component]:
+								if usage!=None and self.usages.get(usage)!=None:
+									self.usages[usage]+=self.SIs[SI][node][HAState][CSI][component][usage]
+								elif usage!=None:
+									self.usages[usage]=self.SIs[SI][node][HAState][CSI][component][usage]
+								count+=1								
+		for key in self.usages:
+			self.usages[key] = self.usages[key]/count if count!=0 else self.usages[key]
 
-		usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage']}
-		SI.populateNestedDict([SI,node,HAState,CSI,component], usages)
-	"""
+
+	def plotCPUusage(self, dimension):
+		plt.axis([0, dimension[0], 0, dimension[1]])
+		plt.ion()
+		plt.show()
+		while True:
+			try:
+				plt.scatter(range(0, len(self.cpu_usage_list[-dimension[0]:])), self.cpu_usage_list[-dimension[0]:])
+				plt.draw()
+				time.sleep(0.1)
+				plt.clf()
+				plt.axis([0, dimension[0], 0, dimension[1]])
+			except KeyboardInterrupt:
+				print('\nplotting stopped\n')
+				sys.exit()

@@ -1,31 +1,3 @@
-Session auto-20141112-060240 created.
-Traces will be written in net://localhost
-Live timer set to 2000000 usec
-
-All UST events are enabled in channel channel0 for loglevel TRACE_DEBUG
-
-Tracing started for session auto-20141112-060240
-
-Session auto-20141112-060241 created.
-Traces will be written in net://127.0.0.1
-Live timer set to 1000000 usec
-
-Kernel channel chann2 enabled for session auto-20141112-060241
-
-All Kernel events are enabled in channel chann2
-
-kernel context pid added to all channels
-kernel context procname added to all channels
-kernel context tid added to all channels
-kernel context ppid added to all channels
-kernel context perf:major-faults added to all channels
-kernel context perf:branch-load-misses added to all channels
-
-Tracing started for session auto-20141112-060241
-
-Starting OpenSAF Services:  * 
-
-No UST event yet, waiting
 {'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:02:58', 'msg': ''}
 
 

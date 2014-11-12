@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-import sys
-import time
-import json
-import re
-import random
+import sys, time, json, re, random
 from connection import connection
 from multiprocessing import Process as mp
 
 def send_text_strings(filepath):
 	with open(filepath, 'r') as trace_hist:
+		pattern = re.compile('^\{(.+)\}')
 		try:
 			for line in trace_hist:
-				client.send(json.loads(re.sub("'",'"',line)))
-				print(re.sub("'",'"',line))
-				time.sleep(random.uniform(0.5,3))
+				line = pattern.match(line)
+				#print(line)
+				if line!=None:
+					client.send(json.loads(re.sub("'",'"',line.group(0))))
+					print("%s\n\n" %(re.sub("'",'"',line.group(0))))
+					time.sleep(random.uniform(0.5,3))
 		except KeyboardInterrupt:
 			print("User interrupted")
 
