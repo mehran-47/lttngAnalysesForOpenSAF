@@ -63,7 +63,7 @@ class dictParser(object):
 					self.cpu_usage_list.append(self.SI_usages['AmfDemo']['cpu_usage'])
 				else:
 					self.cpu_usage_list.append(0.0)
-				print('\n---------SI usages:---------')
+				print('\n---------SI-load-list:---------')
 				print(self.SI_usages)				
 				print('\n\n\n')
 		except KeyboardInterrupt:
