@@ -7,8 +7,8 @@ class dictParser(object):
 	"""dictParser class for parsing nested dict in runtime in the monitoring server"""
 	def __init__(self, **kwargs):
 		self.SIs = listedDict()
-		self.timeout = 5
-		self.usages = listedDict()
+		self.timeout = 5		
+		self.SI_usages = listedDict()
 		self.cpu_usage_list = []
 	def run(self, child_conn):
 		"""
@@ -54,15 +54,17 @@ class dictParser(object):
 						if self.SIs.getFromPath([SI,oneDict['from']])!=None:
 							self.SIs.deleteItem([SI,oneDict['from']])
 				#Output hub
-				if oneDict.get('time'):
-					self.usages=listedDict()
+				if oneDict.get('time'):					
+					self.SI_usages = listedDict()
 					print('Usage on ' + oneDict.get('time'))
-				self.SIs.prettyPrint(0)
-				self.setAggregatedUsage()
-				self.cpu_usage_list.append(self.usages.get('cpu_usage') if self.usages.get('cpu_usage')!=None else 0.0)
-				print('\n---------SI : \'AmfDemo\' usages:---------')
-				print(self.usages)
-				#print(self.cpu_usage_list)
+				self.SIs.prettyPrint(0)		
+				self.setUsage()				
+				if self.SI_usages.get('AmfDemo')!=None and self.SI_usages.get('AmfDemo').get('cpu_usage')!=None:
+					self.cpu_usage_list.append(self.SI_usages['AmfDemo']['cpu_usage'])
+				else:
+					self.cpu_usage_list.append(0.0)
+				print('\n---------SI usages:---------')
+				print(self.SI_usages)				
 				print('\n\n\n')
 		except KeyboardInterrupt:
 			print("\n'KeyboardInterrupt' received. Stopping Server Daemon (dictParser.run())")
@@ -88,12 +90,7 @@ class dictParser(object):
 					if HAS!=HAState and component in self.SIs.getFromPath([SI,node,HAS,CSI]):
 						self.SIs.deleteItem([SI,node,HAS,CSI])
 	
-	def refreshOneNode(self, clientDict):
-		nodeFresh = listedDict()
-		nodeFresh.populateNestedDict([HAState,CSI,component], usages)
-		for si in self.SIs:
-			self.SIs[si][node] = nodeFresh
-
+	#Deprecated?! Will be deleted soon					
 	def setAggregatedUsage(self):
 		nodeCount = 0
 		for SI in self.SIs:
@@ -108,7 +105,18 @@ class dictParser(object):
 								elif usage!=None:
 									self.usages[usage]=self.SIs[SI][node][HAState][CSI][component][usage]																		
 		for key in self.usages:
-			self.usages[key] = self.usages[key]/nodeCount if nodeCount!=0 else self.usages[key]		
+			self.usages[key] = self.usages[key]/nodeCount if nodeCount!=0 else self.usages[key]
+
+	def setUsage(self):
+		nodeCount=0
+		for SI in self.SIs:
+			for node in self.SIs[SI]:
+				nodeCount+=1
+				if SI not in self.SI_usages:
+					self.SI_usages[SI]=listedDict()
+				self.SIs[SI][node].updateUsage(self.SI_usages[SI])
+			for key in self.SI_usages[SI]:
+				self.SI_usages[SI][key] = self.SI_usages[SI][key]/nodeCount if nodeCount!=0 else self.SI_usages[SI][key]/nodeCount
 
 
 	def plotCPUusage(self, dimension):

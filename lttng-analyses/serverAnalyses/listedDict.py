@@ -108,15 +108,15 @@ if __name__ == '__main__':
 	#Some tests of the API
 	###
 	X = listedDict()
-	X.populateNestedDict('a.b1',{'ab_val':5.0})
-	X.populateNestedDict('a.b2',{'ab_val':7.0})
+	X.populateNestedDict('a.b1',{'ab_val':5.0, 'cd_val':4.4})
+	X.populateNestedDict('a.b2',{'ab_val':7.0, 'de_val':1.1})
 	X.populateNestedDict('a.b.c1','abc1_val')
 	X.populateNestedDict('a.b.c2','abc2_val')
 	print('printing X:\n')
 	X.prettyPrint(0)
 	print('printing usage:\n')
 	#X.updateUsage({})
-	tu = {'xy_val':3.12}
+	tu = {}
 	X.updateUsage(tu)
 	print(tu)
 	'''
