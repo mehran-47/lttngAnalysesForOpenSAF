@@ -66,7 +66,7 @@ class dictParser(object):
 				print('\n\n\n')
 		except KeyboardInterrupt:
 			print("\n'KeyboardInterrupt' received. Stopping Server Daemon (dictParser.run())")
-			self.cpu_usage_list=None
+			self.cpu_usage_list=[]
 			plotProc.join()
 		except:
 			raise
@@ -108,8 +108,10 @@ class dictParser(object):
 								elif usage!=None:
 									self.usages[usage]=self.SIs[SI][node][HAState][CSI][component][usage]
 								count+=1								
+		'''
 		for key in self.usages:
 			self.usages[key] = self.usages[key]/count if count!=0 else self.usages[key]
+		'''
 
 
 	def plotCPUusage(self, dimension):
