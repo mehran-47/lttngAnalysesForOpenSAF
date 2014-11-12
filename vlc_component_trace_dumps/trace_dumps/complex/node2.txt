@@ -1,0 +1,810 @@
+Session auto-20141112-060240 created.
+Traces will be written in net://localhost
+Live timer set to 2000000 usec
+
+All UST events are enabled in channel channel0 for loglevel TRACE_DEBUG
+
+Tracing started for session auto-20141112-060240
+
+Session auto-20141112-060241 created.
+Traces will be written in net://127.0.0.1
+Live timer set to 1000000 usec
+
+Kernel channel chann2 enabled for session auto-20141112-060241
+
+All Kernel events are enabled in channel chann2
+
+kernel context pid added to all channels
+kernel context procname added to all channels
+kernel context tid added to all channels
+kernel context ppid added to all channels
+kernel context perf:major-faults added to all channels
+kernel context perf:branch-load-misses added to all channels
+
+Tracing started for session auto-20141112-060241
+
+Starting OpenSAF Services:  * 
+
+No UST event yet, waiting
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:02:58', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:02:58', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:01', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:01', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 3.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:05', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 3.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:05', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:08', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:08', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:12', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:12', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:15', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:15', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:19', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:19', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.9, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:22', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.9, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:22', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:26', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:26', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [3.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:29', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [3.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:29', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:33', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:33', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:36', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:36', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:40', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:40', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:43', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:43', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:47', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:47', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:50', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:50', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:54', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:54', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:57', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:03:57', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:01', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:01', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 3.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:04', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 3.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:04', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:08', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:08', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:12', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:12', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:15', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:15', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:19', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:19', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:22', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:22', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:26', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:26', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:29', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:29', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:33', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:33', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:36', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:36', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:40', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:40', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:43', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:43', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:47', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:47', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:50', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:50', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:54', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:54', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:57', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:04:57', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:01', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:01', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:04', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:04', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:08', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:08', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [3.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:11', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [3.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:11', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:15', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:15', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:18', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:18', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:22', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:22', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:25', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:25', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:29', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:29', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:32', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:32', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:36', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:36', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:39', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:39', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:43', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:43', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:46', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:46', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [9.1, 9.1], 'from': 'node2', 'time': '12-11-2014 at 06:05:50', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [9.1, 9.1], 'from': 'node2', 'time': '12-11-2014 at 06:05:50', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [7.1, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:53', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [7.1, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:53', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 2.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 1.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [7.9, 7.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:57', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 2.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 1.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [7.9, 7.0], 'from': 'node2', 'time': '12-11-2014 at 06:05:57', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 5.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [5.1, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:00', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 5.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [5.1, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:00', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 2.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [5.1, 5.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:04', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 2.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [5.1, 5.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:04', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [6.0, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:07', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [6.0, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:07', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 2.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [4.1, 5.1], 'from': 'node2', 'time': '12-11-2014 at 06:06:11', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 2.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [4.1, 5.1], 'from': 'node2', 'time': '12-11-2014 at 06:06:11', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [12.0, 8.1], 'from': 'node2', 'time': '12-11-2014 at 06:06:14', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [12.0, 8.1], 'from': 'node2', 'time': '12-11-2014 at 06:06:14', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [5.1, 5.1], 'from': 'node2', 'time': '12-11-2014 at 06:06:18', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [5.1, 5.1], 'from': 'node2', 'time': '12-11-2014 at 06:06:18', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [6.0, 5.1], 'from': 'node2', 'time': '12-11-2014 at 06:06:21', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [6.0, 5.1], 'from': 'node2', 'time': '12-11-2014 at 06:06:21', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [6.1, 6.9], 'from': 'node2', 'time': '12-11-2014 at 06:06:25', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [6.1, 6.9], 'from': 'node2', 'time': '12-11-2014 at 06:06:25', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [18.4, 22.2], 'from': 'node2', 'time': '12-11-2014 at 06:06:28', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [18.4, 22.2], 'from': 'node2', 'time': '12-11-2014 at 06:06:28', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [5.9, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:32', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 3.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [5.9, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:32', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [6.0, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:35', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 4.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [6.0, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:35', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [3.0, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:39', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7826, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 7807, 'type': 'csi_assignment', 'HAState': 'Active', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [3.0, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:39', 'msg': ''}
+
+
+
+
+{'component_info': {}, 'cpu_core_usages': [27.3, 23.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:40', 'msg': ''}
+
+
+
+
+{'component_info': {}, 'cpu_core_usages': [27.3, 23.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:40', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:44', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [2.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:44', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:47', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:47', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:51', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:51', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:54', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:54', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:58', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:06:58', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:01', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:01', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:05', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 1.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:05', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:08', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 2.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:08', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:12', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:12', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:16', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [0.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:16', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:19', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:19', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:23', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [1.0, 0.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:23', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [4.0, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:26', 'msg': ''}
+
+
+
+
+{'component_info': {'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8285, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo,safSi=AmfDemo,safApp=AmfDemo1'}, 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1': {'PID': 8269, 'type': 'csi_assignment', 'HAState': 'Standby', 'cpu_usage': 0.0, 'component': 'safComp=AmfDemo_44,safSu=SU2,safSg=AmfDemo,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'CSI': 'safCsi=AmfDemo_44,safSi=AmfDemo,safApp=AmfDemo1'}}, 'cpu_core_usages': [4.0, 4.0], 'from': 'node2', 'time': '12-11-2014 at 06:07:26', 'msg': ''}
+
+
+
+
+
+Daemon stopped manually. Tracing stopped
