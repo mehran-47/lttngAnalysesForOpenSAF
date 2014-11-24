@@ -51,7 +51,13 @@ def ipClearAll():
 			print(line)
 
 if __name__=='__main__':
-	if len(sysargv)==2 and sysargv[1]=='-set':
+	if len(sysargv)==2 and sysargv[1]=='--help':
+		print('-set\n\
+			-delall\n\
+			-showdb\n\
+			-flushdb\n\
+			--help')
+	elif len(sysargv)==2 and sysargv[1]=='-set':
 		ipSet()
 	elif len(sysargv)==2 and sysargv[1]=='-delall':
 		ipClearAll()
