@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from subprocess import Popen, PIPE
-import shelve as sh, random as rd
+import shelve as sh, random as rd, time
 from sys import argv as sysargv
 
 def __shellIpSet(ip):
@@ -31,7 +31,7 @@ def ipSet(**kwargs):
 	else:
 		print(execRet)
 	if kwargs.get('verbose')==True:
-		print(ipAddr)
+		print(execRet)
 
 def ipDel(ip):
 	pass
@@ -40,13 +40,14 @@ def ipClearAll(**kwargs):
 	with sh.open('/tmp/tempDb') as db:
 		if 'ipList' in db:
 			ipl = db['ipList']
+			cloneCopy = ipl[:]
 			for ip in ipl:
 				execRet = __shellIpDel(ip)
 				if execRet=="":
-					ipl.remove(ip)
+					cloneCopy.remove(ip)
 				else:
-					print(execRet)
-			db['ipList'] = []
+					print(execRet)				
+			db['ipList'] = cloneCopy
 	ipAddr = Popen(['ip','addr'], stdout=PIPE).communicate()[0].decode('utf8')
 	if kwargs.get('verbose')==True:
 		print(ipAddr)
