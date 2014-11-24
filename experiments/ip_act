@@ -15,7 +15,7 @@ def __shellIpDel(ip):
 	Popen(['logger', startLogString])
 	return Popen('ip addr del'.split(' ')+[ip]+'dev eth0'.split(' '), stdout=PIPE).communicate()[0].decode('utf8')
 
-def ipSet():
+def ipSet(**kwargs):
 	ip = "172.16.159."+str(rd.randint(180,254))+"/24"
 	execRet = __shellIpSet(ip)
 	if execRet=="":
@@ -30,11 +30,13 @@ def ipSet():
 			print(db['ipList'])
 	else:
 		print(execRet)
+	if kwargs.get('verbose')==True:
+		print(ipAddr)
 
 def ipDel(ip):
 	pass
 
-def ipClearAll():
+def ipClearAll(**kwargs):
 	with sh.open('/tmp/tempDb') as db:
 		if 'ipList' in db:
 			ipl = db['ipList']
@@ -45,10 +47,9 @@ def ipClearAll():
 				else:
 					print(execRet)
 			db['ipList'] = []
-	ipAddr = Popen(['ip','addr'], stdout=PIPE).communicate()[0].decode('utf8')	
-	for line in ipAddr.split('\n'):
-		if 'eth0:' in line.split(' '):
-			print(line)
+	ipAddr = Popen(['ip','addr'], stdout=PIPE).communicate()[0].decode('utf8')
+	if kwargs.get('verbose')==True:
+		print(ipAddr)
 
 if __name__=='__main__':
 	if len(sysargv)==2 and sysargv[1]=='--help':
