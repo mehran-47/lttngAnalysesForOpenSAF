@@ -10,10 +10,11 @@ class dictParser(object):
 		self.timeout = 5		
 		self.SI_usages = listedDict()
 		self.cpu_usage_list = []
+		self.listedUsages = listedDict()
+
 	def run(self, child_conn):
 		"""
-		-------------------Sample clientDict for reference----------------------------
-		
+		-------------------Sample clientDict for reference----------------------------		
 		{'nstime': 1413934751411769136, \
 		'msg': '',\
 		'time': 'Tue Oct 21 19:39:10 2014 to Tue Oct 21 19:39:11 2014', \
@@ -58,23 +59,36 @@ class dictParser(object):
 					self.SI_usages = listedDict()
 					print('Usage on ' + oneDict.get('time'))
 				self.SIs.prettyPrint(0)		
-				self.setUsage()				
+				self.setUsage()
+				#---S---Dynamic long usage list data structure creation starts
+				for SI in self.SI_usages:
+					if SI not in self.listedUsages.keys():
+						self.listedUsages[SI]=listedDict()
+					for usageKey in self.SI_usages[SI]:
+						if usageKey not in self.listedUsages[SI].keys():
+							self.listedUsages[SI][usageKey]=[]							
+						self.listedUsages[SI][usageKey].append(self.SI_usages[SI][usageKey])
+				#---E---Dynamic long usage list data structure creation ends
+				'''			
 				if self.SI_usages.get('AmfDemo')!=None and self.SI_usages.get('AmfDemo').get('cpu_usage')!=None:
 					self.cpu_usage_list.append(self.SI_usages['AmfDemo']['cpu_usage'])
 				else:
 					self.cpu_usage_list.append(0.0)
+				'''
 				print('\n---------SI-load-list:---------')
-				print(self.SI_usages)				
-				print('\n\n\n')
+				print(self.SI_usages)
+				print(self.listedUsages)		
+				print('\n\n\n')			
 		except KeyboardInterrupt:
 			print("\n'KeyboardInterrupt' received. Stopping Server Daemon (dictParser.run())")
-			self.cpu_usage_list=[]			
+			self.cpu_usage_list=[]
 		except:
 			raise
 	"""	
 	-------------------Used hierarchy for 'SIs' nested hashmap: -------------------------
 	SIs > SI > Node > HAState > CSI > Component > Usages
 	"""
+	
 	def createSIsDict(self, clientDict):
 		for component in clientDict['component_info']:
 			SI = re.findall(r'(?<=safSi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0]
@@ -133,3 +147,6 @@ class dictParser(object):
 			except KeyboardInterrupt:
 				print('\nplotting stopped\n')
 				sys.exit()
+
+	def plotUsages(self, dimension):
+		pass
