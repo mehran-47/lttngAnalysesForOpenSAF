@@ -40,8 +40,8 @@ class dictParser(object):
 			}, \
 		}
 		"""
-		plotProc = Thread(target=self.plotCPUusage, args=([100,50],))
-		plotProc.start()
+		#plotProc = Thread(target=self.plotUsages, args=([100,50],))
+		#plotProc.start()
 		try:
 			while True:
 				oneDict = child_conn.recv()
@@ -55,11 +55,16 @@ class dictParser(object):
 						if self.SIs.getFromPath([SI,oneDict['from']])!=None:
 							self.SIs.deleteItem([SI,oneDict['from']])
 				#Output hub
-				if oneDict.get('time'):					
-					self.SI_usages = listedDict()
-					print('Usage on ' + oneDict.get('time'))
-				self.SIs.prettyPrint(0)		
-				self.setUsage()
+				try:
+					if oneDict.get('time'):					
+						self.SI_usages = listedDict()
+						print('Usage on ' + oneDict.get('time'))
+					self.SIs.prettyPrint(0)		
+					self.setUsage()
+				except KeyError:
+					print('Warning! invalid key exists in data structure.\n(KeyError exception caught at serverAnalyses/analysis.py:run())')
+					self.SIs=listedDict()
+					continue
 				#---S---Dynamic long usage list data structure creation starts
 				for SI in self.SI_usages:
 					if SI not in self.listedUsages.keys():
@@ -68,16 +73,10 @@ class dictParser(object):
 						if usageKey not in self.listedUsages[SI].keys():
 							self.listedUsages[SI][usageKey]=[]							
 						self.listedUsages[SI][usageKey].append(self.SI_usages[SI][usageKey])
-				#---E---Dynamic long usage list data structure creation ends
-				'''			
-				if self.SI_usages.get('AmfDemo')!=None and self.SI_usages.get('AmfDemo').get('cpu_usage')!=None:
-					self.cpu_usage_list.append(self.SI_usages['AmfDemo']['cpu_usage'])
-				else:
-					self.cpu_usage_list.append(0.0)
-				'''
+				#---E---Dynamic long usage list data structure creation ends				
 				print('\n---------SI-load-list:---------')
-				print(self.SI_usages)
-				print(self.listedUsages)		
+				self.SI_usages.prettyPrint(0)
+				#print(self.listedUsages)		
 				print('\n\n\n')			
 		except KeyboardInterrupt:
 			print("\n'KeyboardInterrupt' received. Stopping Server Daemon (dictParser.run())")
@@ -149,4 +148,27 @@ class dictParser(object):
 				sys.exit()
 
 	def plotUsages(self, dimension):
-		pass
+		while True:
+			plt.figure(1)
+			seqNum=1
+			for SI in self.listedUsages:
+				plt.subplot(len(self.listedUsages.keys())*100+10+seqNum)
+				plt.axis([0, dimension[0], 0, dimension[1]])
+				plt.ion()
+				seqNum+=1
+			time.sleep(3)
+			plt.show()
+			#plt.clf()			
+		'''
+		while True:
+			try:
+				plt.scatter(range(0, len(self.cpu_usage_list[-dimension[0]:])), self.cpu_usage_list[-dimension[0]:])
+				plt.draw()
+				time.sleep(0.1)
+				plt.clf()
+				plt.axis([0, dimension[0], 0, dimension[1]])
+			except KeyboardInterrupt:
+				print('\nplotting stopped\n')
+				sys.exit()
+		'''
+		
