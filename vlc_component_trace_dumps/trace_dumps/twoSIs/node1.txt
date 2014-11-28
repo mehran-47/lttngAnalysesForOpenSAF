@@ -1,0 +1,300 @@
+Session auto-20141127-205526 created.
+Traces will be written in net://localhost
+Live timer set to 2000000 usec
+
+All UST events are enabled in channel channel0 for loglevel TRACE_DEBUG
+
+Tracing started for session auto-20141127-205526
+
+Session auto-20141127-205527 created.
+Traces will be written in net://127.0.0.1
+Live timer set to 1000000 usec
+
+Kernel channel chann2 enabled for session auto-20141127-205527
+
+All Kernel events are enabled in channel chann2
+
+kernel context pid added to all channels
+kernel context procname added to all channels
+kernel context tid added to all channels
+kernel context ppid added to all channels
+kernel context perf:major-faults added to all channels
+kernel context perf:branch-load-misses added to all channels
+
+Tracing started for session auto-20141127-205527
+
+Starting OpenSAF Services:  * 
+
+No UST event yet, waiting
+{'msg': '', 'cpu_core_usages': [1.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6038208091355273, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 1.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.49666608005318624, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 1.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:55:50', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6038208091355273, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 1.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.49666608005318624, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 1.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:55:50', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [4.1, 2.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6167263057038384, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5207172327486752, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:55:54', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [4.1, 2.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6167263057038384, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5207172327486752, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:55:54', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 2.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6425372988404607, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5465282258852975, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 1.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:55:57', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 2.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6425372988404607, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5465282258852975, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 1.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:55:57', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [2.0, 1.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.668348291977083, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.585244715590231, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:01', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [2.0, 1.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.668348291977083, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.585244715590231, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:01', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 3.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6939637472869127, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.610664633073268, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:04', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 3.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6939637472869127, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.610664633073268, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:04', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7064781682016386, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6431239123208384, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:08', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7064781682016386, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6431239123208384, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:08', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [7.4, 4.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7311159343775053, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6816448641989793, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 4.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:11', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [7.4, 4.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7311159343775053, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5829, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6816448641989793, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 5810, 'cpu_usage': 4.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:11', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 1.0], 'component_info': {}, 'time': '27-11-2014 at 20:56:13', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 1.0], 'component_info': {}, 'time': '27-11-2014 at 20:56:13', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:16', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:16', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:20', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:20', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:24', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:24', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [2.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:27', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [2.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:27', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:31', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:31', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:34', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:34', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:38', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:38', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:41', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:41', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:45', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [0.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.29193797540134137, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:45', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5652998572573864, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 4.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5690150759664457, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:48', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5652998572573864, 'HAState': 'Standby', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 4.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5690150759664457, 'HAState': 'Standby', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Add One', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:48', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 3.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5911108503940088, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 4.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6077315656713792, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:52', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 3.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.5911108503940088, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 4.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6077315656713792, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:52', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [7.4, 1.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6298273400989421, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 5.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6435149879744237, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:55', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [7.4, 1.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6298273400989421, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 5.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6435149879744237, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:55', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6556383332355644, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6556383332355644, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:59', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6556383332355644, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6556383332355644, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:56:59', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6806671750650163, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6808627128918089, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:02', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [1.0, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6806671750650163, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.6808627128918089, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:02', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [3.1, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7528206331514831, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 5.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7545804735926165, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:06', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [3.1, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7528206331514831, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 5.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7545804735926165, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:06', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [3.1, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.762010911010735, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7790227019416905, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:09', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [3.1, 0.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.762010911010735, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 3.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7790227019416905, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:09', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [3.1, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7713967266967795, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 4.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7848888367454685, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:13', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [3.1, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7713967266967795, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 4.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7848888367454685, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:13', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [2.1, 1.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7972077198334017, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7974032576601944, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:16', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [2.1, 1.1], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7972077198334017, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.7974032576601944, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:16', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [2.1, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.8060069220390684, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.8083533759605795, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:20', 'from': 'node1'}
+
+
+
+
+{'msg': '', 'cpu_core_usages': [2.1, 1.0], 'component_info': {'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.8060069220390684, 'HAState': 'Active', 'component': 'safComp=vlcComp_1,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6083, 'cpu_usage': 2.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_1,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}, 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1': {'memory_usage': 0.8083533759605795, 'HAState': 'Active', 'component': 'safComp=vlcComp_2,safSu=SU1,safSg=AmfDemo,safApp=AmfDemo1', 'PID': 6067, 'cpu_usage': 0.0, 'CSI': 'safCsi=AmfDemo,safSi=HA_vidStream_2,safApp=AmfDemo1', 'CSIFlags': 'Target All', 'type': 'csi_assignment'}}, 'time': '27-11-2014 at 20:57:20', 'from': 'node1'}
+
+
+
+
+
+Daemon stopped manually. Tracing stopped
