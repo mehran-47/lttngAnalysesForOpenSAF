@@ -3,6 +3,28 @@ from functools import reduce #functools.reduce(dict.get,['a','b','c'],dc)
 import json
 import copy
 
+def colorPrint(string, *stringAttrs, **allStringAttrs):
+	colorMap = {\
+		'PURPLE' : '\033[95m',\
+		'CYAN' : '\033[96m',\
+		'DARKCYAN' : '\033[36m',\
+		'BLUE' : '\033[94m',\
+		'GREEN' : '\033[92m',\
+		'YELLOW' : '\033[93m',\
+		'RED' : '\033[91m',\
+		'BOLD' : '\033[1m',\
+		'UNDERLINE' : '\033[4m',\
+		'END' : '\033[0m'}
+	if len(stringAttrs)>0:
+		for attr in stringAttrs:
+			string = colorMap.get(str(attr).upper()) + str(string) + colorMap['END']
+		print(string)
+	if len(allStringAttrs)>0:
+		for stringAttrTuple in allStringAttrs.values():
+			for attr in stringAttrTuple:
+				string = colorMap.get(str(attr).upper()) + str(string) + colorMap['END']
+			print(string)
+
 class listedDict(dict):
 	def __init__(self):
 		pass
@@ -67,14 +89,20 @@ class listedDict(dict):
 			print('Invalid path provided to delete')
 			return
 
-	def prettyPrint(self, indent):
+	def prettyPrint(self, indent, **kwargs):
 		for key, value in sorted(self.items()):
 			if isinstance(value, dict):
 				if len(value)>0:
-					print(('  '*indent)+'"'+str(key)+'":')
-				listedDict.prettyPrint(value, indent+1)
+					if kwargs.get('keyColor')!=None:
+						colorPrint(('  '*indent)+'"'+str(key)+'":', allStringAttrs=kwargs['keyColor'])
+					else:
+						print(('  '*indent)+'"'+str(key)+'":')
+				listedDict.prettyPrint(value, indent+1, keyColor=kwargs.get('keyColor'), valColor=kwargs.get('valColor'))
 			else:
-				print('  '*(indent+1)+'"'+str(key)+'":"'+str(value)+'",')
+				if kwargs.get('valColor')!=None:
+						colorPrint('  '*(indent+1)+'"'+str(key)+'":"'+str(value)+'",', allStringAttrs=kwargs['valColor'])
+				else:
+					print('  '*(indent+1)+'"'+str(key)+'":"'+str(value)+'",')
 
 	def dictPrint(self):
 		print(json.dumps(self, sort_keys=True))

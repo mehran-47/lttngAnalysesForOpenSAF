@@ -74,8 +74,8 @@ class dictParser(object):
 							self.listedUsages[SI][usageKey]=[]							
 						self.listedUsages[SI][usageKey].append(self.SI_usages[SI][usageKey])
 				#---E---Dynamic long usage list data structure creation ends				
-				print('\n---------SI-load-list:---------')
-				self.SI_usages.prettyPrint(0)
+				print('\n-----------------SI-load:-------------------')
+				self.SI_usages.prettyPrint(0, keyColor=['cyan','bold'], valColor=['DARKCYAN'])
 				#print(self.listedUsages)		
 				print('\n\n\n')			
 		except KeyboardInterrupt:
