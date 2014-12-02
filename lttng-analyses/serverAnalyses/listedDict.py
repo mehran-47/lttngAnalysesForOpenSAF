@@ -70,7 +70,8 @@ class listedDict(dict):
 	def prettyPrint(self, indent):
 		for key, value in sorted(self.items()):
 			if isinstance(value, dict):
-				print(('  '*indent)+'"'+str(key)+'":')
+				if len(value)>0:
+					print(('  '*indent)+'"'+str(key)+'":')
 				listedDict.prettyPrint(value, indent+1)
 			else:
 				print('  '*(indent+1)+'"'+str(key)+'":"'+str(value)+'",')
