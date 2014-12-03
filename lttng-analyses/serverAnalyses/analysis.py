@@ -41,8 +41,7 @@ class dictParser(object):
 			}, \
 		}
 		"""
-		#plotProc = Thread(target=self.plotUsages, args=([100,50],))
-		#plotProc.start()
+		#Thread spawner for plotting
 		Thread(target=self.plotThreadPerSI).start()
 		try:
 			while True:
@@ -97,7 +96,7 @@ class dictParser(object):
 			#CSI = re.findall(r'(?<=safCsi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0] #For RDN
 			node = clientDict.get('from')
 			HAState = clientDict['component_info'][component]['HAState']
-			usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage']}
+			usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage'], 'memory_usage':clientDict['component_info'][component]['memory_usage']}
 			self.SIs.populateNestedDict([SI,node,HAState,CSI,component], usages)
 			#Correcting potential double-entry of component-csi map in HA-States
 			for HAS in self.SIs.getFromPath([SI,node]):
@@ -151,7 +150,7 @@ class dictParser(object):
 		plt.figure(1)
 		seqNum=1
 		for usage in self.listedUsages:						
-			#plt.subplot(len(self.listedUsages[usage].keys())*100+10+seqNum)
+			plt.subplot(len(self.listedUsages[usage].keys())*100+10+seqNum)
 			plt.axis([0, dimension[0], 0, dimension[1]])
 			plt.ion()
 			seqNum+=1		
@@ -160,16 +159,17 @@ class dictParser(object):
 			try:
 				seqNum=1
 				for usage in self.listedUsages:
-					#plt.subplot(len(self.listedUsages[usage].keys())*100+10+seqNum)
-					plt.axis([0, dimension[0], 0, dimension[1]])
-					seqNum+=1
 					for SI in self.listedUsages[usage]:
+						plt.subplot(len(self.listedUsages[usage].keys())*100+10+seqNum)
+						##For progressing plots. Could omit for short demos
+						#plt.cla()
+						plt.axis([0, dimension[0], 0, dimension[1]])					
 						plt.scatter(range(0, len(self.listedUsages[usage][SI])),\
 						 self.listedUsages[usage][SI][-dimension[0]:],\
 						 color=next(colors))
 						plt.draw()
-					time.sleep(0.1)
-					plt.clf()
+						time.sleep(0.01)
+					seqNum+=1
 					#break
 			except KeyboardInterrupt:
 				print('\nplotting stopped\n')
