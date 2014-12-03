@@ -2,6 +2,7 @@
 import re, time, matplotlib.pyplot as plt
 from threading import Thread
 from serverAnalyses.listedDict import listedDict
+from itertools import cycle
 
 class dictParser(object):
 	"""dictParser class for parsing nested dict in runtime in the monitoring server"""
@@ -42,6 +43,7 @@ class dictParser(object):
 		"""
 		#plotProc = Thread(target=self.plotUsages, args=([100,50],))
 		#plotProc.start()
+		Thread(target=self.plotThreadPerSI).start()
 		try:
 			while True:
 				oneDict = child_conn.recv()
@@ -67,12 +69,12 @@ class dictParser(object):
 					continue
 				#---S---Dynamic long usage list data structure creation starts
 				for SI in self.SI_usages:
-					if SI not in self.listedUsages.keys():
-						self.listedUsages[SI]=listedDict()
 					for usageKey in self.SI_usages[SI]:
-						if usageKey not in self.listedUsages[SI].keys():
-							self.listedUsages[SI][usageKey]=[]							
-						self.listedUsages[SI][usageKey].append(self.SI_usages[SI][usageKey])
+						if usageKey not in self.listedUsages.keys():
+							self.listedUsages[usageKey]=listedDict()
+						if SI not in self.listedUsages[usageKey].keys():
+							self.listedUsages[usageKey][SI]=[]							
+						self.listedUsages[usageKey][SI].append(self.SI_usages[SI][usageKey])
 				#---E---Dynamic long usage list data structure creation ends				
 				print('\n-----------------SI-load:-------------------')
 				self.SI_usages.prettyPrint(0, keyColor=['cyan','bold'], valColor=['DARKCYAN'])
@@ -132,6 +134,47 @@ class dictParser(object):
 				self.SI_usages[SI][key] = self.SI_usages[SI][key]/nodeCount if nodeCount!=0 else self.SI_usages[SI][key]/nodeCount
 
 
+	def plotThreadPerSI(self):
+		thr = Thread(target=self.plotList, args=([100,50],))
+		while True:
+			prevListedUsg = len(self.listedUsages)
+			time.sleep(4)
+			if len(self.listedUsages)!=prevListedUsg:
+				if thr.isAlive(): 
+					thr.join()					
+				thr = Thread(target=self.plotList, args=([100,50],))
+				thr.start()
+
+	def plotList(self, dimension):
+		print('##############starting thread###############')
+		colors = cycle(["b", "g"])
+		plt.figure(1)
+		seqNum=1
+		for usage in self.listedUsages:						
+			#plt.subplot(len(self.listedUsages[usage].keys())*100+10+seqNum)
+			plt.axis([0, dimension[0], 0, dimension[1]])
+			plt.ion()
+			seqNum+=1		
+		plt.show()
+		while True:
+			try:
+				seqNum=1
+				for usage in self.listedUsages:
+					#plt.subplot(len(self.listedUsages[usage].keys())*100+10+seqNum)
+					plt.axis([0, dimension[0], 0, dimension[1]])
+					seqNum+=1
+					for SI in self.listedUsages[usage]:
+						plt.scatter(range(0, len(self.listedUsages[usage][SI])),\
+						 self.listedUsages[usage][SI][-dimension[0]:],\
+						 color=next(colors))
+						plt.draw()
+					time.sleep(0.1)
+					plt.clf()
+					#break
+			except KeyboardInterrupt:
+				print('\nplotting stopped\n')
+				sys.exit()		
+
 	def plotCPUusage(self, dimension):
 		plt.axis([0, dimension[0], 0, dimension[1]])
 		plt.ion()
@@ -146,29 +189,4 @@ class dictParser(object):
 			except KeyboardInterrupt:
 				print('\nplotting stopped\n')
 				sys.exit()
-
-	def plotUsages(self, dimension):
-		while True:
-			plt.figure(1)
-			seqNum=1
-			for SI in self.listedUsages:
-				plt.subplot(len(self.listedUsages.keys())*100+10+seqNum)
-				plt.axis([0, dimension[0], 0, dimension[1]])
-				plt.ion()
-				seqNum+=1
-			time.sleep(3)
-			plt.show()
-			#plt.clf()			
-		'''
-		while True:
-			try:
-				plt.scatter(range(0, len(self.cpu_usage_list[-dimension[0]:])), self.cpu_usage_list[-dimension[0]:])
-				plt.draw()
-				time.sleep(0.1)
-				plt.clf()
-				plt.axis([0, dimension[0], 0, dimension[1]])
-			except KeyboardInterrupt:
-				print('\nplotting stopped\n')
-				sys.exit()
-		'''
 		
