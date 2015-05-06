@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys, time, json, os, re, psutil as ps
+import sys, time, json, os, re, psutil as ps, shelve as sh
 from multiprocessing import Queue as mQueue, Process as proc
 from copy import deepcopy
 
@@ -28,10 +28,16 @@ def fetch_and_set(activeComps, usage_q, interval):
 		usage_q.put(to_send)
 
 def activeCompsRefresh(activeComps):
-	correctedActiveComps = deepcopy(activeComps)
+	db = sh.open('/opt/SA_stats/compDB.db', writeback=True)
+	correctedActiveComps = deepcopy(db['components'])
+	deadPIDs = []
 	for component in activeComps:
 		if not os.path.exists("/proc/"+str(activeComps[component]['PID'])):
-			del correctedActiveComps[component]
+			deadPIDs.append(activeComps[component]['PID'])
+			if component in correctedActiveComps: del correctedActiveComps[component]
+	db['components'] = correctedActiveComps
+	for pid in deadPIDs: del db['PIDs'][db['PIDs'].index(pid)]
+	db.close()
 	return correctedActiveComps
 
 def fetch_and_set_func(activeComps, interval):
@@ -50,8 +56,8 @@ def fetch_and_set_func(activeComps, interval):
 		for component in activeComps:
 			pid = int(activeComps[component]['PID'])
 			try:
-				activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=interval)
-				activeComps[component]['memory_usage'] = ps.Process(pid).memory_percent()
+				activeComps[component]['cpu_usage'] = ps.Process(pid).get_cpu_percent(interval=interval)
+				activeComps[component]['memory_usage'] = ps.Process(pid).get_memory_percent()
 			except ps.NoSuchProcess:
 				activeComps[component]['cpu_usage'] = 0.0
 				activeComps[component]['memory_usage'] = 0.0
