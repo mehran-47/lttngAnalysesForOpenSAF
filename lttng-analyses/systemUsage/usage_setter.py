@@ -50,8 +50,8 @@ def fetch_and_set_func(activeComps, interval):
 		for component in activeComps:
 			pid = int(activeComps[component]['PID'])
 			try:
-				activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=interval)
-				activeComps[component]['memory_usage'] = ps.Process(pid).memory_percent()
+				activeComps[component]['cpu_usage'] = ps.Process(pid).get_cpu_percent(interval=interval)
+				activeComps[component]['memory_usage'] = ps.Process(pid).get_memory_percent()
 			except ps.NoSuchProcess:
 				activeComps[component]['cpu_usage'] = 0.0
 				activeComps[component]['memory_usage'] = 0.0

@@ -151,7 +151,7 @@ if __name__=="__main__":
 	except:
 		raise
 	#Starting Kernel tracing session/ kt_tuple
-	(kt_session.name, kt_session.path) = start_tracing_with(CREATE_KERNEL, 'kernel')
+	#(kt_session.name, kt_session.path) = start_tracing_with(CREATE_KERNEL, 'kernel')
 	bashc_v.execute("service opensafd start")
 	while not os.path.isdir(ust_session.path):
 		print("No UST event yet, waiting")
