@@ -94,9 +94,6 @@ def save_comp_CSI_map(allcomps):
 			historyFile.write(json.dumps(to_save))
 	
 
-def get_latest_comp_CSI_map():
-	pass
-
 def start_daemon(client):
 	newEventsDict = ustTrace.events_as_dict()
 	allcomps = ustTrace.get_comp_csi(newEventsDict,{})

@@ -2,6 +2,7 @@
 import sys, time, json, os, re, psutil as ps
 from multiprocessing import Queue as mQueue, Process as proc
 from copy import deepcopy
+from subprocess import call
 
 def fetch_and_set(activeComps, usage_q, interval):
 	to_send = {
@@ -32,7 +33,17 @@ def activeCompsRefresh(activeComps):
 	for component in activeComps:
 		if not os.path.exists("/proc/"+str(activeComps[component]['PID'])):
 			del correctedActiveComps[component]
+			#proc(target=delayed_comp_restart, args=(2,)).start()
 	return correctedActiveComps
+
+def delayed_comp_restart(delay):
+	"""
+	call('/opt/httpComponent/end_http'.split(' '))
+	time.sleep(delay)
+	call('/opt/httpComponent/start_http 8080'.split(' '))
+	"""
+	devnull = open(os.devnull, 'w')
+	call('service opensafd restart'.split(' '), stdout=devnull)
 
 def fetch_and_set_func(activeComps, interval):
 	to_send = {
