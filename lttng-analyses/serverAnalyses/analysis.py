@@ -42,7 +42,7 @@ class dictParser(object):
 		}
 		"""
 		#Thread spawner for plotting
-		Thread(target=self.plotThreadPerSI).start()
+		#Thread(target=self.plotThreadPerSI).start()
 		try:
 			while True:
 				oneDict = child_conn.recv()
