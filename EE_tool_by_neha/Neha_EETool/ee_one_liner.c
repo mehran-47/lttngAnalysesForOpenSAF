@@ -7641,7 +7641,7 @@ error = saImmOmSearchInitialize_2(immHandle, &rootName, scope1, SA_IMM_SEARCH_GE
 
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -1:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -7729,7 +7729,7 @@ printf("\n%s\n",rootName.value);
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -2: %d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -8229,7 +8229,7 @@ searchParam.searchOneAttr.attrValue = NULL;
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -3:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -8615,7 +8615,7 @@ searchParam.searchOneAttr.attrValue = NULL;
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle1);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -4:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -9430,7 +9430,7 @@ searchParam.searchOneAttr.attrValue = NULL;
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -5:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -10778,7 +10778,7 @@ if(noinsSUs > (no_activeSUs + no_standbySUs))
 	error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle1);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -6:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -11247,7 +11247,7 @@ strncpy((char *)objectsity.value, pointer2, SA_MAX_NAME_LENGTH);
 	error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle1);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -7:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -11942,7 +11942,7 @@ if(DefActiveNumCSIs > maxactSIsperSU)
 	error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle1);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -8:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -12369,7 +12369,7 @@ else
 	error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle1);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -9:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -12736,7 +12736,7 @@ searchParam.searchOneAttr.attrValue = NULL;
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -10:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -13117,7 +13117,7 @@ searchParam.searchOneAttr.attrValue = NULL;
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -11:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -13509,7 +13509,7 @@ searchParam.searchOneAttr.attrValue = NULL;
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -12:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -14020,7 +14020,7 @@ searchParam.searchOneAttr.attrValue = NULL;
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -13:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -14413,7 +14413,7 @@ searchParam.searchOneAttr.attrValue = NULL;
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -14:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -16999,7 +16999,7 @@ searchParam.searchOneAttr.attrValue = NULL;
 error = saImmOmSearchInitialize_2(immHandle, &rootName, scope1, SA_IMM_SEARCH_GET_SOME_ATTR , &searchParam, attributeNames , &searchHandle);
 	if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -15:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -17551,7 +17551,7 @@ error = saImmOmSearchInitialize_2(immHandle, NULL, scope,
 					  SA_IMM_SEARCH_ONE_ATTR | SA_IMM_SEARCH_GET_NO_ATTR, &searchParam, NULL,
 					  &searchHandle);
 	if (SA_AIS_OK != error) {
-                printf("error - saImmOmSearchInitialize FAILED:%d",error);
+                printf("error - saImmOmSearchInitialize FAILED -16:%d",error);
                 rc=EXIT_FAILURE;
                 //flag=1;
 	}
@@ -17712,7 +17712,7 @@ error = saImmOmSearchInitialize_2(immHandle, &rootName, scope1, SA_IMM_SEARCH_GE
 
 if (SA_AIS_OK != error) {
 	
-                printf("error - saImmOmSearchInitialize FAILED:%d\n",error);
+                printf("error - saImmOmSearchInitialize FAILED -17:%d\n",error);
                 rc=EXIT_FAILURE;
                 
 	}
@@ -18453,7 +18453,7 @@ error = saImmOmSearchInitialize_2(immHandle, NULL, scope,
             &searchHandle);
   if (SA_AIS_OK != error) {
     //printf("error - saImmOmSearchInitialize_2 FAILED");
-                printf("error - saImmOmSearchInitialize FAILED:%d",error);
+                printf("error - saImmOmSearchInitialize FAILED -18:%d",error);
                 rc=EXIT_FAILURE;
                 //flag=1;
   }
@@ -18469,7 +18469,7 @@ error = saImmOmSearchInitialize_2(immHandle, NULL, scope,
             error = saImmOmSearchNext_2(searchHandle, &objectNameSU, &attributes);
     if (error != SA_AIS_OK && error != SA_AIS_ERR_NOT_EXIST) {
                        // printf("\n\n How r u\n\n");
-      printf("error8 - saImmOmSearchNext_2 FAILED: %d\n", error);
+      printf("error - saImmOmSearchNext_2 FAILED: %d\n", error);
                         rc=EXIT_FAILURE;
       //flag=1;
     }
