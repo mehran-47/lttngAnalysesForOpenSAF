@@ -1,0 +1,2 @@
+all:
+	gcc -g -o ElasticityEngineGTK GTK_GUI10.c -export-dynamic `pkg-config --cflags --libs gtk+-2.0` /usr/local/lib/libSaImmOm.so /usr/local/lib/libSaImmOi.so

@@ -16330,7 +16330,7 @@ while(i<=2)
 **/
 //printf("\n13\n");
 while(i<1){
-sleep(60);
+//sleep(60);
 //printf("\n14\n");
 	res = poll(fds,1,1000);
        // printf("\nres : %d\n",res);
@@ -16465,7 +16465,7 @@ if (error1 ==SA_AIS_OK)
 
 SaImmAttrValueT *attrValue = attributes[0]->attrValues[0];
 SaNameT *objectnameSG = (SaNameT *)attrValue;
-			printf("%c[1;31m\nThe protecting SG is :",27);
+						printf("%c[1;31m\nThe protecting SG is :",27);
                         printf("%c[0m",27);
                         printf("%s (%u) \n",objectnameSG->value,objectnameSG->length);
                         
