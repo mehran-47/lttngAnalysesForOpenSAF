@@ -4,7 +4,7 @@ from lttngAnalyses.utilities.bash import bash
 from lttngAnalyses.ust_proc import ust_trace
 from multiprocessing import Queue, Process as pythonProcess
 from lttngAnalyses.networking.connection import connection
-from lttngAnalyses.cputop_i import cputop_init
+#from lttngAnalyses.cputop_i import cputop_init
 from lttngAnalyses.systemUsage.usage_setter import *
 from lttngAnalyses.serverAnalyses.listedDict import listedDict
 

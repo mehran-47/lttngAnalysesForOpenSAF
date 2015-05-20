@@ -18,9 +18,9 @@ import json
 import random
 import os.path
 from babeltrace import *
-from LTTngAnalyzes.common import *
-from LTTngAnalyzes.sched import *
-from analyzes import *
+from lttngAnalyses.LTTngAnalyzes.common import *
+from lttngAnalyses.LTTngAnalyzes.sched import *
+from lttngAnalyses.analyzes import *
 from multiprocessing import Queue
 import psutil as ps
 
