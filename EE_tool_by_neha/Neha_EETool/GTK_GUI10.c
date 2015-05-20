@@ -18081,6 +18081,7 @@ i++;
 
 int main(int argc, char *argv[])
 {
+  
 int i,j;
         argc1 = argc;
         g_argc1 = argc;
@@ -18121,12 +18122,12 @@ gtk_fixed_put(GTK_FIXED(fixed), elasticityresultlabel1, 0, 0);
 buffer_actionlabel2 = gtk_label_new (" ");
 //gtk_container_add(GTK_CONTAINER(fixed),  buffer_actionlabel2); 
 gtk_fixed_put(GTK_FIXED(fixed), buffer_actionlabel2, 0, 50);
-oi_function();
-drawSUs();
+////oi_function();
+////drawSUs();
    
-gtk_widget_show_all(win);
+////gtk_widget_show_all(win);
 
-gtk_main();
+//// gtk_main();
 
 return 0;
 }
