@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import re, time, matplotlib.pyplot as plt
 from threading import Thread
-from serverAnalyses.listedDict import listedDict
+from lttngAnalyses.serverAnalyses.listedDict import listedDict
 from itertools import cycle
 
 class dictParser(object):

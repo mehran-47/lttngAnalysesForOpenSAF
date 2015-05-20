@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys, netifaces
-from networking.connection import connection
+from lttngAnalyses.networking.connection import connection
 from multiprocessing import Process, Pipe
 
 def printSent(child_pipe):

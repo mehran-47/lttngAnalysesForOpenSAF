@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 import sys, time, os, re, argparse
-from utilities.bash import bash
-from ust_proc import ust_trace
+from lttngAnalyses.utilities.bash import bash
+from lttngAnalyses.ust_proc import ust_trace
 from multiprocessing import Queue, Process as pythonProcess
-from networking.connection import connection
-from cputop_i import cputop_init
-from systemUsage.usage_setter import *
-from serverAnalyses.listedDict import listedDict
+from lttngAnalyses.networking.connection import connection
+from lttngAnalyses.cputop_i import cputop_init
+from lttngAnalyses.systemUsage.usage_setter import *
+from lttngAnalyses.serverAnalyses.listedDict import listedDict
 
 RESET_RELAYD = "sudo lttng-sessiond -d\n\
 sudo lttng-relayd -d\n"

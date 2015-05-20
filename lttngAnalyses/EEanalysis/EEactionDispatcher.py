@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys, netifaces, time
-from networking.connection import connection
+from lttngAnalyses.networking.connection import connection
 from multiprocessing import Process, Pipe
 
 
@@ -9,8 +9,8 @@ if __name__ == '__main__':
     client.connect(sys.argv[1], int(sys.argv[2]))
     #print('client connection at %r:%r' %(netifaces.ifaddresses('vmnet8')[2][0]['addr'], sys.argv[1]))
     time.sleep(1)
-    client.send({'msg':'please?'})
+    client.send({'SI':'SI:some_SI_name_2', 'action':'increase'})
     time.sleep(2)
-    client.send({'msg':'pretty please?'})
+    client.send({'SI':'SI:some_SI_name_1', 'action':'decrease'})
     time.sleep(1)
-    client.send({'msg':'whaa?'})
+    client.send({'SI':'SI:some_SI_name', 'action':'increase'})

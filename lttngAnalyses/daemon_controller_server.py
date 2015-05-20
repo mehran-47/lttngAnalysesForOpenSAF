@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from networking.connection import connection
-from serverAnalyses.analysis import dictParser
+from lttngAnalyses.networking.connection import connection
+from lttngAnalyses.serverAnalyses.analysis import dictParser
 from multiprocessing import Process, Pipe
 import sys, shelve as sh, pickle
 
