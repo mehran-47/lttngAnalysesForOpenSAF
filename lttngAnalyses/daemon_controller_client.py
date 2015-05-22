@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys, time, os, re, argparse
+import sys, time, os, re, argparse, netifaces
 from lttngAnalyses.utilities.bash import bash
 from lttngAnalyses.ust_proc import ust_trace
 from multiprocessing import Queue, Process as pythonProcess
@@ -156,7 +156,7 @@ if __name__=="__main__":
 	# The argument 'to' below should not be necessary. To-be-fixed.
 	ustTrace = ust_trace(ust_session.path)
 	if not debugging:
-		client = connection('172.16.159.128',5555)
+		client = connection(netifaces.ifaddresses('eth0')[2][0]['addr'],5555)
 		try:
 			client.connect(args.to, 6666)
 		except ConnectionRefusedError:
