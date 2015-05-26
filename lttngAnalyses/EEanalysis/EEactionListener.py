@@ -12,7 +12,9 @@ def listen_and_act(child_pipe):
     while True:
         latestInstruction = dict(child_pipe.recv())
         print(['/home/node1/Downloads/lttngAnalysesForOpenSAF/EE_tool_by_neha/Neha_EETool/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
-        #call(['EE.loc', latestInstruction['SI'], latestInstruction['action']])
+        #call(['/home/node1/Downloads/lttngAnalysesForOpenSAF/EE_tool_by_neha/Neha_EETool/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
+        if latestInstruction.get('SI'):
+            call(['/opt/bin/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
 
 
 if __name__ == '__main__':
