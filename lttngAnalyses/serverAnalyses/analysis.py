@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-import re, time, matplotlib.pyplot as plt
+import re, time
+#import matplotlib.pyplot as plt
 from threading import Thread
 from lttngAnalyses.serverAnalyses.listedDict import listedDict
 from itertools import cycle
