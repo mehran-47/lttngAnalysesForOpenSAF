@@ -16,7 +16,6 @@ def listen_and_act(child_pipe):
         if latestInstruction.get('SI'):
             call(['/opt/bin/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
 
-
 if __name__ == '__main__':
     server = connection(ni.ifaddresses('eth0')[2][0]['addr'], int(sys.argv[1]))
     print('server connection at %r:%r' %(ni.ifaddresses('eth0')[2][0]['addr'], sys.argv[1]))
