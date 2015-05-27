@@ -155,7 +155,7 @@ class dictParser(object):
 					IP = db['IPs'][0]
 					db.close()
 					EEdispatch(IP, 4444, SI, 1)
-					print('###############################Triggered %r####################################' %(SI))
+					print('###############################Triggered %r, increase to %r####################################' %(SI, IP))
 					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints, )).start()
 					self.EE_triggered = True
 
