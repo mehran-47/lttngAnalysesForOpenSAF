@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-import re, time
+import re, time, shelve as sh
 #import matplotlib.pyplot as plt
 from threading import Thread
 from lttngAnalyses.serverAnalyses.listedDict import listedDict
-import lttngAnalyses.EEaction
+from lttngAnalyses.EEaction.dispatcher import dispatch as EEdispatch
 from itertools import cycle
 
 class dictParser(object):
@@ -147,11 +147,14 @@ class dictParser(object):
 		#---E---Dynamic long usage list data structure creation ends
 
 	
-	def determineEEaction(self, usageKey, numOfConsideredDataPoints, upperLim, LowerLim):		
+	def determineEEaction(self, usageKey, numOfConsideredDataPoints, upperLim, LowerLim):
 		if self.listedUsages.get(usageKey)!=None:
 			for SI in self.listedUsages[usageKey]:
 				if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints > upperLim and not self.EE_triggered:
-					#lttngAnalyses.EEaction.dispatch(IP, port, SI, 1)
+					db = sh.open('connectedIPs.db')
+					IP = db['IPs'][0]
+					db.close()
+					EEdispatch(IP, 4444, SI, 1)
 					print('###############################Triggered %r####################################' %(SI))
 					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints, )).start()
 					self.EE_triggered = True
