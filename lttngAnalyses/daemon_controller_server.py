@@ -2,6 +2,7 @@
 from lttngAnalyses.networking.connection import connection
 from lttngAnalyses.serverAnalyses.analysis import dictParser
 from multiprocessing import Process, Pipe
+from copy import deepcopy
 import sys, shelve as sh, pickle
 
 class connection_extended(connection):
@@ -11,6 +12,7 @@ class connection_extended(connection):
 
 	def __decoder(self, conn, child_pipe, addr):
 		fdict = {}
+		IPs = []
 		while True:
 			data = conn.recv(1024)
 			if not data:
@@ -18,8 +20,9 @@ class connection_extended(connection):
 					print('Connected thread ending from %r' %(self.thread_from))
 					child_pipe.send({'msg':'END_OF_Q'})
 				db = sh.open(self.ip_log_location, writeback=True)
-				del db[db.index(addr)]
-				print(db['IPs'])
+				IPs = deepcopy(db['IPs'])
+				if addr in IPs: del IPs[IPs.index(addr)]
+				db['IPs'] = IPs
 				db.close()
 				conn.close()
 				break

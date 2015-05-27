@@ -73,8 +73,9 @@ def destroy_all_sessions():
 		print('No tracing session destroyed')
 
 def check_and_send(client, to_send):
-	with open('__comp_csi_latest_map.json','r') as historyFile:
-		mapHistory = json.loads(historyFile.read())
+	if os.path.isfile('./__comp_csi_latest_map.json'):
+		with open('__comp_csi_latest_map.json','r') as historyFile:
+			mapHistory = json.loads(historyFile.read())
 	if to_send.get('component_info'):
 		for component in to_send.get('component_info'):
 			if to_send['component_info'][component]['CSI']=='':
