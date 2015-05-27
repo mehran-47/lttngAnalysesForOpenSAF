@@ -75,6 +75,8 @@ class dictParser(object):
 						if SI not in self.listedUsages[usageKey].keys():
 							self.listedUsages[usageKey][SI]=[]							
 						self.listedUsages[usageKey][SI].append(self.SI_usages[SI][usageKey])
+						#keeping number of entries within 1000 data points
+						if self.listedUsages[usageKey][SI][1000:]: self.listedUsages[usageKey][SI] = self.listedUsages[usageKey][SI][1000:]
 				#---E---Dynamic long usage list data structure creation ends				
 				print('\n-----------------SI-load:-------------------')
 				self.SI_usages.prettyPrint(0, keyColor=['cyan','bold'], valColor=['DARKCYAN'])
@@ -92,7 +94,9 @@ class dictParser(object):
 	
 	def createSIsDict(self, clientDict):
 		for component in clientDict['component_info']:
-			SI = re.findall(r'(?<=safSi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0]
+			#line below was for RDN, I'm keeping it if in case that's what is needed, for now, using DN in the next line
+			#SI = re.findall(r'(?<=safSi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0]
+			SI = re.findall(r'(?<=safSi=)(.+)(?=)', clientDict['component_info'][component]['CSI'])[0]
 			CSI = clientDict['component_info'][component]['CSI'] #For DN
 			#CSI = re.findall(r'(?<=safCsi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0] #For RDN
 			node = clientDict.get('from')

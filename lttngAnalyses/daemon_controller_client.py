@@ -7,6 +7,7 @@ from lttngAnalyses.networking.connection import connection
 #from lttngAnalyses.cputop_i import cputop_init
 from lttngAnalyses.systemUsage.usage_setter import *
 from lttngAnalyses.serverAnalyses.listedDict import listedDict
+from subprocess import call
 
 RESET_RELAYD = "sudo lttng-sessiond -d\n\
 sudo lttng-relayd -d\n"
@@ -137,6 +138,9 @@ if __name__=="__main__":
 			print("Usage: './daemon_controller.py server.local.ip'\nOr\n'./daemon_controller.py --ld'")
 			raise TypeError("Wrong usage")
 			sys.exit()
+	#Spawn fresh session daemon and relay daemon
+	call(['lttng-sessiond', '-d'])
+	call(['lttng-relayd', '-d'])
 	#Starting UST session
 	try: 
 		(ust_session.name, ust_session.path) = start_tracing_with(CREATE_UST, 'ust')
@@ -150,10 +154,11 @@ if __name__=="__main__":
 	#Starting Kernel tracing session/ kt_tuple
 	#(kt_session.name, kt_session.path) = start_tracing_with(CREATE_KERNEL, 'kernel')
 	bashc_v.execute("service opensafd start")
-	while not os.path.isdir(ust_session.path):
-		print("No UST event yet, waiting")
+	#wait till there is any UST event
+	while not (os.path.isdir(ust_session.path) and os.path.isfile(ust_session.path+'/channel0_0')):
+		print("No UST event yet, waiting", end='\r')
 		time.sleep(10)
-	# The argument 'to' below should not be necessary. To-be-fixed.
+
 	ustTrace = ust_trace(ust_session.path)
 	if not debugging:
 		client = connection(netifaces.ifaddresses('eth0')[2][0]['addr'],5555)
