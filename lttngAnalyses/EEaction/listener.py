@@ -17,13 +17,14 @@ def listen():
     server.listen(parent_c)
 
 def act(child_pipe):
-    while True:
-        latestInstruction = dict(child_pipe.recv())
-        #print(['/opt/bin/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
-        #call(['/home/node1/Downloads/lttngAnalysesForOpenSAF/EE_tool_by_neha/Neha_EETool/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
-        if latestInstruction.get('SI'):
-            print(['/opt/bin/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
-            Process(target=call, args=(['/opt/bin/ElasticityEngineCMD', latestInstruction.get('SI'), str(latestInstruction.get('action'))],)).start()
+    #while True:
+    latestInstruction = dict(child_pipe.recv())
+    #print(['/opt/bin/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
+    #call(['/home/node1/Downloads/lttngAnalysesForOpenSAF/EE_tool_by_neha/Neha_EETool/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
+    if latestInstruction.get('SI'):
+        print(['/opt/bin/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
+        call(['/home/node1/Downloads/lttngAnalysesForOpenSAF/EE_tool_by_neha/Neha_EETool/ElasticityEngineCMD', latestInstruction.get('SI'), latestInstruction.get('action')])
+        #Process(target=call, args=(['/opt/bin/ElasticityEngineCMD', latestInstruction.get('SI'), str(latestInstruction.get('action'))],)).start()
 
 if __name__ == '__main__':
     if sys.argv[2:]: 
