@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys, time, json, re, random
-from connection import connection
+from lttngAnalyses.networking.connection import connection
 from multiprocessing import Process as mp
 
 def send_text_strings(filepath):

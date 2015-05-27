@@ -3,6 +3,7 @@ import re, time
 #import matplotlib.pyplot as plt
 from threading import Thread
 from lttngAnalyses.serverAnalyses.listedDict import listedDict
+import lttngAnalyses.EEaction
 from itertools import cycle
 
 class dictParser(object):
@@ -13,6 +14,8 @@ class dictParser(object):
 		self.SI_usages = listedDict()
 		self.cpu_usage_list = []
 		self.listedUsages = listedDict()
+		self.EE_triggered = False
+		self.cluster_has_min_config = False
 
 	def run(self, child_conn):
 		"""
@@ -67,17 +70,9 @@ class dictParser(object):
 					print('Warning! invalid key exists in data structure.\n(KeyError exception caught at serverAnalyses/analysis.py:run())')
 					self.SIs=listedDict()
 					continue
-				#---S---Dynamic long usage list data structure creation starts
-				for SI in self.SI_usages:
-					for usageKey in self.SI_usages[SI]:
-						if usageKey not in self.listedUsages.keys():
-							self.listedUsages[usageKey]=listedDict()
-						if SI not in self.listedUsages[usageKey].keys():
-							self.listedUsages[usageKey][SI]=[]							
-						self.listedUsages[usageKey][SI].append(self.SI_usages[SI][usageKey])
-						#keeping number of entries within 1000 data points
-						if self.listedUsages[usageKey][SI][1000:]: self.listedUsages[usageKey][SI] = self.listedUsages[usageKey][SI][1000:]
-				#---E---Dynamic long usage list data structure creation ends				
+				#Dynamic long usage list data structure creation starts with last 1000 data points
+				self.updateListedUsages(1000)
+				self.determineEEaction('cpu_usage', 10, 70, 5)
 				print('\n-----------------SI-load:-------------------')
 				self.SI_usages.prettyPrint(0, keyColor=['cyan','bold'], valColor=['DARKCYAN'])
 				#print(self.listedUsages)		
@@ -136,6 +131,34 @@ class dictParser(object):
 				self.SIs[SI][node].updateUsage(self.SI_usages[SI])
 			for key in self.SI_usages[SI]:
 				self.SI_usages[SI][key] = self.SI_usages[SI][key]/nodeCount if nodeCount!=0 else self.SI_usages[SI][key]/nodeCount
+
+
+	def updateListedUsages(self, dataPointsLimit):
+		#---S---Dynamic long usage list data structure creation starts
+		for SI in self.SI_usages:
+			for usageKey in self.SI_usages[SI]:
+				if usageKey not in self.listedUsages.keys():
+					self.listedUsages[usageKey]=listedDict()
+				if SI not in self.listedUsages[usageKey].keys():
+					self.listedUsages[usageKey][SI]=[]							
+				self.listedUsages[usageKey][SI].append(self.SI_usages[SI][usageKey])
+				#keeping number of entries within 1000 data points
+				self.listedUsages[usageKey][SI] = self.listedUsages[usageKey][SI][-dataPointsLimit:]
+		#---E---Dynamic long usage list data structure creation ends
+
+	
+	def determineEEaction(self, usageKey, numOfConsideredDataPoints, upperLim, LowerLim):		
+		if self.listedUsages.get(usageKey)!=None:
+			for SI in self.listedUsages[usageKey]:
+				if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints > upperLim and not self.EE_triggered:
+					#lttngAnalyses.EEaction.dispatch(IP, port, SI, 1)
+					print('###############################Triggered %r####################################' %(SI))
+					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints, )).start()
+					self.EE_triggered = True
+
+	def __countDownForEEFlag(self, t):
+		time.sleep(t)
+		self.EE_triggered = False
 
 
 	def plotThreadPerSI(self):

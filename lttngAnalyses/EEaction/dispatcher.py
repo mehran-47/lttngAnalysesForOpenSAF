@@ -3,6 +3,12 @@ import sys, netifaces, time
 from lttngAnalyses.networking.connection import connection
 from multiprocessing import Process, Pipe
 
+def dispatch(IP, port, SI, action):
+    client = connection(netifaces.ifaddresses('eth0')[2][0]['addr'], 5555)
+    client.connect(IP, port)
+    time.sleep(1)
+    client.send({'SI':SI, 'action':action})
+
 
 if __name__ == '__main__':
     client = connection('172.16.198.30', int(sys.argv[2]))
