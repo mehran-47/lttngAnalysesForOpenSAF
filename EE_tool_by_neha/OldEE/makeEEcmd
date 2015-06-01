@@ -1,0 +1,2 @@
+all:
+	gcc -g -o ElasticityEngineCMD_n new_one_liner.c -export-dynamic `pkg-config --cflags --libs gtk+-2.0` /usr/local/lib/libSaImmOm.so /usr/local/lib/libSaImmOi.so
