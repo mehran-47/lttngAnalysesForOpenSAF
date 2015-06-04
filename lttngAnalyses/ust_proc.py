@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys, os, time, re, json
 from babeltrace import *
-from lttngAnalyses.LTTngAnalyzes.common import *
+#from lttngAnalyses.LTTngAnalyzes.common import *
 
 class ust_trace():
 	def __init__(self, path, **kwargs):
