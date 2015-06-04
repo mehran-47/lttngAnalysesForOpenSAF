@@ -5,6 +5,7 @@ from threading import Thread
 from lttngAnalyses.serverAnalyses.listedDict import listedDict
 from lttngAnalyses.EEaction.dispatcher import dispatch as EEdispatch
 from itertools import cycle
+from subprocess import call
 
 class dictParser(object):
 	"""dictParser class for parsing nested dict in runtime in the monitoring server"""
@@ -151,10 +152,14 @@ class dictParser(object):
 		if self.listedUsages.get(usageKey)!=None:
 			for SI in self.listedUsages[usageKey]:
 				if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints > upperLim and not self.EE_triggered:
+					"""
+					#won't be needing EE call over network
 					db = sh.open('connectedIPs.db')
 					IP = db['IPs'][0]
 					db.close()
 					EEdispatch(IP, 4444, SI, 1)
+					"""
+					call(['/opt/bin/ElasticityEngineCMD', SI, 1])
 					print('###############################Triggered %r, increase to %r####################################' %(SI, IP))
 					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+60, )).start()
 					self.EE_triggered = True
