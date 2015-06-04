@@ -54,8 +54,7 @@ def destroy_session(session_name, **kwargs):
 def clean_all_trace_history():
     destroy_all_sessions()
     bashc.execute('rm -rf '+'/root/lttng-traces/'+os.uname()[1])
-    if os.path.isfile('./tempFiles/__comp_csi_latest_map.json'):
-        os.remove('./tempFiles/__comp_csi_latest_map.json')
+    if os.path.isfile('./tempFiles/__comp_csi_latest_map.json'): os.remove('./tempFiles/__comp_csi_latest_map.json')
 
 def stop_and_clean_all():
     clean_all_trace_history()
@@ -74,7 +73,7 @@ def destroy_all_sessions():
             any_session_destroyed = True
     if not any_session_destroyed:
         print('No tracing session destroyed')
-    os.remove('./tempFiles/sessions_and_paths.json')
+    if os.path.exists('./tempFiles/sessions_and_paths.json'): os.remove('./tempFiles/sessions_and_paths.json')
     sessions_and_paths = {}
 
 
