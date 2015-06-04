@@ -160,7 +160,7 @@ class dictParser(object):
 					EEdispatch(IP, 4444, SI, 1)
 					"""
 					call(['/opt/bin/ElasticityEngineCMD', SI, str(1)])
-					print('###############################Triggered %r, increase to %r####################################' %(SI, IP))
+					print('###############################Triggered %r, increase ####################################' %(SI))
 					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+60, )).start()
 					self.EE_triggered = True
 
