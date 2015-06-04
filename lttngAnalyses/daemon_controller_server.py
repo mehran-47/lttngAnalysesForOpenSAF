@@ -77,7 +77,7 @@ if __name__ == '__main__':
 	elif len(sys.argv) == 3:
 		addr = sys.argv[1]
 		port = int(sys.argv[2])
-	server = connection_extended(addr,port, './connectedIPs.db', debug=True)
+	server = connection_extended(addr,port, './tempFiles/connectedIPs.db', debug=True)
 	parent_conn, child_conn = Pipe()
 	dp = dictParser()
 	print("server listening to %r:%r" %(addr,port))
