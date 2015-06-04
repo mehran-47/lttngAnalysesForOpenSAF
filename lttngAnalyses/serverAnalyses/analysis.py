@@ -92,7 +92,7 @@ class dictParser(object):
 		for component in clientDict['component_info']:
 			#line below was for RDN, I'm keeping it if in case that's what is needed, for now, using DN in the next line
 			#SI = re.findall(r'(?<=safSi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0]
-			SI = re.findall(r'(?<=safSi=)(.+)(?=)', clientDict['component_info'][component]['CSI'])[0]
+			SI = 'safSi=' + re.findall(r'(?<=safSi=)(.+)(?=)', clientDict['component_info'][component]['CSI'])[0]
 			CSI = clientDict['component_info'][component]['CSI'] #For DN
 			#CSI = re.findall(r'(?<=safCsi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0] #For RDN
 			node = clientDict.get('from')
