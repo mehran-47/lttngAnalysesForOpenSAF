@@ -19,7 +19,8 @@ def fetch_and_set(activeComps, usage_q, interval):
 			for component in activeComps:
 				pid = int(activeComps[component]['PID'])
 				if os.path.exists("/proc/"+str(pid)):
-					activeComps[component]['cpu_usage'] = ps.Process(pid).cpu_percent(interval=interval)
+					cpu_usage = ps.Process(pid).cpu_percent(interval=interval)
+					activeComps[component]['cpu_usage'] = cpu_usage if cpu_usage<100 else 100
 					activeComps[component]['memory_usage'] = ps.Process(pid).memory_percent()
 				else:
 					activeComps[component]['cpu_usage'] = 0
@@ -61,7 +62,8 @@ def fetch_and_set_func(activeComps, interval):
 		for component in activeComps:
 			pid = int(activeComps[component]['PID'])
 			try:
-				activeComps[component]['cpu_usage'] = ps.Process(pid).get_cpu_percent(interval=interval)
+				cpu_usage = ps.Process(pid).cpu_percent(interval=interval)
+				activeComps[component]['cpu_usage'] = cpu_usage if cpu_usage<100 else 100
 				activeComps[component]['memory_usage'] = ps.Process(pid).get_memory_percent()
 			except ps.NoSuchProcess:
 				activeComps[component]['cpu_usage'] = 0.0

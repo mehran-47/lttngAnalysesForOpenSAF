@@ -161,8 +161,20 @@ class dictParser(object):
 					"""
 					call(['/opt/bin/ElasticityEngineCMD', SI, str(1)])
 					print('###############################Triggered %r, increase ####################################' %(SI))
-					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+60, )).start()
+					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
 					self.EE_triggered = True
+				if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints < LowerLim and not self.EE_triggered:
+					for SI in self.SIs:
+						for node in self.SIs[SI]: 
+							nodeCount+=1
+					#nodeCount here is essentially the 'minimum configutaion' (temporary solution)
+					if nodeCount > 2:
+						call(['/opt/bin/ElasticityEngineCMD', SI, str(2)])
+						print('###############################Triggered %r, decrease ####################################' %(SI))
+						Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
+						self.EE_triggered = True
+
+
 
 	def __countDownForEEFlag(self, t):
 		time.sleep(t)
