@@ -149,6 +149,10 @@ class dictParser(object):
 
 	
 	def determineEEaction(self, usageKey, numOfConsideredDataPoints, upperLim, LowerLim):
+		nodeCount = 0
+		for SI in self.SIs:
+			for node in self.SIs[SI]:
+				nodeCount+=1
 		if self.listedUsages.get(usageKey)!=None:
 			for SI in self.listedUsages[usageKey]:
 				if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints > upperLim and not self.EE_triggered:
@@ -164,9 +168,6 @@ class dictParser(object):
 					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
 					self.EE_triggered = True
 				if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints < LowerLim and not self.EE_triggered:
-					for SI in self.SIs:
-						for node in self.SIs[SI]: 
-							nodeCount+=1
 					#nodeCount here is essentially the 'minimum configutaion' (temporary solution)
 					if nodeCount > 2:
 						call(['/opt/bin/ElasticityEngineCMD', SI, str(2)])
