@@ -2,32 +2,8 @@
 import sys, time, json, os, re, psutil as ps
 from multiprocessing import Queue as mQueue, Process as proc
 from copy import deepcopy
-from subprocess import call
+from subprocess import call, Popen, PIPE
 
-def fetch_and_set(activeComps, usage_q, interval):
-	to_send = {
-		'msg' : '', 
-		'from' : os.uname()[1],
-		#'time' : str(ns_to_asctime(begin_ns)) + " to " + str(ns_to_asctime(end_ns)),
-		'time' : '',
-		#'nstime' : end_ns,
-		'component_info' : activeComps,
-		'cpu_core_usages' : ps.cpu_percent(interval=interval, percpu=True)
-	}
-	while True:
-		if len(activeComps)!=0:
-			for component in activeComps:
-				pid = int(activeComps[component]['PID'])
-				if os.path.exists("/proc/"+str(pid)):
-					cpu_usage = ps.Process(pid).cpu_percent(interval=interval)
-					activeComps[component]['cpu_usage'] = cpu_usage if cpu_usage<100.0 else 100.0
-					activeComps[component]['memory_usage'] = ps.Process(pid).memory_percent()
-				else:
-					activeComps[component]['cpu_usage'] = 0.0
-					activeComps[component]['memory_usage'] = 0.0
-					time.sleep(1)
-		to_send['time'] = time.strftime("%d-%m-%Y") + ' at ' + time.strftime("%H:%M:%S")
-		usage_q.put(to_send)
 
 def activeCompsRefresh(activeComps):
 	correctedActiveComps = deepcopy(activeComps)
@@ -68,17 +44,26 @@ def fetch_and_set_func(activeComps, interval):
 			except ps.NoSuchProcess:
 				activeComps[component]['cpu_usage'] = 0.0
 				activeComps[component]['memory_usage'] = 0.0
-				print('Error: "psutil.NoSuchProcess" process ID %d died while measuring usage.'%(pid))				
+				print('Error: "psutil.NoSuchProcess" process ID %d died while measuring usage.'%(pid))
+			activeComps[component]['cpu_cycles'] = get_cpu_abs(activeComps[component]['cpu_usage'])
+			activeComps[component]['memory_usage_abs'] = activeComps[component]['memory_usage']*ps.virtmem_usage().total/10**8
 
 	to_send['component_info']=activeComps
 	to_send['time'] = time.strftime("%d-%m-%Y") + ' at ' + time.strftime("%H:%M:%S")
 	return to_send
+
+def get_cpu_abs(percent):
+	cpuexec = Popen(['lscpu'], stdout=PIPE)
+	cpuTotalPattern = re.compile(r'(?<=CPU MHz)(.*?)(?=\n)', re.DOTALL)
+	cpuCyclesTotal = float(cpuTotalPattern.search(cpuexec.communicate()[0].decode('utf-8')).group(0).split(':')[1].strip())*ps.cpu_count()
+	return cpuCyclesTotal*percent/100
 
 
 def dummy(arg1, arg2):
 	while True:
 		print('dummy function called '+arg1+' '+arg2)
 		time.sleep(1)
+
 
 if __name__ == '__main__':
 	Q = mQueue(maxsize=0)
