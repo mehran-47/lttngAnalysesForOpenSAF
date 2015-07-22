@@ -45,7 +45,7 @@ def fetch_and_set_func(activeComps, interval):
 				activeComps[component]['cpu_usage'] = 0.0
 				activeComps[component]['memory_usage'] = 0.0
 				print('Error: "psutil.NoSuchProcess" process ID %d died while measuring usage.'%(pid))
-			activeComps[component]['cpu_cycles'] = get_cpu_abs(activeComps[component]['cpu_usage'])
+			activeComps[component]['cpu_cycles_abs'] = get_cpu_abs(activeComps[component]['cpu_usage'])
 			activeComps[component]['memory_usage_abs'] = activeComps[component]['memory_usage']*ps.virtmem_usage().total/10**8
 
 	to_send['component_info']=activeComps

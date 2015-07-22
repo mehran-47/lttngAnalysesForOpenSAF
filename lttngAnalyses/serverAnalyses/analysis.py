@@ -97,7 +97,10 @@ class dictParser(object):
 			#CSI = re.findall(r'(?<=safCsi=)(.+)(?=,)', clientDict['component_info'][component]['CSI'])[0] #For RDN
 			node = clientDict.get('from')
 			HAState = clientDict['component_info'][component]['HAState']
-			usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage'], 'memory_usage':clientDict['component_info'][component]['memory_usage']}
+			usages = {'cpu_usage': clientDict['component_info'][component]['cpu_usage'],\
+			 'memory_usage' : clientDict['component_info'][component]['memory_usage'],\
+			 'cpu_cycles_abs' : clientDict['component_info'][component]['cpu_cycles_abs'],\
+			 'memory_usage_abs' : clientDict['component_info'][component]['memory_usage_abs']}
 			self.SIs.populateNestedDict([SI,node,HAState,CSI,component], usages)
 			#Correcting potential double-entry of component-csi map in HA-States
 			for HAS in self.SIs.getFromPath([SI,node]):
@@ -131,7 +134,10 @@ class dictParser(object):
 					self.SI_usages[SI]=listedDict()
 				self.SIs[SI][node].updateUsage(self.SI_usages[SI])
 			for key in self.SI_usages[SI]:
-				self.SI_usages[SI][key] = self.SI_usages[SI][key]/nodeCount if nodeCount!=0 else self.SI_usages[SI][key]/nodeCount
+				if key.split('_')[-1]!='abs':
+					self.SI_usages[SI][key] = self.SI_usages[SI][key]/nodeCount if nodeCount!=0 else 0.0
+				else:
+					self.SI_usages[SI][key] = self.SI_usages[SI][key]
 
 
 	def updateListedUsages(self, dataPointsLimit):
