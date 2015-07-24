@@ -76,11 +76,14 @@ class dictParser(object):
 				self.determineEEaction('cpu_usage', 10, 70, 5)
 				print('\n-----------------SI-load:-------------------')
 				self.SI_usages.prettyPrint(0, keyColor=['cyan','bold'], valColor=['DARKCYAN'])
-				#print(self.listedUsages)		
+				#print(self.listedUsages)	
 				print('\n\n\n')			
 		except KeyboardInterrupt:
 			print("\n'KeyboardInterrupt' received. Stopping Server Daemon (dictParser.run())")
 			self.cpu_usage_list=[]
+			#for saving usage dump
+			import json
+			with open('./listedUsages.json', 'w') as jsonDump: jsonDump.write(json.dumps(self.listedUsages))
 		except:
 			raise
 	"""	
