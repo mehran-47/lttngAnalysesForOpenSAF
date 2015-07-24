@@ -56,7 +56,7 @@ def get_cpu_abs(percent):
 	cpuexec = Popen(['lscpu'], stdout=PIPE)
 	cpuTotalPattern = re.compile(r'(?<=CPU MHz)(.*?)(?=\n)', re.DOTALL)
 	cpuCyclesTotal = float(cpuTotalPattern.search(cpuexec.communicate()[0].decode('utf-8')).group(0).split(':')[1].strip())*ps.cpu_count()
-	return cpuCyclesTotal*percent/100
+	return int(cpuCyclesTotal*percent/100)
 
 
 def dummy(arg1, arg2):
