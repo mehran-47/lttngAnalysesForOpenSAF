@@ -17040,7 +17040,7 @@ error = saImmOmSearchFinalize(searchHandle);
 
   
 }
-
+//************ MK: switch between EE action strategies ******************
 int switchcall(SaNameT objectnameSI,SaNameT objectnameSG1,int elasticityT,int elasticityact,SaImmHandleT immHandle,char *argv[])
 {
   
@@ -17098,6 +17098,7 @@ error = saImmOmAccessorInitialize( immHandle, &accessorHandle);
        {      
        
 	SaImmAttrValueT *attrValue3 = attributesSGT[0]->attrValues[0];
+  //get SG's redundancy model from the attibutes
 	redmodT= *((SaUint32T *)attrValue3);
 
        }
@@ -17105,10 +17106,7 @@ error = saImmOmAccessorInitialize( immHandle, &accessorHandle);
 
 
     }
-
-
-
-
+//select the appropriate scaling stratedy based on the redundancy model
 switch(redmodT)
 {
  case 1 : printf("and is of 2N Redundancy Model\n");
@@ -17117,103 +17115,123 @@ switch(redmodT)
 
           switch(elasticityact)
              {
-              case 1 : //It is Increase
+              case 1 : //Increase
                          switch(elasticityT)
                          {
-                          case 1 : printf("Single SI increase in 2N SG \n");
-                                   //result=single_SIincrease2n(immHandle,nameSI,objectnameSG1,argv);
-				   result=single_SIincrease2n(immHandle,objectnameSG1,argv,objectnameSI);
+                          case 1 : 
+                                   printf("Single SI increase in 2N SG \n");
+                                   result = single_SIincrease2n(immHandle,objectnameSG1,argv,objectnameSI);
                                    break;
-                          default : printf("Elasticity Engine does not support this type of increase in 2N SG\n");
-                                    break;
+                          default : 
+                                   printf("Elasticity Engine does not support this type of increase in 2N SG\n");
+                                   break;
              
                          }
+                       //single/multiple SI case ends  
                        break;
-              case 2 : //printf("It is Decrease\n");
+              case 2 : //Decrease
                          switch(elasticityT)
                          {
-                          case 1 : printf("Single SI decrease in 2N SG \n");
-				   //result=single_SIdecrease2n(immHandle,nameSI,objectnameSG1,argv);
-				   result=single_SIdecrease2n(immHandle,objectnameSG1,argv,objectnameSI);
-				   //printf("\n%d",result);
-                                   break;
-                          default : printf("Elasticity Engine does not support this type of increase in 2N SG\n");
-                                    break;
-             
-                         }   
+                          case 1 : 
+                                   printf("Single SI decrease in 2N SG \n");
+                				           result = single_SIdecrease2n(immHandle,objectnameSG1,argv,objectnameSI);
+                				           break;
+                          default : 
+                                   printf("Elasticity Engine does not support this type of increase in 2N SG\n");
+                                   break;             
+                         }
+                      //single/multiple SI case ends      
                       break;   
             }
+          // strategy for 2N redundancy ends  
           break;
 
  case 2 : printf("It is N+M Redundancy Model\n");
           printf("The request is for :");
           switch(elasticityact)
              {
-              case 1 :// printf("It is Increase\n");
+              case 1 ://Increase
                          switch(elasticityT)
                          {
-                          case 1 : printf("Single SI increase in N+M SG \n");
-                                   result=single_SIIncreaseNPM(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
+                          case 1 : 
+                                   printf("Single SI increase in N+M SG \n");
+                                   result = single_SIIncreaseNPM(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
                                    break;
-                          case 2 : printf("Multiple SI increase in N+M SG \n");
-                                   result=multiple_SIIncreaseNPM(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
+                          case 2 : 
+                                   printf("Multiple SI increase in N+M SG \n");
+                                   result = multiple_SIIncreaseNPM(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
                                    break;
-                          default: printf("Elasticity Engine does not support this type of increase in N+M SG\n");
-                                    break;
+                          default: 
+                                   printf("Elasticity Engine does not support this type of increase in N+M SG\n");
+                                   break;
              
                          }
+                        //single/multiple SI case ends   
                         break;             
            
-              case 2 : //printf("It is Decrease\n");
+              case 2 : //Decrease
                          switch(elasticityT)
                          {
-                          case 1 : printf("Single SI decrease in N+M SG \n");
-                                   result=single_SIDecreaseNPM(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
+                          case 1 : 
+                                   printf("Single SI decrease in N+M SG \n");
+                                   result = single_SIDecreaseNPM(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
                                    break;
-                          case 2 : printf("Multiple SI decrease in N+M SG \n");
-                                   result=single_SIDecreaseNPM(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
+                          case 2 : 
+                                   printf("Multiple SI decrease in N+M SG \n");
+                                   result = single_SIDecreaseNPM(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
                                    break;
-                          default : printf("Elasticity Engine does not support this type of decrease\n");
-                                    break;
+                          default : 
+                                   printf("Elasticity Engine does not support this type of decrease\n");
+                                   break;
              
-                         }    
+                         }
+                         //single/multiple SI case ends    
                          break;  
           }
-            break;
+          // strategy for N+M redundancy ends
+          break;
 
  case 3 : printf("It is N-way Redundancy Model\n");
           printf("The request is for :");
              switch(elasticityact)
              {
-              case 1 ://printf("It is increase");
+              case 1 ://Increase
                       switch(elasticityT)
                       {                          
-                          case 1 : printf("Single SI increase in N-way SG");
-                                   result=single_SIIncreaseNway(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
+                          case 1 : 
+                                   printf("Single SI increase in N-way SG");
+                                   result = single_SIIncreaseNway(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
                                    break;
-                          case 2 : printf("Multiple SI increase in N-way SG");
-                                   result=multiple_SIIncreaseNway(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
+                          case 2 : 
+                                   printf("Multiple SI increase in N-way SG");
+                                   result = multiple_SIIncreaseNway(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
                                    break;
-                          default: printf("Elasticity Engine does not support this type of increase in Nway SG\n");
-                                    break;
+                          default: 
+                                   printf("Elasticity Engine does not support this type of increase in Nway SG\n");
+                                   break;
              
                       }
+                      //single/multiple SI case ends 
                       break;
-              case 2 : //printf("It is Decrease\n");
+              case 2 : //Decrease
                          switch(elasticityT)
                          {
-                          case 1 : printf("Single SI decrease in N-way SG\n");
+                          case 1 : 
+                                   printf("Single SI decrease in N-way SG\n");
                                    result=single_SIDecreaseNway(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
                                    break;
                           case 2 : printf("Multiple SI decrease in N-way SG");
                                    result=single_SIDecreaseNway(immHandle,objectnameSG1,argv,objectnameSI,preinstantiable);
                                    break;
-                          default : printf("Elasticity Engine does not support this type of decrease in Nway SG\n");
-                                    break;
+                          default : 
+                                   printf("Elasticity Engine does not support this type of decrease in Nway SG\n");
+                                   break;
              
-                         }   
+                         }
+                         //single/multiple SI case ends    
                          break;   
           }
+          // strategy for N-way redundancy ends
           break;
 
  case 4 : printf("and is of N-way Active Redundancy Model\n");
@@ -17222,59 +17240,72 @@ switch(redmodT)
         
           switch(elasticityact)
           {
-             case 1 : printf("It is increase in Nway Active SG");
+             case 1 : 
+                       //Increase
+                       printf("It is increase in Nway Active SG");
                        switch(elasticityT)
-                         {
-                          case 1 : printf("Single SI increase in N-way Active SG\n");
-				   result=single_SIincreaseNwayAct(immHandle,objectnameSG1,objectnameSI,argv,preinstantiable);
+                       {
+                          case 1 : 
+                                   printf("Single SI increase in N-way Active SG\n");
+				                           result=single_SIincreaseNwayAct(immHandle,objectnameSG1,objectnameSI,argv,preinstantiable);
                                    break;
-                          case 2 : printf("Multiple SI increase in N-way Active SG\n");
-				   result=multiple_SIincreaseNwayAct(immHandle,objectnameSG1,objectnameSI,argv,preinstantiable);
+                          case 2 : 
+                                   printf("Multiple SI increase in N-way Active SG\n");
+				                           result=multiple_SIincreaseNwayAct(immHandle,objectnameSG1,objectnameSI,argv,preinstantiable);
                                    break;
-                          default: printf("Elasticity Engine does not support this type of increase in Nway Active SG\n");
-                                    break;
+                          default: 
+                                   printf("Elasticity Engine does not support this type of increase in Nway Active SG\n");
+                                   break;
              
                          }
+                         //single/multiple SI case ends 
                          break;
-              case 2 : //printf("It is Decrease\n");
+              case 2 : //Decrease
                          switch(elasticityT)
                          {
-                          case 1 : printf("Single SI decrease in N-way Active SG");
-				   result=single_SIdecreaseNwayAct(immHandle,objectnameSG1,objectnameSI,argv,elasticityT,preinstantiable);
+                          case 1 : 
+                                   printf("Single SI decrease in N-way Active SG");
+				                           result=single_SIdecreaseNwayAct(immHandle,objectnameSG1,objectnameSI,argv,elasticityT,preinstantiable);
                                    break;
-                          case 2 : printf("Multiple SI decrease in N-way Active SG");
+                          case 2 : 
+                                   printf("Multiple SI decrease in N-way Active SG");
                                    result=single_SIdecreaseNwayAct(immHandle,objectnameSG1,objectnameSI,argv,elasticityT,preinstantiable);
                                    break;
-                          default : printf("Elasticity Engine does not support this type of decrease in Nway Active SG\n");
-                                    break;
+                          default : 
+                                   printf("Elasticity Engine does not support this type of decrease in Nway Active SG\n");
+                                   break;
              
-                         }   
+                         }
+                         //single/multiple SI case ends   
                          break;   
           }
+          // strategy for N-way Active redundancy ends
           break;
  
  case 5: printf("It is No Redundancy Model\n");
          printf("The request is for :");
          switch(elasticityact)
          {
-          case 1:// printf("Its is Increase in Nway Active SG\n");  
+          case 1:
+                  //Increase
                   switch(elasticityT)
                          {
-                          case 1 : printf("Single SI increase in No Redundancy SG \n");
+                          case 1 : 
+                                   printf("Single SI increase in No Redundancy SG \n");
+                                   result=3;
+                                   break;                          
+                          default: 
+                                   printf("Elasticity Engine does not support this type of increase in No redundancy\n");
                                    result=3;
                                    break;
-                          
-                          default: printf("Elasticity Engine does not support this type of increase in No redundancy\n");
-                                   result=3;
-                                    break;
              
                          }
-             break;
+              //single/multiple SI case ends
+              break;
               case 2 : //printf("It is Decrease\n");
                          switch(elasticityT)
                          {
-                          case 1 : printf("Single SI decrease in No Redundancy SG \n");
-                                   
+                          case 1 : printf("Single SI decrease in No Redundancy SG \n");                                   
                                    result =2;
                                    break;
                         
@@ -17284,7 +17315,8 @@ switch(redmodT)
                                     break;
              
                          }
-          break;      
+              //single/multiple SI case ends
+              break;      
           }
          break;
  //printf("\n**************************************************************************************");
@@ -17326,12 +17358,11 @@ static void sigterm_handler(int sig)
  //syslog(LOG_NOTICE, "caught term signal");
  exit(EXIT_SUCCESS);
 }
-int elasticity_engine_main(int argc, char argv[])
-{
+
+/**********************************MK: main function of EE (start)**********************************************/
+int elasticity_engine_main(int argc, char argv[]){
 
 //variable declariations
-
-
 // printf("\n2\n");
 int res;
 SaInt8T nameSG[256];
@@ -17556,6 +17587,12 @@ strncpy((char *)objectname.value, strs[0], SA_MAX_NAME_LENGTH);
 objectname.length= strlen(objectname.value);
 i=0;
 loop1:
+//******* MK: switchcall is the function acting on a strategy ********
+// switchcall(SI_name, SG-name, elasticity_action_type, elasticityActionSelectorOnSInumber, elasticityActionType, IMMhandle, argumentsFromCommandLine)
+// elasticityT: 1 is for single SI; 2 is for multiple SIs
+// elasticityact: 1 is increase; 2 is for decrease
+// go to line ~17044 for implementation
+//********************************************************************
 result = switchcall(objectnameSI,objectname,elasticityT,elasticityact,immHandle,&argv);
 
 
@@ -17723,7 +17760,7 @@ int i,j, result1=0;
    }
    strcpy(argv1, argv[0]);
    SaAisErrorT error;
-   /********************MK start************************/
+   /********************MK: get trigger from command line/bash - (start)************************/
    if(argc<3){
       printf("%d\n", argc);
       printf("Usage:\n'%s <SI_name> <1> or <2>'\n('1' signifies workload increase, '2' signifies workload decrease)\n", argv[0]);
@@ -17775,9 +17812,9 @@ int i,j, result1=0;
 
   printf("\nThe service %s and the elasticity action is %d and buffer_flag %d\n",nameSI, elasticityact, buffer2_manager);
 
-   /*********************MK end*************************/
+  /********************MK: get trigger from command line/bash - (end) ************************/
 
-/*****************************MK - start ***************************
+/*****************************MK: commenting out GUI - (start) ***************************
 gtk_init(&argc, &argv);
 SaAisErrorT error;
 //SaImmHandleT immHandle;
@@ -17811,6 +17848,6 @@ drawSUs();
 gtk_widget_show_all(win);
 
 gtk_main();
-******************************MK - end*********************************/
+******************************MK: commenting out GUI - (end) *********************************/
 return 0;
 }
