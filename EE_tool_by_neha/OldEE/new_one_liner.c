@@ -5372,7 +5372,7 @@ error = saImmOmAccessorInitialize( immHandle, &accessorHandle);
                                    						printf("The number of SUs assignment of %s of SG are %d\n",objectnameSG1.value,noassgSUs);
 					               	                }
    		                                        	 }
-
+//********** Spreading the SUs (start)***************
 if(noassgSUs > noSIassg)
 {
   printf("%c[1;32m\nThe SI is not assigned to all the SUs\n",27);
@@ -5568,6 +5568,7 @@ if(noassgSUs > noSIassg)
 		//	goto done_om_finalize;
 		}
  	}
+  //********** Spreading the SUs (end)**********************
  	else
 ////////////////////////////////////////////////////////////////////////////////////////////////////////increase the max /////////////////////////////////////////////////////////////////////
  	{
@@ -5622,41 +5623,35 @@ printf("The SI .. type is %s \n",objectsity.value);
   	    attributeNames[0]="saAmfCtDefNumMaxActiveCSIs";
  		    attributeNames[1]=NULL;
   	            error = saImmOmAccessorInitialize( immHandle, &accessorHandle);
-                       						if (error != SA_AIS_OK)
+                  if (error != SA_AIS_OK)
 		   						{	
-                							printf("error - saImmOmAccessorInitialize FAILED:%d\n",error);
-                							rc= EXIT_FAILURE;
-                    						}
-       		   						if (error == SA_AIS_OK)
-   	           						{       
-                                                        	          
-									error= saImmOmAccessorGet_2(accessorHandle, &objectsity, attributeNames, &attributes);  
-                                                                        if (error !=SA_AIS_OK)
- 									{
-										printf("error - saImmOmAccessorGet_2 FAILED:%d\n",error);					
-									} 
-                                       					if (error ==SA_AIS_OK)
-                                                                        {
-	                                  //                            		printf("\nRank!!!");
-										SaImmAttrValueT *attrValue = attributes[0]->attrValues[0];
-                                                                    		//printf("%drrr\n",*((SaUint32T *)attrValuecrk));
-										DefActiveNumCSIs = *((SaUint32T *)attrValue);
-
-										
-										printf("The saAmfCtDefNumMaxActiveCSIs : %d \n", DefActiveNumCSIs );
-
-
-               						   			error = saImmOmAccessorFinalize(accessorHandle);
-                                                                                
-                                   						printf("\nThe cSI is %d \n",DefActiveNumCSIs);
-					               	                }
-								 }
+        							printf("error - saImmOmAccessorInitialize FAILED:%d\n",error);
+        							rc= EXIT_FAILURE;
+                  }
+ 		   						if (error == SA_AIS_OK)
+           				{       
+                       error= saImmOmAccessorGet_2(accessorHandle, &objectsity, attributeNames, &attributes);  
+                       if(error !=SA_AIS_OK)
+       								 {
+      									printf("error - saImmOmAccessorGet_2 FAILED:%d\n",error);					
+      								 } 
+               				 if (error ==SA_AIS_OK)
+                       {
+    	                    printf("\nRank!!!");
+    										  SaImmAttrValueT *attrValue = attributes[0]->attrValues[0];
+                          //printf("%drrr\n",*((SaUint32T *)attrValuecrk));
+    										  DefActiveNumCSIs = *((SaUint32T *)attrValue);
+                          printf("The saAmfCtDefNumMaxActiveCSIs : %d \n", DefActiveNumCSIs );
+                          error = saImmOmAccessorFinalize(accessorHandle);
+                          printf("\nThe CSI is %d \n",DefActiveNumCSIs);
+  					           }
+								  }
 
         ////get the maxactiveSIperSU attribute
-         attributeNames[0]="saAmfSGMaxActiveSIsperSU";
+   attributeNames[0]="saAmfSGMaxActiveSIsperSU";
  	 attributeNames[1]=NULL;
-  error = saImmOmAccessorInitialize( immHandle, &accessorHandle);
-                       						if (error != SA_AIS_OK)
+   error = saImmOmAccessorInitialize( immHandle, &accessorHandle);
+                  if (error != SA_AIS_OK)
 		   						{	
                 							printf("error - saImmOmAccessorInitialize FAILED:%d\n",error);
                 							rc= EXIT_FAILURE;
@@ -5734,6 +5729,7 @@ printf("The SI .. type is %s \n",objectsity.value);
 	swapsi(immHandle,argv,1,objectnameSG1); //UNLOCK SG
 	printf("%c[0m",27);
             //////ccb to increase maxactiveSiperSU
+            // condition at loop4 : IF(noassgSUs > noSIassg)
             goto loop4;
         }  
         else
@@ -5907,38 +5903,36 @@ printf("%c[0m",27);
  attributeNames[0]="saAmfSGMaxActiveSIsperSU";
   attributeNames[1]=NULL;
   error = saImmOmAccessorInitialize( immHandle, &accessorHandle);
-                       						if (error != SA_AIS_OK)
-		   						{	
-                							printf("error - saImmOmAccessorInitialize FAILED:%d\n",error);
-                							rc= EXIT_FAILURE;
-                    						}
-       		   						if (error == SA_AIS_OK)
-   	           						{       
-                                                        	        
-                      							//printf("\nWe got the accessor handle to access SU for rank !!\n");
-                                                        	        //error17= saImmOmAccessorGet_2(accessorHandle15, &objectsuname, attributeNamesSUrank,   		
-									//&attributesSUrank);     
-									error= saImmOmAccessorGet_2(accessorHandle, &objectnameSG1, attributeNames, &attributes);  
-                                                                        if (error !=SA_AIS_OK)
- 									{
-										printf("error - saImmOmAccessorGet_2 FAILED:%d\n",error);					
-									} 
-                                       					if (error ==SA_AIS_OK)
-                                                                        {
-	                                  //                            		printf("\nRank!!!");
-										SaImmAttrValueT *attrValue = attributes[0]->attrValues[0];
-                                                                    		//printf("%drrr\n",*((SaUint32T *)attrValuecrk));
-										maxactSIsperSU = *((SaUint32T *)attrValue);
-               						   			error = saImmOmAccessorFinalize(accessorHandle);
-                                                                                
-                                   						printf("\nThe number of saAmfSGMaxActiveSIsperSU of %s SG are %d\n",objectnameSG1.value,maxactSIsperSU);
-					               	                }
-								 }
+  if (error != SA_AIS_OK)
+		{	
+		printf("error - saImmOmAccessorInitialize FAILED:%d\n",error);
+		rc= EXIT_FAILURE;
+	}
+	if (error == SA_AIS_OK)
+	{                                                               	        
+		//printf("\nWe got the accessor handle to access SU for rank !!\n");
+    //error17= saImmOmAccessorGet_2(accessorHandle15, &objectsuname, attributeNamesSUrank,   		
+    //&attributesSUrank);     
+    error= saImmOmAccessorGet_2(accessorHandle, &objectnameSG1, attributeNames, &attributes);  
+    if (error !=SA_AIS_OK)
+		{
+			printf("error - saImmOmAccessorGet_2 FAILED:%d\n",error);					
+		} 
+    if (error ==SA_AIS_OK)
+    {
+      printf("\nRank!!!");
+			SaImmAttrValueT *attrValue = attributes[0]->attrValues[0];
+      //printf("%drrr\n",*((SaUint32T *)attrValuecrk));
+			maxactSIsperSU = *((SaUint32T *)attrValue);
+ 			error = saImmOmAccessorFinalize(accessorHandle);
+      printf("\nThe number of saAmfSGMaxActiveSIsperSU of %s SG are %d\n",objectnameSG1.value,maxactSIsperSU);
+    }
+  }
   attributeNames[0]="saAmfSGNumPrefAssignedSUs";
   attributeNames[1]=NULL;
   error = saImmOmAccessorInitialize( immHandle, &accessorHandle);
-                       						if (error != SA_AIS_OK)
-		   						{	
+  if (error != SA_AIS_OK)
+	{	
                 							printf("error - saImmOmAccessorInitialize FAILED:%d\n",error);
                 							rc= EXIT_FAILURE;
                     						}
@@ -6257,11 +6251,11 @@ printf("%c[0m",27);
            printf("%c[1;32m\nCapacity is enought",27);
            printf("%c[0m",27);
 	} 
-        else
-        {
-                     goto loop3;      
-        }
-////////////////////////////////////////////////////////////////////////////////////////////////////Check  if have to spread further///////////////////////////////////////////////////////////////
+  else
+  {
+           goto loop3;      
+  }
+//////////////////////////////////////////////////////////////////Check  if have to spread further///////////////////////////////////////////////////////////////
 
 
 
@@ -6274,11 +6268,6 @@ printf("%c[0m",27);
 	}
 
 ///////////////////////////////////////////////////////////////////Decrease the max active SI per SU////////////////////////////////////////////////////
-
-
-
-
-
  	
  	}
  	else
