@@ -82,8 +82,10 @@ class dictParser(object):
 			print("\n'KeyboardInterrupt' received. Stopping Server Daemon (dictParser.run())")
 			self.cpu_usage_list=[]
 			#for saving usage dump
+			"""
 			import json
 			with open('./listedUsages.json', 'w') as jsonDump: jsonDump.write(json.dumps(self.listedUsages))
+			"""
 		except:
 			raise
 	"""	
