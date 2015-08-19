@@ -53,9 +53,10 @@ def fetch_and_set_func(activeComps, interval):
 	return to_send
 
 def get_cpu_abs(percent):
+	cpuCount = len(ps.cpu_percent(percpu=True))
 	cpuexec = Popen(['lscpu'], stdout=PIPE)
 	cpuTotalPattern = re.compile(r'(?<=CPU MHz)(.*?)(?=\n)', re.DOTALL)
-	cpuCyclesTotal = float(cpuTotalPattern.search(cpuexec.communicate()[0].decode('utf-8')).group(0).split(':')[1].strip())*ps.cpu_count()
+	cpuCyclesTotal = float(cpuTotalPattern.search(cpuexec.communicate()[0].decode('utf-8')).group(0).split(':')[1].strip())*cpuCount
 	#return int(cpuCyclesTotal*percent/100)
 	return cpuCyclesTotal*percent/100
 
