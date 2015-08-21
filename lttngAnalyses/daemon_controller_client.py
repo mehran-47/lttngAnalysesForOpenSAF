@@ -81,23 +81,29 @@ def check_and_send(client, to_send):
     if os.path.isfile('./tempFiles/__comp_csi_latest_map.json'):
         with open('./tempFiles/__comp_csi_latest_map.json','r') as historyFile:
             mapHistory = json.loads(historyFile.read())
+    print('to_send - before \n' + str(to_send) + '\n\n\n')
     if to_send.get('component_info'):
         for component in to_send.get('component_info'):
+            print('to_send\n' + str(to_send) + '\n\n\n')
+            print('mapthistory\n' + str(mapHistory) + '\n\n\n', end='\r')
             if to_send['component_info'][component]['CSI']=='':
-                to_send['component_info'][component]['CSI'] = mapHistory[component]['CSI']
-    print(to_send)
-    print('\n\n\n')
+                to_send['component_info'][component]['CSI'] = mapHistory[component]['CSI']    
+    #print(to_send)
+    #print('\n\n\n')
     if client:
         client.send(to_send)
 
 
 def save_comp_CSI_map(allcomps):
     to_save = listedDict()
+    thereIsNewComponent = False
+    with open('./tempFiles/__comp_csi_latest_map.json','r') as historyFile: to_save = json.loads(historyFile.read())
     if len(allcomps.keys())>0:
         for component in allcomps:
-            if allcomps[component]['CSI'] != '':
+            if allcomps[component]['CSI'] != '' and component not in to_save:
                 to_save.populateNestedDict([component,'CSI'], allcomps[component]['CSI'])
-    if len(to_save.keys())>0:
+                thereIsNewComponent = True
+    if thereIsNewComponent:
         with open('./tempFiles/__comp_csi_latest_map.json','w') as historyFile:
             historyFile.write(json.dumps(to_save))
     
@@ -118,8 +124,8 @@ def start_daemon(client):
                 oldEventsDict.update(newEventsDict)
             to_send=fetch_and_set_func(allcomps,1)
             check_and_send(client, to_send)
-            print(to_send)
-            print('\n\n\n')
+            #print(str(to_send) + '\n\n\n', end='\r')
+            #print('\n\n\n')
     except KeyboardInterrupt:
         print('\nDaemon stopped manually. Tracing stopped')
 
