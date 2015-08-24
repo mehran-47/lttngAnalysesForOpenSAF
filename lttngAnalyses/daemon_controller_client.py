@@ -104,10 +104,14 @@ def save_comp_CSI_map(allcomps):
     if os.path.isfile('./tempFiles/__comp_csi_latest_map.json'):
         with open('./tempFiles/__comp_csi_latest_map.json','r') as historyFile: 
             to_save = listedDict(**json.loads(historyFile.read()))
+            print('############# to_save loaded: #########')
+            to_save.prettyPrint(0)
     if len(allcomps.keys())>0:
         for component in allcomps:
             if allcomps[component]['CSI'] != '' and component not in to_save:
                 to_save.populateNestedDict([component,'CSI'], allcomps[component]['CSI'])
+                print('############# to_save updated: #########')
+                to_save.prettyPrint(0)
                 thereIsNewComponent = True
     if thereIsNewComponent:
         with open('./tempFiles/__comp_csi_latest_map.json','w') as historyFile:
