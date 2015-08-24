@@ -81,7 +81,6 @@ def check_and_send(client, to_send):
     if os.path.isfile('./tempFiles/__comp_csi_latest_map.json'):
         with open('./tempFiles/__comp_csi_latest_map.json','r') as historyFile:
             mapHistory = json.loads(historyFile.read())
-    print('to_send - before \n' + str(to_send) + '\n\n\n')
     if to_send.get('component_info'):
         for component in to_send.get('component_info'):
             print('to_send\n' + str(to_send) + '\n\n\n')
