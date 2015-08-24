@@ -97,7 +97,9 @@ def check_and_send(client, to_send):
 def save_comp_CSI_map(allcomps):
     to_save = listedDict()
     thereIsNewComponent = False
-    with open('./tempFiles/__comp_csi_latest_map.json','r') as historyFile: to_save = json.loads(historyFile.read())
+    if os.isfile('./tempFiles/__comp_csi_latest_map.json'):
+        with open('./tempFiles/__comp_csi_latest_map.json','r') as historyFile: 
+            to_save = json.loads(historyFile.read())
     if len(allcomps.keys())>0:
         for component in allcomps:
             if allcomps[component]['CSI'] != '' and component not in to_save:
