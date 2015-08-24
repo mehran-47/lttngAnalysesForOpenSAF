@@ -78,18 +78,23 @@ def destroy_all_sessions():
 
 
 def check_and_send(client, to_send):
+    todel = []
     if os.path.isfile('./tempFiles/__comp_csi_latest_map.json'):
         with open('./tempFiles/__comp_csi_latest_map.json','r') as historyFile:
             mapHistory = json.loads(historyFile.read())
     if to_send.get('component_info'):
         for component in to_send.get('component_info'):
             print('to_send\n' + str(to_send) + '\n\n\n')
-            print('mapthistory\n' + str(mapHistory) + '\n\n\n', end='\r')
+            print('mapHistory\n' + str(mapHistory) + '\n\n\n')
             if to_send['component_info'][component]['CSI']=='':
-                to_send['component_info'][component]['CSI'] = mapHistory[component]['CSI']    
-    #print(to_send)
-    #print('\n\n\n')
+                if component in mapHistory:
+                    to_send['component_info'][component]['CSI'] = mapHistory[component]['CSI']
+                else:
+                    print('Warning!: Component with blank CSI,\n ignored component:\n' + component)
+                    todel.append(component)
     if client:
+        for component in todel: 
+            del to_send['component_info'][component]
         client.send(to_send)
 
 
@@ -98,7 +103,7 @@ def save_comp_CSI_map(allcomps):
     thereIsNewComponent = False
     if os.path.isfile('./tempFiles/__comp_csi_latest_map.json'):
         with open('./tempFiles/__comp_csi_latest_map.json','r') as historyFile: 
-            to_save = json.loads(historyFile.read())
+            to_save = listedDict(**json.loads(historyFile.read()))
     if len(allcomps.keys())>0:
         for component in allcomps:
             if allcomps[component]['CSI'] != '' and component not in to_save:
