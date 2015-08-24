@@ -27,7 +27,7 @@ def colorPrint(string, *stringAttrs, **allStringAttrs):
 
 class listedDict(dict):
 	def __init__(self, **dictToCopy):
-		self = copy.deepcopy(dictToCopy)
+		self.update(dictToCopy)
 
 	def populateNestedDict(self, itemPath, item):
 		itemPath = itemPath.split('.') if isinstance(itemPath,str) else itemPath
