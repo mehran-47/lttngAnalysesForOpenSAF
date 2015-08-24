@@ -95,7 +95,7 @@ def check_and_send(client, to_send):
 
 
 def save_comp_CSI_map(allcomps):
-    to_save = {}
+    to_save = listedDict()
     thereIsNewComponent = False
     if os.path.isfile('./tempFiles/__comp_csi_latest_map.json'):
         with open('./tempFiles/__comp_csi_latest_map.json','r') as historyFile: 
@@ -103,7 +103,7 @@ def save_comp_CSI_map(allcomps):
     if len(allcomps.keys())>0:
         for component in allcomps:
             if allcomps[component]['CSI'] != '' and component not in to_save:
-                to_save[component]['CSI'] = allcomps[component]['CSI']
+                to_save.populateNestedDict([component,'CSI'], allcomps[component]['CSI'])
                 thereIsNewComponent = True
     if thereIsNewComponent:
         with open('./tempFiles/__comp_csi_latest_map.json','w') as historyFile:
