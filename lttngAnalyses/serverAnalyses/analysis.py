@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-import re, time, shelve as sh
+import re, time, shelve as sh, EE
 #import matplotlib.pyplot as plt
 from threading import Thread
 from lttngAnalyses.serverAnalyses.listedDict import listedDict
-from lttngAnalyses.EEaction.dispatcher import dispatch as EEdispatch
+#from lttngAnalyses.EEaction.dispatcher import dispatch as EEdispatch
 from itertools import cycle
 from subprocess import call
 
