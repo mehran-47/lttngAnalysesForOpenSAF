@@ -40,7 +40,24 @@ class osafMod( object):
         call(['service','opensafd','status'])
         #'''
 
-if __name__ == '__main__':    
+if __name__ == '__main__':
+    if sys.argv[2:]:
+        chainedQuery = lambda a1, a2: pyImm.immom.getattributes(a1)[a2][0]
+        #print(chainedQuery(sys.argv[1], sys.argv[2] ) )
+        print( reduce(chainedQuery, [sys.argv[1], 'saAmfSIProtectedbySG', 'saAmfSGType', 'saAmfSgtRedundancyModel'] ))
+
+    '''
+    ##########################
+    print(\
+    pyImm.immom.getattributes(\
+        pyImm.immom.getattributes(\
+            pyImm.immom.getattributes(\
+                                        sys.argv[1]\
+                                    )['saAmfSIProtectedbySG'][0]\
+                                )['saAmfSGType'][0]\
+                            )['saAmfSgtRedundancyModel'][0]\
+        )
+    ###########################
     if sys.argv[3:]:
         modObj = osafMod('mk')
         DN = sys.argv[1]
@@ -60,12 +77,10 @@ if __name__ == '__main__':
         print(pyImm.immomexamples.getadminowner(DN))
     else:
         print('DN not provided')
-    
-    """
+   
     pyImm.immombin.saImmOmInitialize()
     DN = 'opensafImm=opensafImm,safApp=safImmService'
     for (n,t,v) in pyImm.immombin.saImmOmAccessorGet(DN):
         if n == 'opensafImmClassNames':
             print(v)
-    """
-
+    '''

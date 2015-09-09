@@ -22,7 +22,7 @@ class connection():
 	def __decoder(self, conn, child_pipe):
 		fdict = {}
 		while True:
-			data = conn.recv(1024)
+			data = conn.recv(2048)
 			if not data:
 				if self.debug:
 					print('Connected thread ending from %r' %(self.thread_from))

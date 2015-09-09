@@ -53,12 +53,12 @@ class operation(object):
         'flag' set to 2  is for decreasing current assignment by 1. 
         **batchAction is for increasing or decreasing more than 1 assignment at one go. (Haven't decided on it yet.)
         """
-        SG = pyImm.immom.getattributes(SI)['saAmfSIProtectedbySG'][0]
+        SG = pyImm.immom.getattributes(DN)['saAmfSIProtectedbySG'][0]
         if flag==1 and pyImm.immom.getattributes(SG)['saAmfSGNumCurrInstantiatedSpareSUs'][0] > 0:
             self.changePreferredAssignmentNums(SG, DN, 1)
         elif flag==2 and pyImm.immom.getattributes(SG)['saAmfSGNumCurrAssignedSUs'][0] > pyImm.immom.getattributes(SG)['saAmfSGNumPrefAssignedSUs'][0]:
             self.changePreferredAssignmentNums(SG, DN, -1)
-        self.refrlesh(DN)
+        self.refresh(DN)
 
 
 def act(SI, SInumber, workloadChangeType):

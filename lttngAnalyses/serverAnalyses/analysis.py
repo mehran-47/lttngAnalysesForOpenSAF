@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import re, time, shelve as sh, EE
+import re, time, shelve as sh
 #import matplotlib.pyplot as plt
 from threading import Thread
 from lttngAnalyses.serverAnalyses.listedDict import listedDict
@@ -164,27 +164,30 @@ class dictParser(object):
 		for SI in self.SIs:
 			for node in self.SIs[SI]:
 				nodeCount+=1
-		if self.listedUsages.get(usageKey)!=None:
-			for SI in self.listedUsages[usageKey]:
-				if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints > upperLim and not self.EE_triggered:
-					"""
-					#won't be needing EE call over network
-					db = sh.open('connectedIPs.db')
-					IP = db['IPs'][0]
-					db.close()
-					EEdispatch(IP, 4444, SI, 1)
-					"""
-					call(['/opt/bin/ElasticityEngineCMD', SI, str(1)])
-					print('###############################Triggered %r, increase ####################################' %(SI))
-					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
-					self.EE_triggered = True
-				if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints < LowerLim and not self.EE_triggered:
-					#nodeCount here is essentially the 'minimum configutaion' (temporary solution)
-					if nodeCount > 2:
-						call(['/opt/bin/ElasticityEngineCMD', SI, str(2)])
-						print('###############################Triggered %r, decrease ####################################' %(SI))
+			if self.listedUsages.get(usageKey)!=None:
+				for SI in self.listedUsages[usageKey]:
+					if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints > upperLim and not self.EE_triggered:
+						"""
+						#won't be needing EE call over network
+						db = sh.open('connectedIPs.db')
+						IP = db['IPs'][0]
+						db.close()
+						EEdispatch(IP, 4444, SI, 1)
+						"""
+						#call(['/opt/bin/ElasticityEngineCMD', SI, str(1)])
+						print('###############################Triggered %r, increase ####################################' %(SI))
+						call('python -m EE.main safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP 1 1'.split(' '))
 						Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
 						self.EE_triggered = True
+					if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints < LowerLim and not self.EE_triggered:
+						#nodeCount here is essentially the 'minimum configutaion' (temporary solution)
+						if nodeCount > 2:
+							#call(['/opt/bin/ElasticityEngineCMD', SI, str(2)])
+							print('###############################Triggered %r, decrease ####################################' %(SI))
+							call('python -m EE.main safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP 1 2'.split(' '))
+							Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
+							self.EE_triggered = True
+			nodeCount=0
 
 
 
