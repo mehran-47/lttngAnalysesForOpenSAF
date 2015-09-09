@@ -73,7 +73,7 @@ class dictParser(object):
 					continue
 				#Dynamic long usage list data structure creation starts with last 1000 data points
 				self.updateListedUsages(1000)
-				self.determineEEaction('cpu_usage', 10, 70, 5)
+				self.determineEEaction('cpu_usage', 15, 60, 5)
 				print('\n-----------------SI-load:-------------------')
 				self.SI_usages.prettyPrint(0, keyColor=['cyan','bold'], valColor=['DARKCYAN'])
 				#print(self.listedUsages)	
@@ -179,7 +179,7 @@ class dictParser(object):
 						call('python -m EE.main safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP 1 1'.split(' '))
 						Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
 						self.EE_triggered = True
-					if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints < LowerLim and not self.EE_triggered:
+					elif sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints < LowerLim and not self.EE_triggered:
 						#nodeCount here is essentially the 'minimum configutaion' (temporary solution)
 						if nodeCount > 2:
 							#call(['/opt/bin/ElasticityEngineCMD', SI, str(2)])
