@@ -65,7 +65,7 @@ class dictParser(object):
 					if oneDict.get('time'):					
 						self.SI_usages = listedDict()
 						print('Usage on ' + oneDict.get('time'))
-					self.SIs.prettyPrint(0)		
+					self.SIs.prettyPrint(0)
 					self.setUsage()
 				except KeyError:
 					print('Warning! invalid key exists in data structure.\n(KeyError exception caught at serverAnalyses/analysis.py:run())')
@@ -73,9 +73,9 @@ class dictParser(object):
 					continue
 				#Dynamic long usage list data structure creation starts with last 1000 data points
 				self.updateListedUsages(1000)
-				self.determineEEaction('cpu_usage', 10, 70, 5)
+				self.determineEEaction('cpu_usage', 15, 60, 5)
 				print('\n-----------------SI-load:-------------------')
-				self.SI_usages.prettyPrint(0, keyColor=['cyan','bold'], valColor=['DARKCYAN'])
+				self.SI_usages.prettyPrint(0, keyColor=['blue','bold'], valColor=['blue'])
 				#print(self.listedUsages)	
 				print('\n\n\n')			
 		except KeyboardInterrupt:
@@ -133,8 +133,8 @@ class dictParser(object):
 	def setUsage(self):
 		nodeCount=0
 		for SI in self.SIs:
+			nodeCount = len(self.SIs.get(SI).keys()) if self.SIs.get(SI)!=None else 0
 			for node in self.SIs[SI]:
-				nodeCount+=1
 				if SI not in self.SI_usages:
 					self.SI_usages[SI]=listedDict()
 				self.SIs[SI][node].updateUsage(self.SI_usages[SI])
@@ -159,35 +159,34 @@ class dictParser(object):
 		#---E---Dynamic long usage list data structure creation ends
 
 	
-	def determineEEaction(self, usageKey, numOfConsideredDataPoints, upperLim, LowerLim):
-		nodeCount = 0
-		for SI in self.SIs:
-			for node in self.SIs[SI]:
-				nodeCount+=1
-			if self.listedUsages.get(usageKey)!=None:
-				for SI in self.listedUsages[usageKey]:
-					if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints > upperLim and not self.EE_triggered:
-						"""
-						#won't be needing EE call over network
-						db = sh.open('connectedIPs.db')
-						IP = db['IPs'][0]
-						db.close()
-						EEdispatch(IP, 4444, SI, 1)
-						"""
-						#call(['/opt/bin/ElasticityEngineCMD', SI, str(1)])
-						print('###############################Triggered %r, increase ####################################' %(SI))
-						call('python -m EE.main safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP 1 1'.split(' '))
-						Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
-						self.EE_triggered = True
-					if sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints < LowerLim and not self.EE_triggered:
-						#nodeCount here is essentially the 'minimum configutaion' (temporary solution)
-						if nodeCount > 2:
-							#call(['/opt/bin/ElasticityEngineCMD', SI, str(2)])
-							print('###############################Triggered %r, decrease ####################################' %(SI))
-							call('python -m EE.main safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP 1 2'.split(' '))
-							Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
-							self.EE_triggered = True
-			nodeCount=0
+	def determineEEaction(self, usageKey, numOfConsideredDataPoints, upperLim, lowerLim):
+		if self.listedUsages.get(usageKey)!=None:
+			for SI in self.listedUsages[usageKey]:
+				nodeCount = len(self.SIs.get(SI).keys()) if self.SIs.get(SI)!=None else 0
+				slidingWindowAverage = sum(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:])/numOfConsideredDataPoints
+				"""
+				print('#########\nSI: %s\nSliding window: %s\nAverage: %d\nUpperlim: %d and LowerLim: %d\n nodeCount: %d\n#########\n'\
+				 %( str(SI), 
+				 	str(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:]),\
+				 	slidingWindowAverage,\
+				 	upperLim,\
+				 	lowerLim,\
+				 	nodeCount\
+				 ), end='\r')
+				"""
+				if slidingWindowAverage > upperLim and not self.EE_triggered:
+					print('###############################Triggered %s, increase ####################################' %(SI))
+					cmd = 'python -m EE.main '+ str(SI) + ' 1 1'
+					call(cmd.split(' '))
+					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
+					self.EE_triggered = True
+				elif slidingWindowAverage < lowerLim and not self.EE_triggered and nodeCount > 2:
+					#nodeCount here is essentially the 'minimum configutaion' (temporary solution)
+					print('###############################Triggered %s, decrease ####################################' %(SI))
+					cmd = 'python -m EE.main '+ str(SI) + ' 1 2'
+					call(cmd.split(' '))
+					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
+					self.EE_triggered = True
 
 
 
