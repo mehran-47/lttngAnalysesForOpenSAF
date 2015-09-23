@@ -1,6 +1,7 @@
-#/usr/bin/env python
+#!/usr/bin/env python
+
 from __future__ import print_function
-import pyImm.immombin, pyImm.immom, pyImm.immomexamples, sys, re
+import pyImm.immombin, pyImm.immom, pyImm.immomexamples, sys, re, pprint
 from subprocess import call
 
 
@@ -57,7 +58,7 @@ class operation(object):
         for elem in pyImm.immom.getinstanceof('', 'SaAmfSIAssignment'):
             SI = 'safSi='+re.findall(r'(?<=safSi=)(.+)(?=)', elem)[0].replace('\\','')
             SU = 'safSu='+re.findall(r'(?<=safSu=)(.+)(?=,safSi)', elem)[0].replace('\\','')
-            node = chaindedQuery([SU, 'saAmfSUHostedByNode'])
+            node = self.chaindedQuery([SU, 'saAmfSUHostedByNode'])
             if SI in SI_SU_node:
                 if (SU, node) not in SI_SU_node.get(SI):
                     SI_SU_node[SI].append((SU, node))
@@ -65,12 +66,29 @@ class operation(object):
                 SI_SU_node[SI] = [(SU, node)]
         return SI_SU_node if len(SI_DN)==0 else SI_SU_node.get(SI_DN[0])
 
+    def getHostedSUsFromNode(self, nodeDN, *HAState):
+        SUNodeTuplesWithAllAssignments = []
+        for aTuplesList in op.getSUsAndNodesOfSI().values():
+            for aTuple in aTuplesList:
+                if aTuple[1]==nodeDN:
+                    SUNodeTuplesWithAllAssignments.append(aTuple)
+        if len(HAState)==0:
+            return [SU_node[0] for SU_node in SUNodeTuplesWithAllAssignments]
+        elif len(HAState)>0 and HAState[0]=='active':
+            return [SU_node[0] for SU_node in SUNodeTuplesWithAllAssignments if self.chaindedQuery([SU_node[0], 'saAmfSUNumCurrActiveSIs'])>0 ]
+        elif len(HAState)>0 and HAState[0]=='standby':
+            return [SU_node[0] for SU_node in SUNodeTuplesWithAllAssignments if self.chaindedQuery([SU_node[0], 'saAmfSUNumCurrStandbySIs'])>0 ]
+
+
     def changePreferredAssignmentNums(self, SG, SI, number):
         numberOfCurrentAssignments = pyImm.immom.getattributes(SG)['saAmfSGNumCurrAssignedSUs'][0]
         attrList = [
             ('saAmfSIPrefActiveAssignments', 'SAUINT32T', [numberOfCurrentAssignments+number])
         ]
-        self.modifyObject(SI, attrList)
+        if numberOfCurrentAssignments<4: 
+            self.modifyObject(SI, attrList)
+        else:
+            print('Add more nodes')
 
     def refresh(self, DN, **kwargs):
         call(['amf-adm','lock', DN])
@@ -91,10 +109,10 @@ class operation(object):
                 self.changePreferredAssignmentNums(SG, DN, 1)
             elif flag==2 and pyImm.immom.getattributes(SG)['saAmfSGNumCurrAssignedSUs'][0] > pyImm.immom.getattributes(SG)['saAmfSGNumPrefAssignedSUs'][0]:
                 self.changePreferredAssignmentNums(SG, DN, -1)
-            self.refresh(DN)
+                #call buffer manager
+            self.refresh(DN, show=True)
         else:
             print('Strategy not applicable to the SG\'s (%s) redundancy model (%s)' %(SG, SaAmfRedundancyModel[reduncancyModel]))
-
 
     def mergeSIworkload(self, DN, **kwargs):
         reduncancyModel = self.chaindedQuery([DN, 'saAmfSIProtectedbySG', 'saAmfSGType', 'saAmfSgtRedundancyModel'])
@@ -104,7 +122,7 @@ class operation(object):
                 ('saAmfSIPrefActiveAssignments', 'SAUINT32T', [self.chaindedQuery([DN,'saAmfSIPrefActiveAssignments'])-1 ] )
             ]
             self.modifyObject(DN, attrList)
-            self.refresh(DN)            
+            self.refresh(DN, show=True)            
         elif (self.chaindedQuery([SG,'saAmfSGNumPrefAssignedSUs'])-1)*self.chaindedQuery([SG,'saAmfSGMaxActiveSIsperSU']) >= len(self.getSIsOfSG(SG)):
             for SI in self.getSIsOfSG(SG):
                 if self.chaindedQuery([SG,'saAmfSGNumPrefAssignedSUs'])-1 >=  self.chaindedQuery([SI, 'saAmfSIPrefActiveAssignments']):
@@ -112,56 +130,40 @@ class operation(object):
                     attrList = [
                         ('saAmfSGNumPrefAssignedSUs', 'SAUINT32T', [self.chaindedQuery([SG,'saAmfSGNumPrefAssignedSUs'])-1 ] )
                     ]
-                    self.modifyObject(SG, attrList)
-                    #call buffer manager
-
-    def prioritizeLeastLoadedNode(self, DN, **kwargs):
-        pass
-
-    def mergeSIworkload(self, DN, **kwargs):
-        reduncancyModel = self.chaindedQuery([DN, 'saAmfSIProtectedbySG', 'saAmfSGType', 'saAmfSgtRedundancyModel'])
-        SG = self.chaindedQuery([DN, 'saAmfSIProtectedbySG'])
-        if self.chaindedQuery([DN, 'saAmfSIPrefActiveAssignments']) >= 3:
-            attrList = [
-                ('saAmfSIPrefActiveAssignments', 'SAUINT32T', self.chaindedQuery([DN,'saAmfSIPrefActiveAssignments'])-1 )
-            ]
-            self.modifyObject(SI, attrList)
+                    self.modifyObject(SG, attrList)                    
+                else:
+                    print('Reached minimum configuration')
         else:
             pass
+            #buffer manager
+
+    def prioritizeLeastLoadedNode(self, DN, **kwargs):
+        reduncancyModel = self.chaindedQuery([DN, 'saAmfSIProtectedbySG', 'saAmfSGType', 'saAmfSgtRedundancyModel'])
+        SG = self.chaindedQuery([DN, 'saAmfSIProtectedbySG'])
+        #The SU-Node tuple with the active assignment for the provided DN (SI DN)
+        SUNodeTupleWithActiveSIAssignment = [SU_node_active for SU_node_active in self.getSUsAndNodesOfSI(DN) if self.chaindedQuery([SU_node_active[0],'saAmfSUNumCurrActiveSIs'])>0][0]
+        #The SU-Node tuples with the active assignments for the provided DN (SI DN) and other SIs
+        ActiveFinal = len(self.getHostedSUsFromNode(SUNodeTupleWithActiveSIAssignment, 'active'))
+        StandbyFinal = len(self.getHostedSUsFromNode(SUNodeTupleWithActiveSIAssignment, 'standby'))
 
 
 
-def act(SI, SInumber, workloadChangeType):
+if __name__ == '__main__':
     op = operation('EE')
-    op.spreadSIWorkload(SI, workloadChangeType)
-
-
-if __name__=='__main__':
-    command_output_map = { 'action': {  
-                                        1: 'increase', 
-                                        2: 'decrease'
-                                      }, 
-                           'SI_number': {
-                                        1: 'single SI',
-                                        2: 'multiple SIs'
-                                        }
-                         }
-    if sys.argv[3:]:
-        print('Received command to increase assignment of SI: %s, for %s %s\n\n' %(sys.argv[1],\
-                                                                               command_output_map['SI_number'].get(int(sys.argv[2])),\
-                                                                               command_output_map['action'].get(int(sys.argv[3])) ))
-        SI = sys.argv[1]
-        SG = pyImm.immom.getattributes(SI)['saAmfSIProtectedbySG'][0]
-        #print('attributes of the SI: %s\n%s\n\n' %(SI, str(pyImm.immom.getattributes(SI)) ) )
-        #print('attributes of the SG:%s protecting the SI: %s\n%s\n\n' %(SG, SI ,str(pyImm.immom.getattributes(SG)) ) )
-        print('saAmfSGNumCurrInstantiatedSpareSUs :' + str(pyImm.immom.getattributes(SG)['saAmfSGNumCurrInstantiatedSpareSUs']))
-        print('saAmfSGNumPrefAssignedSUs :' + str(pyImm.immom.getattributes(SG)['saAmfSGNumPrefAssignedSUs']))
-        print('saAmfSGNumCurrAssignedSUs :' + str(pyImm.immom.getattributes(SG)['saAmfSGNumCurrAssignedSUs']))
-        op = operation('EE')
-        op.spreadSIWorkload(SI, int(sys.argv[3]))
-
-    else:
-        print("Invalid input")
-        print('Command example:\n\
-            <SI DN> <1 for single SI or 2 for multiple SIs> <1 for increase 2 for decrease>\n\
-            e.g.: "safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP 1 2" signifies command: safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP, single SI decrease')
+    pp = pprint.PrettyPrinter(indent=4)
+    #op.mergeSIworkload(sys.argv[1])
+    op.spreadSIWorkload(sys.argv[1], 1)
+    #pp.pprint([SU_node[0] for SU_node in op.getSUsAndNodesOfSI(sys.argv[1]) if op.chaindedQuery([SU_node[0],'saAmfSUNumCurrActiveSIs'])>0])
+    #SUNodeTupleWithActiveSIAssignment = [SU_node_active for SU_node_active in op.getSUsAndNodesOfSI(sys.argv[1]) if op.chaindedQuery([SU_node_active[0],'saAmfSUNumCurrActiveSIs'])>0][0]
+    #for elem in pyImm.immom.getinstanceof('', 'SaAmfSIAssignment'): pp.pprint(elem)
+    '''
+    print('all')
+    pp.pprint(op.getHostedSUsFromNode('safAmfNode=SC-2,safAmfCluster=myAmfCluster'))
+    print('active')
+    pp.pprint(op.getHostedSUsFromNode('safAmfNode=SC-2,safAmfCluster=myAmfCluster', 'active'))
+    print('standby')
+    pp.pprint(op.getHostedSUsFromNode('safAmfNode=SC-2,safAmfCluster=myAmfCluster', 'standby'))
+    '''
+    #SUNodeListWithActiveAssignmentFromAnySI = [SU_node_active for SU_node_active in op.getSUsAndNodesOfSI() if op.chaindedQuery([SU_node_active[0],'saAmfSUNumCurrActiveSIs'])>0 ]
+    #pp.pprint(SUNodeTupleWithActiveSIAssignment)
+    #pp.pprint(op.getSUsAndNodesOfSI())
