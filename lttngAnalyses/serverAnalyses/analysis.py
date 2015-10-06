@@ -1,11 +1,51 @@
 #!/usr/bin/env python3
-import re, time, shelve as sh
+import re, time, shelve as sh, json, mimetypes, os
 #import matplotlib.pyplot as plt
 from threading import Thread
 from lttngAnalyses.serverAnalyses.listedDict import listedDict
 #from lttngAnalyses.EEaction.dispatcher import dispatch as EEdispatch
 from itertools import cycle
 from subprocess import call
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+GUI_json = {}
+root_dir = os.getcwd() + '/'
+
+class MonitoringGUIHandler(BaseHTTPRequestHandler):
+	'''Small class for streaming monitoring output via a simple HTTP server'''
+	error_message_format = '<h1>Har har</h1>'
+	
+	def do_GET(self):
+		mime = {"html":"text/html", "css":"text/css", "png":"image/png", "js":"application/javascript", "json":"application/json"}
+		RequestedFileType = mimetypes.guess_type(self.path)[0] if mimetypes.guess_type(self.path)[0]!=None else 'text/html'
+		try:
+			if self.path == '/':
+				self.send_response(200)
+				self.send_header("Content-type", "application/json")
+				self.end_headers()
+				self.wfile.write(bytes(json.dumps(GUI_json), 'UTF-8'))
+				return
+			elif os.path.isfile(root_dir + self.path):
+				self.send_response(200)
+				self.send_header("Content-type", RequestedFileType)
+				self.end_headers()
+				fp = open(root_dir + self.path, 'rb')
+				self.wfile.write(fp.read())
+				fp.close()
+				return
+			else:
+				self.send_response(404, 'File not found')
+				self.send_header("Content-type", 'text/html')
+				self.end_headers()
+				self.wfile.write(bytes('File not found', 'UTF-8'))
+				return
+		except BrokenPipeError:
+			print('Failed to complete request')
+	
+	def log_message(self, format, *args):
+		return
+
+
 
 class dictParser(object):
 	"""dictParser class for parsing nested dict in runtime in the monitoring server"""
@@ -18,7 +58,7 @@ class dictParser(object):
 		self.EE_triggered = False
 		self.cluster_has_min_config = False
 
-	def run(self, child_conn):
+	def run(self, child_conn, GUIserver=''):
 		"""
 		-------------------Sample clientDict for reference----------------------------		
 		{'nstime': 1413934751411769136, \
@@ -48,6 +88,11 @@ class dictParser(object):
 		"""
 		#Thread spawner for plotting
 		#Thread(target=self.plotThreadPerSI).start()
+		if GUIserver!='':
+			server, port = GUIserver.split(':')[0], int(GUIserver.split(':')[1])
+			monitoringGUIserver = HTTPServer((server, port), MonitoringGUIHandler)
+			print('############# gui server should be at : %s:%d ##############' %(server,port))
+			Thread(target=monitoringGUIserver.serve_forever).start()
 		try:
 			while True:
 				oneDict = child_conn.recv()
@@ -65,6 +110,7 @@ class dictParser(object):
 					if oneDict.get('time'):					
 						self.SI_usages = listedDict()
 						print('Usage on ' + oneDict.get('time'))
+					GUI_json['SIs'] = self.SIs
 					self.SIs.prettyPrint(0)
 					self.setUsage()
 				except KeyError:
@@ -76,6 +122,7 @@ class dictParser(object):
 				self.determineEEaction('cpu_usage', 15, 60, 5)
 				print('\n-----------------SI-load:-------------------')
 				self.SI_usages.prettyPrint(0, keyColor=['blue','bold'], valColor=['blue'])
+				GUI_json['summ'] = self.SI_usages
 				#print(self.listedUsages)	
 				print('\n\n\n')			
 		except KeyboardInterrupt:
@@ -167,11 +214,11 @@ class dictParser(object):
 				"""
 				print('#########\nSI: %s\nSliding window: %s\nAverage: %d\nUpperlim: %d and LowerLim: %d\n nodeCount: %d\n#########\n'\
 				 %( str(SI), 
-				 	str(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:]),\
-				 	slidingWindowAverage,\
-				 	upperLim,\
-				 	lowerLim,\
-				 	nodeCount\
+					str(self.listedUsages[usageKey][SI][-numOfConsideredDataPoints:]),\
+					slidingWindowAverage,\
+					upperLim,\
+					lowerLim,\
+					nodeCount\
 				 ), end='\r')
 				"""
 				if slidingWindowAverage > upperLim and not self.EE_triggered:
@@ -251,4 +298,3 @@ class dictParser(object):
 			except KeyboardInterrupt:
 				print('\nplotting stopped\n')
 				sys.exit()
-		

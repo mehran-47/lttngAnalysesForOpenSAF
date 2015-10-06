@@ -82,7 +82,7 @@ if __name__ == '__main__':
     parent_conn, child_conn = Pipe()
     dp = dictParser()
     print("server listening to %r:%r" %(addr,port))
-    getterproc = Process(target=dp.run , args=((child_conn),))
+    getterproc = Process(target=dp.run , args=((child_conn), addr+':'+str(8000) ) )
     getterproc.start()
     server.listen(parent_conn)
     if getterproc.is_alive():
