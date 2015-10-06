@@ -1,0 +1,89 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+body, html{
+	margin:0;
+	padding: 0;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-style: normal;
+	font-size:1em;
+	height: 99%;
+}
+
+p{
+	margin: 0;
+}
+
+.clearFloat{
+	display: block;
+	float: none;
+	clear: both;
+}
+
+.overview{
+	display: block;
+	margin: 0 auto;
+	margin-top: 5px;
+	height: 70%;
+	width: 99%;
+	background: #eee;
+}
+
+h1.overviewTitle{
+	font-weight: lighter;
+	text-align: center;
+	font-size: 1em;
+}
+
+.conceptualContainer{
+	background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    width: 49%%;
+    color: #fff;
+    float: left;
+    font-size: 12px;
+    padding: 5px;
+    margin: 2px;
+}
+
+.SIclass{
+	font-size: 14px;
+}
+
+.SIload{
+	border: none;
+    float: none;
+    margin: 1px auto;
+    width: 97%;
+}
+
+.nodeStyle{
+	border: none;
+    width: 95%;
+}
+
+body .active{
+	background: rgba(84, 36, 28, 0.5);
+}
+
+body .standby{
+	background: rgba(23, 67, 69, 0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
