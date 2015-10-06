@@ -55,13 +55,11 @@ h1.overviewTitle{
 .SIload{
 	border: none;
     float: none;
-    margin: 1px auto;
-    width: 97%;
 }
 
 .nodeStyle{
 	border: none;
-    width: 95%;
+	position: relative;
 }
 
 body .active{
@@ -70,6 +68,21 @@ body .active{
 
 body .standby{
 	background: rgba(23, 67, 69, 0.5);
+}
+
+.nodeStyle .detailsToolTip{
+	background: rgba(227, 235, 193, 0.8);
+    box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.7);
+    color: #000;
+    display: none;
+    padding: 5px;
+    position: fixed;
+    width: 50%;
+    z-index: 10
+}
+
+.nodeStyle:hover .detailsToolTip{
+	display: block;
 }
 
 
