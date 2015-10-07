@@ -7,11 +7,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="css/main.css">
-        <script src="monitoringEngineGuiBuilder.js"></script>
+        <!-- scripts for plotly 
+        <script type="application/javascript" src="plotly_basic/dependencies/d3.v3.min.js"></script>
+        <script type="application/javascript" src="plotly_basic/dependencies/jquery-latest.js"></script>
+        <script type="application/javascript" src="plotly_basic/plotly.min.js"></script>
+        <script type="application/javascript" src="raphael.js"></script>
+        <script type="application/javascript" src="g.raphael-min.js"></script>
+        <script type="application/javascript" src="g.line.js"></script>
+        main script -->
+        <script type="application/javascript" src="monitoringEngineGuiBuilder.js"></script>
     </head>
     <body>
-        <div id="architecture_overview" class="overview">
-            <h1 class="overviewTitle">Cluster Overview</h1>
+        <h1 class="overviewTitle">Cluster Overview</h1>
+        <div id="architecture_overview" class="overview"></div>
+        <div id="plotContainer" class="plotContainer">
+            <canvas id="plotCanvas" width="1024" height="350" class="canvasStyle"></canvas>
         </div>
     </body>
 </html>

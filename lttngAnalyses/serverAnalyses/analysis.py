@@ -119,7 +119,7 @@ class dictParser(object):
 					continue
 				#Dynamic long usage list data structure creation starts with last 1000 data points
 				self.updateListedUsages(1000)
-				self.determineEEaction('cpu_usage', 15, 60, 5)
+				self.determineEEaction('cpu_usage', 15, 45, 5)
 				print('\n-----------------SI-load:-------------------')
 				self.SI_usages.prettyPrint(0, keyColor=['blue','bold'], valColor=['blue'])
 				GUI_json['summ'] = self.SI_usages

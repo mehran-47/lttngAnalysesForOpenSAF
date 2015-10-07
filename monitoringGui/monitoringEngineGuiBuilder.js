@@ -1,9 +1,50 @@
 "use strict"
 
+//Global variable to hold plot data.
+var SIstoplot = {
+	'data_arrays':{}
+}
 
-window.onload = function(){
+window.onload = function(){	
 	getCallWrapper();
 	var intervalExec = setInterval(getCallWrapper, 3000);
+	var canvas = document.getElementById("plotCanvas");
+	var context = canvas.getContext("2d");
+	drawPlotWithContext(context, SIstoplot);
+	var drawWrapper = function(){		
+		//alert(JSON.stringify(SIstoplot.data_arrays[anSIload]));
+		//testPlot.innerHTML = JSON.stringify(x_y);
+		drawPlotWithContext(context, SIstoplot);
+	}
+	var dummIntervalExec = setInterval(drawWrapper, 3000);
+};
+
+
+function drawPlotWithContext(context, objectsToPlot){
+	var maxY = 350;
+	var maxX = 1024;
+	var scaleX = 10;
+	var rgb = [128,128,128];
+	var objCount = 0;
+	var canvas = document.getElementById("plotCanvas");
+	for(var anSIload in objectsToPlot.data_arrays){
+		context.clearRect(0,0, canvas.width, canvas.height);
+		objCount++;
+		if(objectsToPlot.data_arrays[anSIload]['y'].length*scaleX > maxX){
+			//objectsToPlot.data_arrays[anSIload]['y'] = objectsToPlot.data_arrays[anSIload]['y'].slice(-Math.round(maxX/scaleX), 0);
+			//objectsToPlot.data_arrays[anSIload]['x'] = objectsToPlot.data_arrays[anSIload]['y'].slice(0, Math.round(maxX/scaleX));
+			objectsToPlot.data_arrays[anSIload]['y'].shift();
+			objectsToPlot.data_arrays[anSIload]['x'].pop();
+		}
+		for(var i=0; i<objectsToPlot.data_arrays[anSIload]['y'].length-1; i++){
+			context.moveTo(objectsToPlot.data_arrays[anSIload]['x'][i]*scaleX,  maxY-maxY*objectsToPlot.data_arrays[anSIload]['y'][i]/100 );
+			context.lineTo(objectsToPlot.data_arrays[anSIload]['x'][i+1]*scaleX,  maxY-maxY*objectsToPlot.data_arrays[anSIload]['y'][i+1]/100 );			
+		}
+		context.lineWidth = 2;
+		context.strokeStyle = 'rgb(' + (64/objCount).toString() +',' + (128/objCount).toString() + ',' + (255/objCount).toString()+ ')';
+	//context.strokeStyle = '#ff0000';    
+	}
+	context.stroke();
 };
 
 
@@ -53,6 +94,14 @@ function JSON_to_HTML(text){
 			var aLoadLine = document.createElement('div');
 			aLoadLine.innerHTML += aMetric + ' : ' + data.summ[anSI][aMetric];
 			load_div.appendChild(aLoadLine);
+			if(aMetric=='cpu_usage'){
+				if(!(anSI in SIstoplot.data_arrays)){
+					SIstoplot.data_arrays[anSI] = {'x':[], 'y':[] };
+				}else{
+					SIstoplot.data_arrays[anSI]['y'].push(data.summ[anSI]['cpu_usage']);
+					SIstoplot.data_arrays[anSI]['x'].push(SIstoplot.data_arrays[anSI]['y'].length-1);
+				}
+			}
 		}
 		SI_div.appendChild(load_div);
 		createAndAdd('div', SI_div, 'clearFloat', '');
