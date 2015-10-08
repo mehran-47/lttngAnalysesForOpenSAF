@@ -27,24 +27,24 @@ function drawPlotWithContext(context, objectsToPlot){
 	var rgb = [128,128,128];
 	var objCount = 0;
 	var canvas = document.getElementById("plotCanvas");
+	context.clearRect(0,0, canvas.width, canvas.height);
 	for(var anSIload in objectsToPlot.data_arrays){
-		context.clearRect(0,0, canvas.width, canvas.height);
 		objCount++;
-		if(objectsToPlot.data_arrays[anSIload]['y'].length*scaleX > maxX){
-			//objectsToPlot.data_arrays[anSIload]['y'] = objectsToPlot.data_arrays[anSIload]['y'].slice(-Math.round(maxX/scaleX), 0);
-			//objectsToPlot.data_arrays[anSIload]['x'] = objectsToPlot.data_arrays[anSIload]['y'].slice(0, Math.round(maxX/scaleX));
+		if(objectsToPlot.data_arrays[anSIload]['y'].length*scaleX > maxX){	
 			objectsToPlot.data_arrays[anSIload]['y'].shift();
 			objectsToPlot.data_arrays[anSIload]['x'].pop();
 		}
+		context.beginPath();
 		for(var i=0; i<objectsToPlot.data_arrays[anSIload]['y'].length-1; i++){
 			context.moveTo(objectsToPlot.data_arrays[anSIload]['x'][i]*scaleX,  maxY-maxY*objectsToPlot.data_arrays[anSIload]['y'][i]/100 );
 			context.lineTo(objectsToPlot.data_arrays[anSIload]['x'][i+1]*scaleX,  maxY-maxY*objectsToPlot.data_arrays[anSIload]['y'][i+1]/100 );			
 		}
 		context.lineWidth = 2;
-		context.strokeStyle = 'rgb(' + (64/objCount).toString() +',' + (128/objCount).toString() + ',' + (255/objCount).toString()+ ')';
+		//context.strokeStyle = objCount%2==1 ? '#207ce5' : '#e73827';
+		context.strokeStyle = anSIload == 'safSi=AmfDemo,safApp=AmfDemo1' ? '#207ce5' : '#e73827'
+		context.stroke();
 	//context.strokeStyle = '#ff0000';    
-	}
-	context.stroke();
+	}	
 };
 
 

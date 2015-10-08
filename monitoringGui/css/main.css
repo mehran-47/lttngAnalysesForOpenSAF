@@ -88,6 +88,7 @@ body .standby{
 .plotContainer{
 	width: 95%;
 	margin: 0 auto;
+	position: relative;
 }
 
 .canvasStyle{
@@ -96,10 +97,44 @@ body .standby{
     margin: 5px auto;
 }
 
+.xAxis, .yAxis{
+	margin:5px;
+	position: absolute;
+	z-index: 10;
+	top:104%;
+	left: 21%;
+}
 
+.yAxis{
+	-ms-transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+	transform: rotate(270deg);
+	top:79%;
+	left:17%;
+}
 
+#curveLegends{
+	font-size: 10px;
+}
 
+.oneRow p, .oneRow div{
+	display: inline;
+	float:left;
+}
 
+.VLC_col, .HTTP_col{
+	width: 10px;
+	height: 10px;
+	margin: 3px 3px 0 0 ;
+}
+
+.VLC_col{
+	background: #207ce5;
+}
+
+.HTTP_col{
+	background: #e73827;
+}
 
 
 

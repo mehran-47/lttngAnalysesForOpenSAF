@@ -21,7 +21,22 @@
         <h1 class="overviewTitle">Cluster Overview</h1>
         <div id="architecture_overview" class="overview"></div>
         <div id="plotContainer" class="plotContainer">
+            <h1 class="overviewTitle">Relative CPU load of SIs (cpu_usage, range 0% - 100%)</h1>
+            <div id="curveLegends">
+                <div class="oneRow">
+                    <div class="VLC_col"></div>
+                    <p>safSi=AmfDemo,safApp=AmfDemo1</p>
+                </div>
+                <div class="clearFloat"></div>
+                <div class="oneRow">
+                    <div class="HTTP_col"></div>
+                    <p>safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP</p>
+                </div>
+            </div>
+            <div class="clearFloat"></div>
             <canvas id="plotCanvas" width="1024" height="350" class="canvasStyle"></canvas>
+            <div class="clearFloat xAxis" id="time">Time --></div>
+            <div class="clearFloat yAxis" id="time">SI load --></div>
         </div>
     </body>
 </html>
