@@ -13,7 +13,7 @@ root_dir = os.getcwd() + '/'
 
 class MonitoringGUIHandler(BaseHTTPRequestHandler):
 	'''Small class for streaming monitoring output via a simple HTTP server'''
-	error_message_format = '<h1>Har har</h1>'
+	error_message_format = '<h1>404: cul-de-sac :(</h1>'
 	
 	def do_GET(self):
 		mime = {"html":"text/html", "css":"text/css", "png":"image/png", "js":"application/javascript", "json":"application/json"}
@@ -86,12 +86,9 @@ class dictParser(object):
 			}, \
 		}
 		"""
-		#Thread spawner for plotting
-		#Thread(target=self.plotThreadPerSI).start()
 		if GUIserver!='':
 			server, port = GUIserver.split(':')[0], int(GUIserver.split(':')[1])
 			monitoringGUIserver = HTTPServer((server, port), MonitoringGUIHandler)
-			print('############# gui server should be at : %s:%d ##############' %(server,port))
 			Thread(target=monitoringGUIserver.serve_forever).start()
 		try:
 			while True:
@@ -159,23 +156,6 @@ class dictParser(object):
 				if self.SIs.getFromPath([SI,node,HAS,CSI])!=None:
 					if HAS!=HAState and component in self.SIs.getFromPath([SI,node,HAS,CSI]):
 						self.SIs.deleteItem([SI,node,HAS,CSI])
-	
-	#Deprecated?! Will be deleted soon					
-	def setAggregatedUsage(self):
-		nodeCount = 0
-		for SI in self.SIs:
-			for node in self.SIs[SI]:
-				nodeCount+=1
-				for HAState in self.SIs[SI][node]:
-					for CSI in self.SIs[SI][node][HAState]:
-						for component in self.SIs[SI][node][HAState][CSI]:
-							for usage in self.SIs[SI][node][HAState][CSI][component]:
-								if usage!=None and self.usages.get(usage)!=None:
-									self.usages[usage]+=self.SIs[SI][node][HAState][CSI][component][usage]
-								elif usage!=None:
-									self.usages[usage]=self.SIs[SI][node][HAState][CSI][component][usage]																		
-		for key in self.usages:
-			self.usages[key] = self.usages[key]/nodeCount if nodeCount!=0 else self.usages[key]
 
 	def setUsage(self):
 		nodeCount=0
@@ -240,61 +220,3 @@ class dictParser(object):
 	def __countDownForEEFlag(self, t):
 		time.sleep(t)
 		self.EE_triggered = False
-
-
-	def plotThreadPerSI(self):
-		thr = Thread(target=self.plotList, args=([100,50],))
-		while True:
-			prevListedUsg = len(self.listedUsages)
-			time.sleep(4)
-			if len(self.listedUsages)!=prevListedUsg:
-				if thr.isAlive(): 
-					thr.join()					
-				thr = Thread(target=self.plotList, args=([100,50],))
-				thr.start()
-
-	def plotList(self, dimension):
-		print('##############starting thread###############')
-		colors = cycle(["b", "g"])
-		plt.figure(1)
-		seqNum=1
-		for usage in self.listedUsages:						
-			plt.subplot(len(self.listedUsages[usage].keys())*100+10+seqNum)
-			plt.axis([0, dimension[0], 0, dimension[1]])
-			plt.ion()
-			seqNum+=1		
-		plt.show()
-		while True:
-			try:
-				seqNum=1
-				for usage in self.listedUsages:
-					for SI in self.listedUsages[usage]:
-						plt.subplot(len(self.listedUsages[usage].keys())*100+10+seqNum)
-						##For progressing plots. Could omit for short demos
-						#plt.cla()
-						plt.axis([0, dimension[0], 0, dimension[1]])					
-						plt.scatter(range(0, len(self.listedUsages[usage][SI])),\
-						 self.listedUsages[usage][SI][-dimension[0]:],\
-						 color=next(colors))
-						plt.draw()
-						time.sleep(0.01)
-					seqNum+=1
-					#break
-			except KeyboardInterrupt:
-				print('\nplotting stopped\n')
-				sys.exit()		
-
-	def plotCPUusage(self, dimension):
-		plt.axis([0, dimension[0], 0, dimension[1]])
-		plt.ion()
-		plt.show()
-		while True:
-			try:
-				plt.scatter(range(0, len(self.cpu_usage_list[-dimension[0]:])), self.cpu_usage_list[-dimension[0]:])
-				plt.draw()
-				time.sleep(0.1)
-				plt.clf()
-				plt.axis([0, dimension[0], 0, dimension[1]])
-			except KeyboardInterrupt:
-				print('\nplotting stopped\n')
-				sys.exit()
