@@ -40,13 +40,13 @@ def fetch_and_set_func(activeComps, interval):
 			try:
 				cpu_usage = ps.Process(pid).get_cpu_percent(interval=interval) if 'get_cpu_percent' in dir(ps.Process) else ps.Process(pid).cpu_percent(interval=interval)
 				activeComps[component]['cpu_usage'] = cpu_usage if cpu_usage<100.0 else 100.0
-				activeComps[component]['memory_usage'] = ps.Process(pid).get_memory_percent()
+				activeComps[component]['memory_usage'] = ps.Process(pid).memory_percent()
 			except ps.NoSuchProcess:
 				activeComps[component]['cpu_usage'] = 0.0
 				activeComps[component]['memory_usage'] = 0.0
 				print('Error: "psutil.NoSuchProcess" process ID %d died while measuring usage.'%(pid))
 			activeComps[component]['cpu_cycles_abs'] = get_cpu_abs(activeComps[component]['cpu_usage'])
-			activeComps[component]['memory_usage_abs'] = activeComps[component]['memory_usage']*ps.virtmem_usage().total/10**8
+			activeComps[component]['memory_usage_abs'] = activeComps[component]['memory_usage']*ps.virtual_memory().total/10**8
 
 	to_send['component_info']=activeComps
 	to_send['time'] = time.strftime("%d-%m-%Y") + ' at ' + time.strftime("%H:%M:%S")

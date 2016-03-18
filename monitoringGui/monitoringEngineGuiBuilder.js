@@ -49,7 +49,7 @@ function drawPlotWithContext(context, objectsToPlot){
 
 
 function getCallWrapper(){
-	get_information("http://172.16.71.131:8000", JSON_to_HTML);
+	get_information("http://192.168.10.15:8000", JSON_to_HTML);
 }
 
 function get_information(link, callback) {
