@@ -1,0 +1,5 @@
+#For using python IMM API, do the following
+
+* For OSAF 4.4, go to pwd/home/node1/Documents/opensaf-staging/samples/immsv/immom_python
+* Before using 'immombin', execute the following command to generate all necessary binaries
+gcc -shared -o immombin.so -I/usr/include/python2.7 -I$OPENSAFD/include -Wall immombin.c -L$OPENSAFD/lib -lpython2.7 -lSaImmOm -fPIC
