@@ -164,4 +164,4 @@ if __name__=='__main__':
         print("Invalid input")
         print('Command example:\n\
             <SI DN> <1 for single SI or 2 for multiple SIs> <1 for increase 2 for decrease>\n\
-            e.g.: "safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP 1 2" signifies command: safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP, single SI decrease')
+            e.g.: "python -m EE.main safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP 1 2" signifies command: safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP, single SI decrease')
