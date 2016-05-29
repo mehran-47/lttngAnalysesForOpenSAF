@@ -13,9 +13,18 @@ class operation(object):
         if admin[0:]:
             #Initializing the admin of the DNs. Can't change a thing without setting the admin.
             self.admin = admin[0]
-            pyImm.immombin.saImmOmAdminOwnerInitialize(self.admin)
         else:
-            pyImm.immombin.saImmOmAdminOwnerInitialize('elasticity_engine')
+            self.admin='elasticity_engine'
+        pyImm.immombin.saImmOmAdminOwnerInitialize(self.admin)
+
+    def getadminowner(self, dn):
+        """Returns the adminowner of an object or '' if there are no adminowner.
+        """
+        for (n,t,v) in pyImm.immom.getobject(dn):
+            if n == 'SaImmAttrAdminOwnerName':
+                if v:
+                   return v[0]
+                return ''
 
     def chaindedQuery(self, queryChain):
         cq = lambda DN, attribute: pyImm.immom.getattributes(DN)[attribute][0]
@@ -23,9 +32,10 @@ class operation(object):
 
     def modifyObject(self, DN, attrList):
         try:
-            pyImm.immombin.saImmOmAdminOwnerClear('SA_IMM_SUBTREE', [DN])
-            #Setting the admin to the latest admin initialized. In this case its self.admin 
-            pyImm.immombin.saImmOmAdminOwnerSet('SA_IMM_SUBTREE', [DN])
+            if self.getadminowner(DN)!=self.admin:
+                pyImm.immombin.saImmOmAdminOwnerClear('SA_IMM_SUBTREE', [DN])
+                #Setting the admin to the latest admin initialized. In this case its self.admin
+                pyImm.immombin.saImmOmAdminOwnerSet('SA_IMM_SUBTREE', [DN])
         except:
             print('ownership didn\'t work')
             raise
@@ -35,7 +45,7 @@ class operation(object):
             pyImm.immombin.saImmOmCcbApply()
             pyImm.immombin.saImmOmCcbFinalize()
             #Clearing admin-ownership of the object and finalizing
-            pyImm.immombin.saImmOmAdminOwnerFinalize()
+            ##pyImm.immombin.saImmOmAdminOwnerFinalize()
         except:
             print('modification within object didn\'t work')
             raise
@@ -87,11 +97,21 @@ class operation(object):
         reduncancyModel = self.chaindedQuery([DN, 'saAmfSIProtectedbySG', 'saAmfSGType', 'saAmfSgtRedundancyModel'])
         SG = self.chaindedQuery([DN, 'saAmfSIProtectedbySG'])
         if reduncancyModel == SaAmfRedundancyModel.index('N_WAY_ACTIVE'):
+            currentInserviceBuff = int(self.chaindedQuery(['safBuff='+SG, 'saInserviceBuff']))
             if flag==1 and pyImm.immom.getattributes(SG)['saAmfSGNumCurrInstantiatedSpareSUs'][0] > 0:
                 self.changePreferredAssignmentNums(SG, DN, 1)
+                attrList = [
+                        ('saInserviceBuff', 'SAUINT32T', [currentInserviceBuff-1])
+                    ]
+                self.modifyObject('safBuff='+SG, attrList)
             elif flag==2 and pyImm.immom.getattributes(SG)['saAmfSGNumCurrAssignedSUs'][0] > pyImm.immom.getattributes(SG)['saAmfSGNumPrefAssignedSUs'][0]:
                 self.changePreferredAssignmentNums(SG, DN, -1)
+                attrList = [
+                        ('saInserviceBuff', 'SAUINT32T', [currentInserviceBuff+1])
+                    ]
             self.refresh(DN)
+            self.modifyObject('safBuff='+SG, attrList)
+            self.checkAndAdjustNodesFor(SG)
         else:
             print('Strategy not applicable to the SG\'s (%s) redundancy model (%s)' %(SG, SaAmfRedundancyModel[reduncancyModel]))
 
@@ -129,6 +149,9 @@ class operation(object):
         else:
             pass
 
+    def checkAndAdjustNodesFor(self, SG_DN):
+        if int(op.chaindedQuery(['safBuff='+SG_DN, 'saInserviceBuff']))==0:
+            print('action will be taken')
 
 
 def act(SI, SInumber, workloadChangeType):
@@ -136,7 +159,16 @@ def act(SI, SInumber, workloadChangeType):
     op.spreadSIWorkload(SI, workloadChangeType)
 
 
+
 if __name__=='__main__':
+    #op = operation('EE')
+    #print(op.chaindedQuery(['safBuff=safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', 'saInserviceBuff']))
+    #attrList = [
+    #                    ('saInserviceBuff', 'SAUINT32T', [3])
+    #                ]
+    #print("%r, %r" %('safBuff=safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', attrList))
+    #op.modifyObject('safBuff=safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', attrList) 
+    #'''
     command_output_map = { 'action': {  
                                         1: 'increase', 
                                         2: 'decrease'
@@ -165,3 +197,4 @@ if __name__=='__main__':
         print('Command example:\n\
             <SI DN> <1 for single SI or 2 for multiple SIs> <1 for increase 2 for decrease>\n\
             e.g.: "python -m EE.main safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP 1 2" signifies command: safSi=SI_1_NWayActiveHTTP,safApp=AppNWayActiveHTTP, single SI decrease')
+    #'''
