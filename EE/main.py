@@ -151,7 +151,69 @@ class operation(object):
 
     def checkAndAdjustNodesFor(self, SG_DN):
         if int(op.chaindedQuery(['safBuff='+SG_DN, 'saInserviceBuff']))==0:
-            print('action will be taken')
+            print('bringing up new node')
+            attrListSaAmfNodeSwBundleHTTP=[('saAmfNodeSwBundlePathPrefix','SASTRINGT',['/opt/httpComponent'])]
+            attrListSaAmfNodeSwBundle=[('saAmfNodeSwBundlePathPrefix','SASTRINGT',['/usr/local/lib/opensaf/clc-cli'])]
+            #for adding payload
+            attrListSUPL=[('saAmfSUType','SANAMET',['safVersion=4.0.0,safSuType=OpenSafSuTypeND']),('saAmfSURank','SAUINT32T',[0]),('saAmfSUHostNodeOrNodeGroup','SANAMET',['safAmfNode=PL-4,safAmfCluster=myAmfCluster']),('saAmfSUFailover','SAUINT32T',[1]),('saAmfSUAdminState','SAUINT32T',[1])]
+            attrListCompWDOG=[('saAmfCompType','SANAMET',['safVersion=4.0.0,safCompType=OpenSafCompTypeAMFWDOG'])]
+            attrListCompCSIWDOG=[]
+            attrListCompCPND=[('saAmfCompType','SANAMET',['safVersion=4.0.0,safCompType=OpenSafCompTypeCPND'])]
+            attrListCompCSICPND=[]
+            attrListCompGLND=[('saAmfCompType','SANAMET',['safVersion=4.0.0,safCompType=OpenSafCompTypeGLND'])]
+            attrListCompCSIGLND=[]
+            attrListCompIMMND=[('saAmfCompType','SANAMET',['safVersion=4.0.0,safCompType=OpenSafCompTypeIMMND'])]
+            attrListCompCSIIMMND=[]
+            attrListCompMQND=[('saAmfCompType','SANAMET',['safVersion=4.0.0,safCompType=OpenSafCompTypeMQND'])]
+            attrListCompCSIMQND=[]
+            attrListCompSMFND=[('saAmfCompType','SANAMET',['safVersion=4.0.0,safCompType=OpenSafCompTypeSMFND'])]
+            attrListCompCSISMFND=[]
+            attrListCompCSISMFND=[]
+            attrListSUHTTP=[('saAmfSUType','SANAMET',['safVersion=4.0.0,safSuType=SUBaseTypeForNWayActiveHTTP']),('saAmfSURank','SAUINT32T',[0]),('saAmfSUHostNodeOrNodeGroup','SANAMET',['safAmfNode=PL-4,safAmfCluster=myAmfCluster']),('saAmfSUFailover','SAUINT32T',[1]),('saAmfSUAdminState','SAUINT32T',[3])]
+            attrListCompHTTP=[('saAmfCompType','SANAMET',['safVersion=4.0.0,safCompType=CompBaseTypeForNWayActiveHTTP']),('saAmfCompInstantiateCmdArgv','SASTRINGT',['8080'])]
+            attrListCompCSIHTTP=[]
+            ##creating objects in the configuration
+            #creating CLM node object
+            try:
+		pyImm.immombin.saImmOmCcbInitialize(0)
+                attrListCLMNode=[('saClmNodeLockCallbackTimeout','SATIMET',[50000000000]),('saClmNodeDisableReboot','SAUINT32T',[0])]
+                pyImm.immom.createobject('safNode=node4,safCluster=myClmCluster', 'SaClmNode', attrListCLMNode)
+                #creating AMF node object
+                call(['immcfg','-a','saAmfNGNodeList+=safAmfNode=PL-4,safAmfCluster=myAmfCluster','safAmfNodeGroup=AllNodes,safAmfCluster=myAmfCluster'])
+		call(['immcfg','-a','saAmfNGNodeList+=safAmfNode=PL-4,safAmfCluster=myAmfCluster','safAmfNodeGroup=PLs,safAmfCluster=myAmfCluster'])
+		attrListAMFNode= [('saAmfNodeSuFailoverMax','SAUINT32T',[2]),('saAmfNodeSuFailOverProb','SATIMET',[1200000000000]),('saAmfNodeFailfastOnTerminationFailure','SAUINT32T',[0]),('saAmfNodeFailfastOnInstantiationFailure','SAUINT32T',[0]),('saAmfNodeClmNode','SANAMET',['safNode=node4,safCluster=myClmCluster']),('saAmfNodeAutoRepair','SAUINT32T',[1])]
+                pyImm.immom.createobject('safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNode',attrListAMFNode)
+                pyImm.immom.createobject('safInstalledSwBundle=safSmfBundle=SmfBundleNWayActiveHTTP,safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNodeSwBundle',attrListSaAmfNodeSwBundleHTTP)
+                pyImm.immom.createobject('safInstalledSwBundle=safSmfBundle=OpenSAF,safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNodeSwBundle',attrListSaAmfNodeSwBundle)
+                pyImm.immom.createobject('safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfSU',attrListSUPL)
+                pyImm.immom.createobject('safComp=AMFWDOG,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfComp',attrListCompWDOG)
+                print('safComp=AMFWDOG is added successfully')
+                pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=AMFWDOG-OpenSAF,safComp=AMFWDOG,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfCompCsType',attrListCompCSIWDOG)
+                print('safCSType=AMFWDOG-OpenSAF is added successfully')
+                pyImm.immom.createobject('safComp=CPND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfComp',attrListCompCPND)
+                print('safComp=CPND is added successfully')
+                pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=CPND-OpenSAF,safComp=CPND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfCompCsType',attrListCompCSICPND)
+                print('safCSType=CPND-OpenSAF is added successfully')
+                pyImm.immom.createobject('safComp=GLND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfComp',attrListCompGLND)
+                print('safComp=GLND is added successfully')           
+                pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=GLND-OpenSAF,safComp=GLND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfCompCsType',attrListCompCSIGLND)
+                print('safCSType=GLND-OpenSAF is added successfully')
+                pyImm.immom.createobject('safComp=IMMND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfComp',attrListCompIMMND)
+                pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=IMMND-OpenSAF,safComp=IMMND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfCompCsType',attrListCompCSIIMMND)
+                pyImm.immom.createobject('safComp=MQND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfComp',attrListCompMQND)
+                pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=MQND-OpenSAF,safComp=MQND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfCompCsType',attrListCompCSIMQND)
+                pyImm.immom.createobject('safComp=SMFND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfComp',attrListCompSMFND)
+                pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=SMFND-OpenSAF,safComp=SMFND,safSu=PL-4,safSg=NoRed,safApp=OpenSAF', 'SaAmfCompCsType',attrListCompCSISMFND)
+                pyImm.immom.createobject('safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', 'SaAmfSU', attrListSUHTTP)
+                pyImm.immom.createobject('safComp=comp_1_NWayActiveHTTP,safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', 'SaAmfComp', attrListCompHTTP)
+                pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=CSBaseTypeNWayActiveHTTP,safComp=comp_1_NWayActiveHTTP,safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', 'SaAmfCompCsType',attrListCompCSIHTTP)
+		pyImm.immombin.saImmOmCcbApply()
+                pyImm.immombin.saImmOmCcbFinalize()
+             	pyImm.immombin.saImmOmAdminOwnerFinalize()
+            except:
+                print('modification within object didn\'t work')
+                raise
+
 
 
 def act(SI, SInumber, workloadChangeType):
