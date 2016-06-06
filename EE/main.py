@@ -1,6 +1,6 @@
 #/usr/bin/env python
 from __future__ import print_function
-import pyImm.immombin, pyImm.immom, pyImm.immomexamples, sys, re
+import pyImm.immombin, pyImm.immom, pyImm.immomexamples, sys, re, time
 from subprocess import call
 
 
@@ -27,7 +27,10 @@ class operation(object):
                 return ''
 
     def chaindedQuery(self, queryChain):
-        cq = lambda DN, attribute: pyImm.immom.getattributes(DN)[attribute][0]
+        try:
+            cq = lambda DN, attribute: pyImm.immom.getattributes(DN)[attribute][0]
+        except IndexError:
+            print('Error with %r on %r' %(cq, queryChain))
         return reduce(cq, queryChain)
 
     def modifyObject(self, DN, attrList):
@@ -152,6 +155,7 @@ class operation(object):
     def checkAndAdjustNodesFor(self, SG_DN):
         if int(op.chaindedQuery(['safBuff='+SG_DN, 'saInserviceBuff']))==0:
             print('bringing up new node')
+            call('python -m managementAgent.main'.split(' '))
             attrListSaAmfNodeSwBundleHTTP=[('saAmfNodeSwBundlePathPrefix','SASTRINGT',['/opt/httpComponent'])]
             attrListSaAmfNodeSwBundle=[('saAmfNodeSwBundlePathPrefix','SASTRINGT',['/usr/local/lib/opensaf/clc-cli'])]
             #for adding payload
@@ -175,12 +179,12 @@ class operation(object):
             ##creating objects in the configuration
             #creating CLM node object
             try:
-		pyImm.immombin.saImmOmCcbInitialize(0)
+                pyImm.immombin.saImmOmCcbInitialize(0)
                 attrListCLMNode=[('saClmNodeLockCallbackTimeout','SATIMET',[50000000000]),('saClmNodeDisableReboot','SAUINT32T',[0])]
                 pyImm.immom.createobject('safNode=node4,safCluster=myClmCluster', 'SaClmNode', attrListCLMNode)
                 #creating AMF node object
                 call(['immcfg','-a','saAmfNGNodeList+=safAmfNode=PL-4,safAmfCluster=myAmfCluster','safAmfNodeGroup=AllNodes,safAmfCluster=myAmfCluster'])
-		call(['immcfg','-a','saAmfNGNodeList+=safAmfNode=PL-4,safAmfCluster=myAmfCluster','safAmfNodeGroup=PLs,safAmfCluster=myAmfCluster'])
+                call(['immcfg','-a','saAmfNGNodeList+=safAmfNode=PL-4,safAmfCluster=myAmfCluster','safAmfNodeGroup=PLs,safAmfCluster=myAmfCluster'])
 		attrListAMFNode= [('saAmfNodeSuFailoverMax','SAUINT32T',[2]),('saAmfNodeSuFailOverProb','SATIMET',[1200000000000]),('saAmfNodeFailfastOnTerminationFailure','SAUINT32T',[0]),('saAmfNodeFailfastOnInstantiationFailure','SAUINT32T',[0]),('saAmfNodeClmNode','SANAMET',['safNode=node4,safCluster=myClmCluster']),('saAmfNodeAutoRepair','SAUINT32T',[1])]
                 pyImm.immom.createobject('safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNode',attrListAMFNode)
                 pyImm.immom.createobject('safInstalledSwBundle=safSmfBundle=SmfBundleNWayActiveHTTP,safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNodeSwBundle',attrListSaAmfNodeSwBundleHTTP)
@@ -209,10 +213,28 @@ class operation(object):
                 pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=CSBaseTypeNWayActiveHTTP,safComp=comp_1_NWayActiveHTTP,safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', 'SaAmfCompCsType',attrListCompCSIHTTP)
 		pyImm.immombin.saImmOmCcbApply()
                 pyImm.immombin.saImmOmCcbFinalize()
-             	pyImm.immombin.saImmOmAdminOwnerFinalize()
+             	#pyImm.immombin.saImmOmAdminOwnerFinalize()
             except:
                 print('modification within object didn\'t work')
                 raise
+            time.sleep(7)
+            while int(self.chaindedQuery(['safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'saAmfNodeOperState']))!=1:
+                print('New node configured, waiting for it to join the cluster', end='\r')
+                time.sleep(3)
+            #Setting buffer values
+            #pyImm.immombin.saImmOmAdminOwnerInitialize(self.admin)
+            currentInserviceBuff = int(self.chaindedQuery(['safBuff='+SG, 'saInserviceBuff']))
+            currentSpareBuff = int(self.chaindedQuery(['safBuff='+SG, 'saSpareSUBuff']))
+            attrList = [
+                        ('saInserviceBuff', 'SAUINT32T', [currentInserviceBuff+1])
+                    ]
+            self.modifyObject('safBuff='+SG, attrList)
+            attrList = [
+                        ('saSpareSUBuff', 'SAUINT32T', [currentSpareBuff-1])
+                    ]
+            self.modifyObject('safBuff='+SG, attrList)
+
+
 
 
 
