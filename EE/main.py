@@ -185,7 +185,7 @@ class operation(object):
                 #creating AMF node object
                 call(['immcfg','-a','saAmfNGNodeList+=safAmfNode=PL-4,safAmfCluster=myAmfCluster','safAmfNodeGroup=AllNodes,safAmfCluster=myAmfCluster'])
                 call(['immcfg','-a','saAmfNGNodeList+=safAmfNode=PL-4,safAmfCluster=myAmfCluster','safAmfNodeGroup=PLs,safAmfCluster=myAmfCluster'])
-		attrListAMFNode= [('saAmfNodeSuFailoverMax','SAUINT32T',[2]),('saAmfNodeSuFailOverProb','SATIMET',[1200000000000]),('saAmfNodeFailfastOnTerminationFailure','SAUINT32T',[0]),('saAmfNodeFailfastOnInstantiationFailure','SAUINT32T',[0]),('saAmfNodeClmNode','SANAMET',['safNode=node4,safCluster=myClmCluster']),('saAmfNodeAutoRepair','SAUINT32T',[1])]
+        attrListAMFNode= [('saAmfNodeSuFailoverMax','SAUINT32T',[2]),('saAmfNodeSuFailOverProb','SATIMET',[1200000000000]),('saAmfNodeFailfastOnTerminationFailure','SAUINT32T',[0]),('saAmfNodeFailfastOnInstantiationFailure','SAUINT32T',[0]),('saAmfNodeClmNode','SANAMET',['safNode=node4,safCluster=myClmCluster']),('saAmfNodeAutoRepair','SAUINT32T',[1])]
                 pyImm.immom.createobject('safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNode',attrListAMFNode)
                 pyImm.immom.createobject('safInstalledSwBundle=safSmfBundle=SmfBundleNWayActiveHTTP,safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNodeSwBundle',attrListSaAmfNodeSwBundleHTTP)
                 pyImm.immom.createobject('safInstalledSwBundle=safSmfBundle=OpenSAF,safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNodeSwBundle',attrListSaAmfNodeSwBundle)
@@ -211,9 +211,9 @@ class operation(object):
                 pyImm.immom.createobject('safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', 'SaAmfSU', attrListSUHTTP)
                 pyImm.immom.createobject('safComp=comp_1_NWayActiveHTTP,safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', 'SaAmfComp', attrListCompHTTP)
                 pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=CSBaseTypeNWayActiveHTTP,safComp=comp_1_NWayActiveHTTP,safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', 'SaAmfCompCsType',attrListCompCSIHTTP)
-		pyImm.immombin.saImmOmCcbApply()
+                pyImm.immombin.saImmOmCcbApply()
                 pyImm.immombin.saImmOmCcbFinalize()
-             	#pyImm.immombin.saImmOmAdminOwnerFinalize()
+                #pyImm.immombin.saImmOmAdminOwnerFinalize()
             except:
                 print('modification within object didn\'t work')
                 raise
