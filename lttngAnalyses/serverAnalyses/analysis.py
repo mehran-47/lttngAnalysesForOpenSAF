@@ -204,14 +204,15 @@ class dictParser(object):
 				if slidingWindowAverage > upperLim and not self.EE_triggered:
 					print('###############################Triggered %s, increase ####################################' %(SI))
 					cmd = 'python -m EE.main '+ str(SI) + ' 1 1'
-					call(cmd.split(' '))
+					#in a thread because if an EE action tries to bring a VM up, the entire procedure might take a while to finish
+					Thread(target=call, args=(cmd.split(' '),)).start()
 					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
 					self.EE_triggered = True
-				elif slidingWindowAverage < lowerLim and not self.EE_triggered and nodeCount > 2:
+				elif slidingWindowAverage < lowerLim and not self.EE_triggered and nodeCount > 2:					
 					#nodeCount here is essentially the 'minimum configutaion' (temporary solution)
 					print('###############################Triggered %s, decrease ####################################' %(SI))
 					cmd = 'python -m EE.main '+ str(SI) + ' 1 2'
-					call(cmd.split(' '))
+					Thread(target=call, args=(cmd.split(' '),)).start()
 					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
 					self.EE_triggered = True
 

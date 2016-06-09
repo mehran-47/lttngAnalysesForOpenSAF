@@ -153,7 +153,7 @@ class operation(object):
             pass
 
     def checkAndAdjustNodesFor(self, SG_DN):
-        if int(op.chaindedQuery(['safBuff='+SG_DN, 'saInserviceBuff']))==0:
+        if int(op.chaindedQuery(['safBuff='+SG_DN, 'saInserviceBuff']))==0 and int(op.chaindedQuery(['safBuff='+SG_DN, 'saSpareSUBuff']))>0:
             print('bringing up new node')
             call('python -m managementAgent.main'.split(' '))
             attrListSaAmfNodeSwBundleHTTP=[('saAmfNodeSwBundlePathPrefix','SASTRINGT',['/opt/httpComponent'])]
@@ -234,9 +234,12 @@ class operation(object):
                 self.modifyObject('safBuff='+SG, attrList)
                 attrList = [('saSpareSUBuff','SAUINT32T',[currentSpareBuff-1])]
                 self.modifyObject('safBuff='+SG, attrList)
+                pyImm.immombin.saImmOmAdminOwnerFinalize()
+                call(['amf-adm','unlock-in', 'safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP'])
+                call(['amf-adm','unlock', 'safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP'])
             else:
                 print('Node join failed')
-            pyImm.immombin.saImmOmAdminOwnerFinalize()
+                pyImm.immombin.saImmOmAdminOwnerFinalize()
 
 
 
