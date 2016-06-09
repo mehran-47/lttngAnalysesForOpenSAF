@@ -1,6 +1,6 @@
 #/usr/bin/env python
 from __future__ import print_function
-import pyImm.immombin, pyImm.immom, pyImm.immomexamples, sys, re
+import pyImm.immombin, pyImm.immom, pyImm.immomexamples, sys, re, time
 from subprocess import call
 
 
@@ -209,10 +209,30 @@ class operation(object):
                 pyImm.immom.createobject('safSupportedCsType=safVersion=4.0.0\,safCSType=CSBaseTypeNWayActiveHTTP,safComp=comp_1_NWayActiveHTTP,safSu=SU_4_NWayActiveHTTP,safSg=SGNWayActiveHTTP,safApp=AppNWayActiveHTTP', 'SaAmfCompCsType',attrListCompCSIHTTP)
 		pyImm.immombin.saImmOmCcbApply()
                 pyImm.immombin.saImmOmCcbFinalize()
-             	pyImm.immombin.saImmOmAdminOwnerFinalize()
+             	#pyImm.immombin.saImmOmAdminOwnerFinalize()
             except:
                 print('modification within object didn\'t work')
                 raise
+            re_check = True
+            while re_check:
+                try:
+                    nodeState = self.chaindedQuery(['safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'saAmfNodeOperState'])
+                    re_check = False
+                except IndexError:
+                    print('Waiting for node to join', end='\r')
+                    re_check = True
+                    time.sleep(5)
+            if nodeState==1:
+                print('Node joined cluster successfully')
+                currentInserviceBuff = int(self.chaindedQuery(['safBuff='+SG, 'saInserviceBuff']))
+                currentSpareBuff = int(self.chaindedQuery(['safBuff='+SG, 'saSpareSUBuff']))
+                attrList = [('saInserviceBuff','SAUINT32T',[currentInserviceBuff+1])]
+                self.modifyObject('safBuff='+SG, attrList)
+                attrList = [('saSpareSUBuff','SAUINT32T',[currentSpareBuff-1])]
+                self.modifyObject('safBuff='+SG, attrList)
+            else:
+                print('Node join failed')
+            pyImm.immombin.saImmOmAdminOwnerFinalize()
 
 
 
