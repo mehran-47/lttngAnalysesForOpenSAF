@@ -185,7 +185,7 @@ class operation(object):
                 #creating AMF node object
                 call(['immcfg','-a','saAmfNGNodeList+=safAmfNode=PL-4,safAmfCluster=myAmfCluster','safAmfNodeGroup=AllNodes,safAmfCluster=myAmfCluster'])
                 call(['immcfg','-a','saAmfNGNodeList+=safAmfNode=PL-4,safAmfCluster=myAmfCluster','safAmfNodeGroup=PLs,safAmfCluster=myAmfCluster'])
-        attrListAMFNode= [('saAmfNodeSuFailoverMax','SAUINT32T',[2]),('saAmfNodeSuFailOverProb','SATIMET',[1200000000000]),('saAmfNodeFailfastOnTerminationFailure','SAUINT32T',[0]),('saAmfNodeFailfastOnInstantiationFailure','SAUINT32T',[0]),('saAmfNodeClmNode','SANAMET',['safNode=node4,safCluster=myClmCluster']),('saAmfNodeAutoRepair','SAUINT32T',[1])]
+                attrListAMFNode= [('saAmfNodeSuFailoverMax','SAUINT32T',[2]),('saAmfNodeSuFailOverProb','SATIMET',[1200000000000]),('saAmfNodeFailfastOnTerminationFailure','SAUINT32T',[0]),('saAmfNodeFailfastOnInstantiationFailure','SAUINT32T',[0]),('saAmfNodeClmNode','SANAMET',['safNode=node4,safCluster=myClmCluster']),('saAmfNodeAutoRepair','SAUINT32T',[1])]
                 pyImm.immom.createobject('safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNode',attrListAMFNode)
                 pyImm.immom.createobject('safInstalledSwBundle=safSmfBundle=SmfBundleNWayActiveHTTP,safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNodeSwBundle',attrListSaAmfNodeSwBundleHTTP)
                 pyImm.immom.createobject('safInstalledSwBundle=safSmfBundle=OpenSAF,safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'SaAmfNodeSwBundle',attrListSaAmfNodeSwBundle)
@@ -217,24 +217,26 @@ class operation(object):
             except:
                 print('modification within object didn\'t work')
                 raise
-            time.sleep(7)
-            while int(self.chaindedQuery(['safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'saAmfNodeOperState']))!=1:
-                print('New node configured, waiting for it to join the cluster', end='\r')
-                time.sleep(3)
-            #Setting buffer values
-            #pyImm.immombin.saImmOmAdminOwnerInitialize(self.admin)
-            currentInserviceBuff = int(self.chaindedQuery(['safBuff='+SG, 'saInserviceBuff']))
-            currentSpareBuff = int(self.chaindedQuery(['safBuff='+SG, 'saSpareSUBuff']))
-            attrList = [
-                        ('saInserviceBuff', 'SAUINT32T', [currentInserviceBuff+1])
-                    ]
-            self.modifyObject('safBuff='+SG, attrList)
-            attrList = [
-                        ('saSpareSUBuff', 'SAUINT32T', [currentSpareBuff-1])
-                    ]
-            self.modifyObject('safBuff='+SG, attrList)
-
-
+            re_check = True
+            while re_check:
+                try:
+                    nodeState = self.chaindedQuery(['safAmfNode=PL-4,safAmfCluster=myAmfCluster', 'saAmfNodeOperState'])
+                    re_check = False
+                except IndexError:
+                    print('Waiting for node to join', end='\r')
+                    re_check = True
+                    time.sleep(5)
+            if nodeState==1:
+                print('Node joined cluster successfully')
+                currentInserviceBuff = int(self.chaindedQuery(['safBuff='+SG, 'saInserviceBuff']))
+                currentSpareBuff = int(self.chaindedQuery(['safBuff='+SG, 'saSpareSUBuff']))
+                attrList = [('saInserviceBuff','SAUINT32T',[currentInserviceBuff+1])]
+                self.modifyObject('safBuff='+SG, attrList)
+                attrList = [('saSpareSUBuff','SAUINT32T',[currentSpareBuff-1])]
+                self.modifyObject('safBuff='+SG, attrList)
+            else:
+                print('Node join failed')
+            pyImm.immombin.saImmOmAdminOwnerFinalize()
 
 
 
