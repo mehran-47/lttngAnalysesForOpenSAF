@@ -88,7 +88,8 @@ class dictParser(object):
 		"""
 		if GUIserver!='':
 			server, port = GUIserver.split(':')[0], int(GUIserver.split(':')[1])
-			monitoringGUIserver = HTTPServer((server, port), MonitoringGUIHandler)
+			with open('monitoringGui/guiconfig.json', 'w') as jf: jf.write(json.dumps({'ip':server, 'port':port}))
+			monitoringGUIserver = HTTPServer((server, port), MonitoringGUIHandler)			
 			Thread(target=monitoringGUIserver.serve_forever).start()
 		try:
 			while True:
