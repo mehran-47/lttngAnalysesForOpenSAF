@@ -205,9 +205,11 @@ class dictParser(object):
 				if slidingWindowAverage > upperLim and not self.EE_triggered:
 					print('###############################Triggered %s, increase ####################################' %(SI))
 					cmd = 'python -m EE.main '+ str(SI) + ' 1 1'
-					call(cmd.split(' '))
+					#call(cmd.split(' '))
+					Thread(target=call, args=(['python3', 'scaler.py', str(SI)],)).start()
 					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
 					self.EE_triggered = True
+				'''
 				elif slidingWindowAverage < lowerLim and not self.EE_triggered and nodeCount > 2:
 					#nodeCount here is essentially the 'minimum configutaion' (temporary solution)
 					print('###############################Triggered %s, decrease ####################################' %(SI))
@@ -215,6 +217,7 @@ class dictParser(object):
 					call(cmd.split(' '))
 					Thread(target=self.__countDownForEEFlag, args=(numOfConsideredDataPoints+50, )).start()
 					self.EE_triggered = True
+				'''
 
 
 
